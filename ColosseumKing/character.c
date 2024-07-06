@@ -36,11 +36,13 @@ void increaseHealth(struct Character* character, int healthIncrease) {
 void decreaseHealth(struct Character* character, int healthDecrease) {
 	character->health -= healthDecrease;
 }
+void getCharacterStats() {
 
 //randomly increase the health of a character 
 void randomHealthIncrease(struct Character* character) {
 	character->health += (rand() % 5 + 1); // rand num b/t 1 & 5
 }
+void getCharacterLevel() {
 
 
 //----ATTACK DAMAGE----//
@@ -48,6 +50,7 @@ void randomHealthIncrease(struct Character* character) {
 int getAttackDamage(struct Character* character) {
 	return character->attackDamage;
 }
+void increaseCharacterArmour() {
 
 //increase the characters attack damage by x amount
 void increaseAttackDamage(struct Character* character, int attackDamageIncrease) {

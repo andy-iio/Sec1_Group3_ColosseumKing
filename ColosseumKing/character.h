@@ -60,6 +60,10 @@ int getAttackDamage(struct Character* character);
 //increase the characters attack damage by x amount
 void increaseAttackDamage(struct Character* character, int attackDamageIncrease);
 
+union stats {
+	char STAMINA;
+	char HEALTH;
+};
 
 //----PRINT CHARACTER IMAGES----//
 //prints the ASCII image of a character
