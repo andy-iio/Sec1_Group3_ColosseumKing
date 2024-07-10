@@ -21,17 +21,17 @@ int main(void) {
 	struct Player player1;
 	struct Enemy zorb;
 
-	initializePlayer(&player1, "abcde", 50, 70, 80, 90, 100);
-	initializeEnemy(&zorb, "a", 50, 60);
-	printf("player health: %d enemy health: %d\n", getHealth(&player1), getHealth(&zorb));
-	increaseHealth(&player1, 4);
-	increaseHealth(&zorb, 7);
-	printf("player health: %d enemy health: %d\n", getHealth(&player1), getHealth(&zorb));
-	decreaseHealth(&player1, 9);
-	decreaseHealth(&zorb, 2);
-	printf("player health: %d enemy health: %d\n", getHealth(&player1), getHealth(&zorb));
+	loadPlayer(&player1, "abcde", 50, 70, 80, 90, 100, 1);
+	initializeEnemy(&zorb, MONSTER);
+	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
+	player1.health++;
+	zorb.health++;
+	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
+	player1.health--;
+	zorb.health--;
+	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
 	randomHealthIncrease(&player1);
-	printf("player health: %d enemy health: %d\n", getHealth(&player1), getHealth(&zorb));
+	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
 	//end of character module temmporary testing
 	//-------------------------------------------
 
