@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="character.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="save_load_login.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character.h" />
+    <ClInclude Include="save_load_login.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
