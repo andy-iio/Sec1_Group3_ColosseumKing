@@ -3,15 +3,11 @@
 #include "training.h"  
 #include "character.h" 
 #include "gear.h" 
+#include "buffer.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define MAXSIZE 50
-
-void clearInputBuffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF) {}
-}
 
 int mainMenu() {
     int choice = 0;
