@@ -16,7 +16,6 @@
 
 int main(void) {
 
-
 	//char filename[] = "ascii-art.txt";
 	char filename[] = "ascii.txt";
 
@@ -35,24 +34,6 @@ int main(void) {
 	fclose(file);
 	mainMenu();
 	inGameLoop(); // Start the game and run the game loop
-	/*
-	 if (argc != 3) {
-        printf("Arugements were not provided\n", argv[0]);
-        return 1;  // Exit with error code
-    }
-    // Retrieve username and password from command line arguments
-    char* username = argv[1];
-    char* password = argv[2];
-
-    // Validate login using the function
-    if (Login(username, password)) {
-        printf("Login successful!\n");
-    }
-    else {
-        printf("Invalid username or password.\n");
-    }
-	*/
-
 
 	srand(time(NULL)); //seeding the random number generator used in character module
 
