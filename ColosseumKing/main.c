@@ -5,8 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h> // for srand()
 #include <time.h> // to use time for srand()
-#include "menu.h"
-#include "training.h"
+
 //all our modules, rename yours if you want to
 #include "character.h"
 //#include "menu.h"
@@ -16,25 +15,6 @@
 
 int main(void) {
 
-
-	//char filename[] = "ascii-art.txt";
-	char filename[] = "ascii.txt";
-
-	FILE* file = fopen(filename, "r");
-
-	if (file == NULL) {
-		printf("Could not open file: %s\n", filename);
-		return 1;
-	}
-	char ch;
-
-	while ((ch = fgetc(file)) != EOF) {
-		putchar(ch);
-	}
-
-	fclose(file);
-	mainMenu();
-	inGameLoop(); // Start the game and run the game loop
 	/*
 	 if (argc != 3) {
         printf("Arugements were not provided\n", argv[0]);
@@ -52,6 +32,7 @@ int main(void) {
         printf("Invalid username or password.\n");
     }
 	*/
+
 
 
 	srand(time(NULL)); //seeding the random number generator used in character module

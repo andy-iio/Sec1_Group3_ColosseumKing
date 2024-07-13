@@ -21,17 +21,7 @@
     <ClCompile Include="character.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-
-    <ClCompile Include="menu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gear.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="training.c">
-
     <ClCompile Include="save_load_login.c">
-
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,13 +29,6 @@
     <ClInclude Include="character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gear.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="training.h">
     <ClInclude Include="save_load_login.h">
       <Filter>Header Files</Filter>
     </ClInclude>
