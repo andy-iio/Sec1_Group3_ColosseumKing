@@ -3,7 +3,7 @@
 #include "save_load_login.h"
 
 bool saveDisk() {
-    //FILE* file = fopen("somefile.txt", "w");
+    FILE* file = fopen("somefile.txt", "w");
     if (file == NULL) {
         printf("Error opening file for writing\n");
         return false;
@@ -17,7 +17,7 @@ bool saveDisk() {
 }
 
 bool loadDisk() {
-    //FILE* file = fopen("somefile.txt", "r");
+    FILE* file = fopen("somefile.txt", "r");
     if (file == NULL) {
         printf("No existing file found\n");
         return false;

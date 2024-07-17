@@ -8,16 +8,16 @@
 
 //all our modules, rename yours if you want to
 #include "character.h"
-//#include "menu.h"
+#include "menu.h"
 //#include "attack.h"
-//#include "training.h"
-//#include "fileManagement.h"
+#include "training.h"
+#include "save_load_login.h"
 
-int main(void) {
+int main(int argc, char* argv[]) {
 
-	/*
+	
 	 if (argc != 3) {
-        printf("Arugements were not provided\n", argv[0]);
+        printf("Arguments were not provided\n");
         return 1;  // Exit with error code
     }
     // Retrieve username and password from command line arguments
@@ -31,8 +31,7 @@ int main(void) {
     else {
         printf("Invalid username or password.\n");
     }
-	*/
-
+	
 
 
 	srand(time(NULL)); //seeding the random number generator used in character module
@@ -55,6 +54,9 @@ int main(void) {
 	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
 	//end of character module temmporary testing
 	//-------------------------------------------
+
+	mainMenu();
+	inGameLoop(); // Start the game and run the game loop
 
 
 	return 0;

@@ -127,13 +127,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="buffer.c" />
     <ClCompile Include="character.c" />
+    <ClCompile Include="gear.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="menu.c" />
     <ClCompile Include="save_load_login.c" />
+    <ClCompile Include="training.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="buffer.h" />
     <ClInclude Include="character.h" />
+    <ClInclude Include="gear.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="save_load_login.h" />
+    <ClInclude Include="training.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ascii.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
