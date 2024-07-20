@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="asterisk.c" />
     <ClCompile Include="buffer.c" />
     <ClCompile Include="character.c" />
     <ClCompile Include="gear.c" />
@@ -136,6 +137,7 @@
     <ClCompile Include="training.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="asterisk.h" />
     <ClInclude Include="buffer.h" />
     <ClInclude Include="character.h" />
     <ClInclude Include="gear.h" />
