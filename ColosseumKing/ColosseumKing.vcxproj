@@ -127,15 +127,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="asterisk.c" />
+    <ClCompile Include="buffer.c" />
     <ClCompile Include="character.c" />
+    <ClCompile Include="gear.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="menu.c" />
+    <ClCompile Include="save_load_login.c" />
     <ClCompile Include="save_load_login.c">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="training.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="asterisk.h" />
+    <ClInclude Include="buffer.h" />
     <ClInclude Include="character.h" />
+    <ClInclude Include="gear.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="save_load_login.h" />
+    <ClInclude Include="training.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ascii.txt" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="character_data.txt" />
