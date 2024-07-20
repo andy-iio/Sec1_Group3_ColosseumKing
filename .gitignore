@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/.vs/ColosseumKing/v17/.suo
+/.vs/ColosseumKing/v17/Browse.VC.db
