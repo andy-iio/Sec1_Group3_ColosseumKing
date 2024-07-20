@@ -1,15 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include "menu.h"
 #include "training.h"
 #include "character.h"
 #include "gear.h"
 #include "buffer.h"
+#include "asterisk.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 void initializeCharacter(STATSWITHCOLOR* character) {
     strncpy(character->userName, "Player1", MAXSIZE); // Default name, can be changed
-    character->coins = 10; // Default 10 coins
+    character->coins = 1; // Default 1 coins
     character->helmet = 0;
     character->chestplate = 0;
     character->leggings = 0;
@@ -60,7 +62,7 @@ void buyGear(STATSWITHCOLOR* character) {
         printf("\033[31mYou do not have enough coins to buy the gear set.\033[0m\n");
         printf("\033[31mYou need %d more coins to buy the gear set.\033[0m\n", gearCost - character->coins);
     }
-    printf("****************************\n");
+    asteriskShortLine();
 }
 
 void displayArmor(STATSWITHCOLOR* character) {
@@ -160,10 +162,13 @@ void trainArmor(STATSWITHCOLOR* character) {
         printf("8. Bracers\n");
         printf("9. Cape\n");
         printf("10. Shield\n");
+        printf("11. Back\n");
+        printf("12. \033[32mBattle!\n\033[0m");
         printf("\nEnter the number of the armor part you want to modify: ");
 
         if (scanf("%d", &choice) != 1) {
-            printf("\033[31mInvalid input. Please enter a number between 1 and 10.\n\033[0m");
+            printf("\033[31mInvalid input. Please enter a number between 1 and 12.\n\033[0m");
+            asteriskLongLine();
             while (getchar() != '\n');
             continue;
         }
@@ -199,8 +204,18 @@ void trainArmor(STATSWITHCOLOR* character) {
         case 10:
             printf("\033[1;31mShield selected.\n\033[0m");
             break;
+        case 11:
+            printf("\n\033[1;31mTraining session complete.\033[0m");
+            printf("\n\033[1;34mReturning to menu...\n\033[0m");
+            asteriskShortLine();
+            return;
+        case 12:
+            //Attack module 
+            printf("Attack module section.\n");
+            inGameLoop(); //this is just a test
         default:
-            printf("\033[31mInvalid choice. Please enter a number between 1 and 10.\n\033[0m");
+            printf("\033[31mInvalid choice. Please enter a number between 1 and 12.\n\033[0m");
+            asteriskLongLine();
             continue;
         }
 
@@ -389,7 +404,7 @@ void startTrainingGear() {
             break;
         }
         printf("\033[31mCharacter name cannot be empty. Please enter a valid name.\n\n\033[0m");
-        printf("****************************\n");
+        asteriskShortLine();
     }
 
     STATSWITHCOLOR* character = (STATSWITHCOLOR*)malloc(sizeof(STATSWITHCOLOR));
@@ -403,6 +418,4 @@ void startTrainingGear() {
     trainArmor(character);
 
     free(character);
-
-    printf("\n\033[1;31mTraining session complete.\n\033[0m");
 }

@@ -3,18 +3,19 @@
 #include "gear.h"
 #include "character.h"
 #include "buffer.h"
+#include "menu.h"
+#include "asterisk.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define MAXSIZE 5
+#define MAXSIZE 10
 
 void trainingMenu() {
     char subChoice;
     char input[MAXSIZE];
 
     while (1) {
-        printf("****************************\n");
         printf("\033[1;31mTRAINING MENU\n\033[0m");
         printf("a. Gear Stats\n");
         printf("b. Skill Stats\n");
@@ -32,20 +33,21 @@ void trainingMenu() {
         subChoice = input[0];
         switch (subChoice) {
         case 'a':
-            printf("****************************\n");
+            asteriskShortLine();
             printf("\033[1;31mGEAR STATS\n\033[0m");
             startTrainingGear();
             clearInputBuffer();
             break;
         case 'b':
-            printf("****************************\n");
+            asteriskShortLine();
             printf("\033[1;31mSKILL STATS\n\033[0m");
             startTraining();
             clearInputBuffer();
             break;
         case 'c':
             printf("\n\033[1;34mReturning to menu...\n\033[0m");
-            printf("****************************\n");
+            asteriskShortLine();
+            mainMenu();
             return;
         }
     }
@@ -108,11 +110,13 @@ void trainStats(STATSWITHCOLOR* character) {
         printf("3. Coordination\n");
         printf("4. Health\n");
         printf("5. Sword Skills\n");
+        printf("6. Back\n");
+        printf("7. \033[32mBattle!\n\033[0m");
         printf("\nEnter the number of the stat you want to modify: ");
 
         if (scanf("%d", &choice) != 1) {
-            printf("\033[31mInvalid input. Please enter a number between 1 and 5.\n\033[0m");
-            printf("*************************************************************************");
+            printf("\033[31mInvalid input. Please enter a number between 1 and 7.\n\033[0m");
+            asteriskLongLine();
             while (getchar() != '\n');
             continue;
         }
@@ -133,8 +137,18 @@ void trainStats(STATSWITHCOLOR* character) {
         case 5:
             printf("\033[1;31mSword Skills selected.\n\033[0m");
             break;
+        case 6:
+            printf("\n\033[1;31mTraining session complete.\033[0m");
+            printf("\n\033[1;34mReturning to menu...\n\033[0m");
+            asteriskShortLine();
+            return;
+        case 7:
+            //Attack module 
+            printf("Attack module section.\n");
+            inGameLoop(); //this is just a test
         default:
-            printf("\033[31mInvalid choice. Please enter a number between 1 and 5.\n\033[0m");
+            printf("\033[31mInvalid choice. Please enter a number between 1 and 7.\n\033[0m");
+            asteriskLongLine();
             while (getchar() != '\n');
             continue;
         }
@@ -148,7 +162,7 @@ void trainStats(STATSWITHCOLOR* character) {
             }
 
             if (operation == 's') {
-                printf("*************************************************************************");
+                asteriskLongLine();
                 break;
             }
             else if (operation == '+') {
@@ -236,7 +250,7 @@ void trainStats(STATSWITHCOLOR* character) {
             if (points == 0) {
                 break;
             }
-            printf("*************************************************************************\n");
+            asteriskLongLine();
             switch (choice) {
             case 1:
                 printf("\033[1;31mSTRENGTH\033[0m");
@@ -274,7 +288,7 @@ void startTraining() {
             break;
         }
         printf("\033[31mCharacter name cannot be empty. Please enter a valid name.\n\n\033[0m");
-        printf("****************************\n");
+        asteriskShortLine();
     }
 
     STATSWITHCOLOR* player = (STATSWITHCOLOR*)malloc(sizeof(STATSWITHCOLOR));
@@ -297,6 +311,4 @@ void startTraining() {
     trainStats(player);
 
     free(player);
-
-    printf("\n\033[1;31mTraining session complete.\n\033[0m");
 }

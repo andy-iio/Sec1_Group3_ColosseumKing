@@ -1,9 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include "buffer.h"
 #include "menu.h"
 #include "training.h"  
 #include "character.h" 
 #include "gear.h" 
-#include "buffer.h"
+#include "asterisk.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,15 +31,15 @@ int mainMenu() {
             input[strcspn(input, "\n")] = '\0';
 
             if (strlen(input) > 1 || sscanf(input, "%d", &choice) != 1 || choice < 1 || choice > 6) {
-                printf("\033[31mInvalid choice. Please enter a valid option (1-4).\n\033[0m");
-                printf("****************************");
+                printf("\033[31mInvalid choice. Please enter a valid option (1-6).\n\033[0m");
+                asteriskShortLine();
             }
         } while (choice < 1 || choice > 6);
 
         switch (choice) {
         case 1:
             printf("\033[1;31mStarting New Game...\n\033[0m");
-            printf("****************************\n");
+            asteriskShortLine();
             printf("\033[1;31mTRAINING\n\033[0m");
             startTraining();  // Start the training module
             clearInputBuffer();
@@ -83,7 +84,7 @@ int loadGameMenu() {
         return 1;
     }
 
-    printf("****************************\n");
+    asteriskShortLine();
     printf("\033[1;31mLOAD GAME\n\033[0m");
 
     // Read the save files and display them as menu options
@@ -129,7 +130,7 @@ char settingsMenu() {
     char input[MAXSIZE];
 
     while (1) {
-        printf("****************************");
+        asteriskShortLine();
         printf("\n\033[1;31mSETTINGS\n\033[0m");
         printf("a) Sound\n");
         printf("b) How to Play\n");
@@ -154,7 +155,7 @@ char settingsMenu() {
             break;
         case 'c':
             printf("\n\033[1;34mReturning to menu...\n\033[0m");
-            printf("****************************\n");
+            asteriskShortLine();
             return;
         }
     }
@@ -165,9 +166,9 @@ void exitGameMenu() {
     char input[MAXSIZE];
 
     while (1) {
-        printf("a) Save and Exit\n");
-        printf("b) Exit Game\n");
-        printf("c) Cancel\n");
+        printf("a. Save and Exit\n");
+        printf("b. Exit Game\n");
+        printf("c. Cancel\n");
         printf("\nEnter your choice: ");
 
         fgets(input, sizeof(input), stdin);
@@ -175,7 +176,7 @@ void exitGameMenu() {
 
         if (strlen(input) != 1 || (input[0] != 'a' && input[0] != 'b' && input[0] != 'c')) {
             printf("\033[31mInvalid choice. Please enter 'a', 'b', or 'c'.\n\033[0m");
-            printf("****************************\n");
+            asteriskShortLine();
             continue;
         }
 
@@ -188,8 +189,8 @@ void exitGameMenu() {
             printf("\033[1;31mExiting game...\n\033[0m");
             exit(0);
         case 'c':
-            printf("Returning to menu...\n");
-            printf("****************************");
+            printf("\n\033[1;34mReturning to menu...\n\033[0m");
+            asteriskShortLine();
             return;
         }
     }
@@ -200,32 +201,37 @@ int inGameMenu() {
 
     while (1) {
         printf("\033[1;31mIN GAME MENU\n\033[0m");
-        printf("1. Save Game\n");
-        printf("2. Settings\n");
-        printf("3. Return Main Menu\n");
-        printf("4. Exit Game\n");
+        printf("1. Return to Game\n");
+        printf("2. Save Game\n");
+        printf("3. Settings\n");
+        printf("4. Return to Main Menu\n");
+        printf("5. Exit Game\n");
         printf("\nEnter your choice: ");
         scanf(" %d", &choice);
         clearInputBuffer();
 
         switch (choice) {
         case 1:
-            printf("Saving game...\n");
+            printf("Returning...\n");
+            return;
+        case 2:
+            printf("\n\033[1;34mSaving game...\n\033[0m");
+            asteriskShortLine();
             // Save file function here
             break;
-        case 2:
+        case 3:
             settingsMenu();
             break;
-        case 3:
+        case 4:
             printf("\n\033[1;34mExiting game and returning to main menu...\n\033[0m");
-            printf("****************************");
+            asteriskShortLine();
             mainMenu();
             break;
-        case 4:
+        case 5:
             exitGameMenu();
             break;
         default:
-            printf("Invalid choice, please try again.\n");
+            printf("\033[1;31mInvalid choice, please try again.\n\033[0m");
         }
     }
 }
@@ -238,7 +244,7 @@ void inGameLoop() {
         ch = getch(); // Wait for a key press
 
         if (ch == 27) { // 27 is the ASCII value of the ESC key
-            printf("****************************\n");
+            asteriskShortLine();
             inGameMenu();
         }
     }
