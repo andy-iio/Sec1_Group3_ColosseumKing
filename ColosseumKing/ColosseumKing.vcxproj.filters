@@ -33,4 +33,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="character_data.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="training_data.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="login_info.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

@@ -1,0 +1,10 @@
+PLAYER DATA:
+Username: abcde
+Attack: 70
+Coordination : 100
+Gear : 1
+Health : 50
+Level : -858993460
+Speed : 90
+Strength : 80
+Avatar :

@@ -8,6 +8,7 @@
 
 //all our modules, rename yours if you want to
 #include "character.h"
+#include "save_load_login.h"
 //#include "menu.h"
 //#include "attack.h"
 //#include "training.h"
@@ -33,8 +34,6 @@ int main(void) {
     }
 	*/
 
-
-
 	srand(time(NULL)); //seeding the random number generator used in character module
 
 	//-------------------------------------------
@@ -43,6 +42,8 @@ int main(void) {
 	struct Enemy zorb;
 
 	loadPlayer(&player1, "abcde", 50, 70, 80, 90, 100, 1);
+	saveCharacter(player1);
+
 	initializeEnemy(&zorb, MONSTER);
 	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
 	player1.health++;
@@ -53,6 +54,9 @@ int main(void) {
 	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
 	randomHealthIncrease(&player1);
 	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
+
+	loadCharcterFromFile();
+
 	//end of character module temmporary testing
 	//-------------------------------------------
 
