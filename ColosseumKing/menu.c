@@ -2,7 +2,6 @@
 #include "buffer.h"
 #include "menu.h"
 #include "training.h"  
-#include "character.h" 
 #include "gear.h" 
 #include "asterisk.h"
 #include <stdio.h>
@@ -13,8 +12,8 @@
 int mainMenu() {
     int choice = 0;
     char input[MAXSIZE];
-    STATSWITHCOLOR character;
-    initializeCharacter(&character); // Initialize character attributes
+    STATSWITHCOLOR gear;
+    initializeGear(&gear); // Initialize gear attributes
 
     while (1) {
         do {
@@ -50,7 +49,7 @@ int mainMenu() {
             }
             break;
         case 3:
-            buyGear(&character);
+            buyGear(&gear);
             clearInputBuffer();
             break;
         case 4:

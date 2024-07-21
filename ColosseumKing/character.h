@@ -1,15 +1,18 @@
 #pragma once
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "gear.h"
+
 // Andy 
 
-//the types of enemies avaliable
-//these are temporary types we can change them
+//the types of enemies avaliable to fight against
 enum enemyType {
-	MONSTER,
+	LION,
+	TIGER,
+	BEAR,
 	SWORDSMAN,
-	ALIEN
 };
-
 
 struct Character {
 	int health;
@@ -17,14 +20,18 @@ struct Character {
 	int strength;
 	int speed;
 	int coordination;
-	//also in here will be the characters ascii image if we decide to do that
+	int armourLevel;
+	int armourSkill;
+	int swordLevel;
+	int swordSkill;
 };
 
 struct Player {
 	struct Character;
+	struct statsWithColor; //gear stats, find this struct in gear.h
 	char userName[50];
 	int level;
-	int gearLevel;
+	int avatar; //this will hold the avatar # that will be printed in attack module
 };
 
 struct Enemy {
@@ -35,16 +42,18 @@ struct Enemy {
 //----INITILIZE NEW CHARACTER----//
 
 //load a player from save file 
-void loadPlayer(struct Player* player, char* username, int health, int attackDamage, int strength, int speed, int coordination, int gearLevel);
+struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel);
 
 //initialize a new player with default values 
-void initializePlayer(struct Player* player, char* username);
+struct Player* initializePlayer(char* username);
 
 //initalize a new enemy with default values
-void initializeEnemy(struct Enemy* enemy, enum enemyType type);
+struct Enemy* initializeEnemy(enum enemyType type);
 
 //load enemy from save file
-void loadEnemy(struct Enemy* enemy, enum enemyType type, int health, int attackDamage, int strength, int speed, int coordination);
+struct Enemy* loadEnemy(enum enemyType type, int health, int attackDamage, int strength, int speed, int coordination);
+
+void matchEnemyToCharacterStats(struct Enemy* enemy, struct Player* player);
 
 //----HEALTH----//
 
