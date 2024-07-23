@@ -6,6 +6,11 @@
 #include "attack_module.h"
 
 
+#define AVATARHEIGHT 40
+#define AVATARLENGTH 48
+#define NUMOFAVATARS 6
+
+
 CHARACTER playerToCharacter(struct Player p)
 {
 	CHARACTER c;
