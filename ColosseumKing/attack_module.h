@@ -20,7 +20,7 @@ int defenseChance(CHARACTER deffender);
 int defensePower(CHARACTER deffender);
 
 //returns FIGHTSTATUS that decides if fight continues. NWIN it continues attack phase. PWIN or EWIN it ends attack phase
-FIGHTSTATUS round(CHARACTER player, CHARACTER enemy);
+FIGHTSTATUS round(CHARACTER* player, CHARACTER* enemy);
 
 //returns false if player dies
 bool attackPhase(CHARACTER player);
