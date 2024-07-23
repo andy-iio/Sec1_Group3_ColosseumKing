@@ -16,6 +16,7 @@ enum enemyType {
 
 typedef struct Character {
 	int level;
+	int avatar;
 	int health;
 	int constitution;
 	int strength;

@@ -7,6 +7,7 @@
 typedef enum fightstatus { NWIN, PWIN, EWIN}FIGHTSTATUS;
 
 
+CHARACTER playerToCharacter(struct Player);
 //
 bool attackSuccess(CHARACTER attacker, CHARACTER deffender);
 
