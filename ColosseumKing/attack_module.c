@@ -172,11 +172,11 @@ void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy)
 {
 
 
-	printf("Health: %d/%d", player.currentHealth, player.health);
+	printf("Health: %d/%d", player.tempHealth, player.health);
 
 	printf("										");
 
-	printf("Health: %d/%d", enemy.currentHealth, enemy.health);
+	printf("Health: %d/%d", enemy.tempHealth, enemy.health);
 
 	printf("\n");
 
@@ -297,4 +297,5 @@ char** characterAvatar(int i)
 
 	};
 
+	return avatars[i];
 }
