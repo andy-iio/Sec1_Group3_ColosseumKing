@@ -15,7 +15,23 @@
 
 int main(int argc, char* argv[]) {
 
-	
+	char filename[] = "ascii.txt";
+
+	FILE* file = fopen(filename, "r");
+
+	if (file == NULL) {
+		printf("Could not open file: %s\n", filename);
+		return 1;
+	}
+	char ch;
+
+	while ((ch = fgetc(file)) != EOF) {
+		putchar(ch);
+	}
+
+	fclose(file);
+
+
 	 if (argc != 3) {
         printf("Arguments were not provided\n");
         return 1;  // Exit with error code
@@ -26,7 +42,9 @@ int main(int argc, char* argv[]) {
 
     // Validate login using the function
     if (Login(username, password)) {
-        printf("Login successful!\n");
+        printf("\nLogin successful!\n");
+		mainMenu();
+		inGameLoop(); // Start the game and run the game loop
     }
     else {
         printf("Invalid username or password.\n");
@@ -35,6 +53,9 @@ int main(int argc, char* argv[]) {
 
 
 	srand(time(NULL)); //seeding the random number generator used in character module
+
+
+
 
 	//-------------------------------------------
 	//temporary testing for character module, I will remove later, feel free to comment it out -andy
@@ -55,8 +76,8 @@ int main(int argc, char* argv[]) {
 	//end of character module temmporary testing
 	//-------------------------------------------
 
-	mainMenu();
-	inGameLoop(); // Start the game and run the game loop
+
+	
 
 
 	return 0;

@@ -24,6 +24,7 @@ struct Character {
 	int armourSkill;
 	int swordLevel;
 	int swordSkill;
+	int tempHealth;
 };
 
 struct Player {
