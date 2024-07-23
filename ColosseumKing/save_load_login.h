@@ -1,10 +1,16 @@
 #pragma once
-#include <stdbool.h>
+#include<stdbool.h>
+#include "character.h"
 
-bool saveDisk();
+struct login {
+	struct Player;
+	char password;
+};
 
-bool loadDisk();
+bool saveCharacter(struct Player Player);
+
+bool loadCharcterFromFile();
 
 // Function to validate username and password
-int Login(char* username, char* password);
+bool Login(char* username, char* password);
 
