@@ -16,7 +16,7 @@ bool saveCharacter(struct Player Player) {
     fprintf(file,"Username: %s\n", Player.userName);
     fprintf(file,"Attack: %d\n",Player.attackDamage);
     fprintf(file,"Coordination : %d\n", Player.coordination);
-    fprintf(file,"Gear : %d\n", Player.gearLevel);
+    fprintf(file,"Gear : %d\n", Player.armourLevel);
     fprintf(file,"Health : %d\n", Player.health);
     fprintf(file,"Level : %d\n", Player.level);
     fprintf(file,"Speed : %d\n", Player.speed);
@@ -50,7 +50,7 @@ bool loadCharcterFromFile(struct Player* player) {
             fscanf(buffer, "Username: %[^\n]", player->userName);
             fscanf(buffer, "Attack : %d", player->attackDamage);
             fscanf(buffer, "Coordanation : %d", player->coordination);
-            fscanf(buffer, "Gear : %d", player->gearLevel);
+            fscanf(buffer, "Gear : %d", player->armourLevel);
             fscanf(buffer, "Health : %d", player->health);
             fscanf(buffer, "Level : %d", player->level);
             fscanf(buffer, "Speed : %d", player->speed);
