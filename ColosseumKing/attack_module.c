@@ -59,46 +59,46 @@ FIGHTSTATUS round(CHARACTER *player, CHARACTER *enemy)
 	if (player->speed > enemy->speed)
 	{
 		if (attackSuccess(*player, *enemy))
-			enemy->tempHealth - attackPower(*player);
+			enemy->tempHealth = enemy->tempHealth - attackPower(*player);
 
 		if (0 >= enemy->tempHealth)
 			return PWIN;
 
 		if (attackSuccess(*enemy, *player))
-			player->tempHealth - attackPower(*enemy);
+			player->tempHealth = player->tempHealth - attackPower(*enemy);
 	}
 	else if (player->speed < enemy->speed)
 	{
 		if (attackSuccess(*enemy, *player))
-			player->tempHealth - attackPower(*enemy);
+			player->tempHealth = player->tempHealth - attackPower(*enemy);
 
 		if (0 >= player->tempHealth)
 			return EWIN;
 
 		if (attackSuccess(*player, *enemy))
-			enemy->tempHealth - attackPower(*player);
+			enemy->tempHealth = enemy->tempHealth - attackPower(*player);
 	} 
 	else if (1 == ( rand() % (1 - 0 + 1) - 0 ) )
 	{
 		if (attackSuccess(*player, *enemy))
-			enemy->tempHealth - attackPower(*player);
+			enemy->tempHealth = enemy->tempHealth - attackPower(*player);
 
 		if (0 >= enemy->tempHealth)
 			return PWIN;
 
 		if (attackSuccess(*enemy, *player))
-			player->tempHealth - attackPower(*enemy);
+			player->tempHealth = player->tempHealth - attackPower(*enemy);
 	}
 	else
 	{
 		if (attackSuccess(*enemy, *player))
-			player->tempHealth - attackPower(*enemy);
+			player->tempHealth = player->tempHealth - attackPower(*enemy);
 
 		if (0 >= player->tempHealth)
 			return EWIN;
 
 		if (attackSuccess(*player, *enemy))
-			enemy->tempHealth - attackPower(*player);
+			enemy->tempHealth = enemy->tempHealth - attackPower(*player);
 	}
 
 	if (0 >= player->tempHealth)
