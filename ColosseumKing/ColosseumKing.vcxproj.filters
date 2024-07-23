@@ -39,6 +39,9 @@
     <ClCompile Include="asterisk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="attack_module.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="asterisk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="attack_module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

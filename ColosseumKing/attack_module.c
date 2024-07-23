@@ -28,65 +28,65 @@ int attackPower(CHARACTER attacker)
 
 int defenseChance(CHARACTER deffender)
 {
-	return deffender.speed + deffender.armorSkill + (rand() % (deffender.level - 0 + 1) - 0);
+	return deffender.speed + deffender.armourSkill + (rand() % (deffender.level - 0 + 1) - 0);
 }
 
 int defensePower(CHARACTER deffender)
 {
-	return deffender.constitution + deffender.armorLevel + (rand() % (deffender.level - 0 + 1) - 0);
+	return deffender.constitution + deffender.armourLevel + (rand() % (deffender.level - 0 + 1) - 0);
 }
 
-FIGHTSTATUS round(CHARACTER player, CHARACTER enemy)
+FIGHTSTATUS round(CHARACTER *player, CHARACTER *enemy)
 {
-	if (player.speed > enemy.speed)
+	if (player->speed > enemy->speed)
 	{
-		if (attackSuccess(player, enemy))
-			enemy.lowerTempHealth(attackPower(player));
+		if (attackSuccess(*player, *enemy))
+			enemy->tempHealth - attackPower(*player);
 
-		if (0 >= enemy.tempHealth)
+		if (0 >= enemy->tempHealth)
 			return PWIN;
 
-		if (attackSuccess(enemy, player))
-			player.lowerTempHealth(attackPower(enemy));
+		if (attackSuccess(*enemy, *player))
+			player->tempHealth - attackPower(*enemy);
 	}
-	else if (player.speed < enemy.speed)
+	else if (player->speed < enemy->speed)
 	{
-		if (attackSuccess(enemy, player))
-			player.lowerTempHealth(attackPower(enemy));
+		if (attackSuccess(*enemy, *player))
+			player->tempHealth - attackPower(*enemy);
 
-		if (0 >= player.tempHealth)
+		if (0 >= player->tempHealth)
 			return EWIN;
 
-		if (attackSuccess(player, enemy))
-			enemy.lowerTempHealth(attackPower(player));
+		if (attackSuccess(*player, *enemy))
+			enemy->tempHealth - attackPower(*player);
 	} 
 	else if (1 == ( rand() % (1 - 0 + 1) - 0 ) )
 	{
-		if (attackSuccess(player, enemy))
-			enemy.lowerTempHealth(attackPower(player));
+		if (attackSuccess(*player, *enemy))
+			enemy->tempHealth - attackPower(*player);
 
-		if (0 >= enemy.tempHealth)
+		if (0 >= enemy->tempHealth)
 			return PWIN;
 
-		if (attackSuccess(enemy, player))
-			player.lowerTempHealth(attackPower(enemy));
+		if (attackSuccess(*enemy, *player))
+			player->tempHealth - attackPower(*enemy);
 	}
 	else
 	{
-		if (attackSuccess(enemy, player))
-			player.lowerTempHealth(attackPower(enemy));
+		if (attackSuccess(*enemy, *player))
+			player->tempHealth - attackPower(*enemy);
 
-		if (0 >= player.tempHealth)
+		if (0 >= player->tempHealth)
 			return EWIN;
 
-		if (attackSuccess(player, enemy))
-			enemy.lowerTempHealth(attackPower(player));
+		if (attackSuccess(*player, *enemy))
+			enemy->tempHealth - attackPower(*player);
 	}
 
-	if (0 >= player.tempHealth)
+	if (0 >= player->tempHealth)
 		return EWIN;
 
-	if (0 >= enemy.tempHealth)
+	if (0 >= enemy->tempHealth)
 		return PWIN;
 
 	return NWIN;
@@ -95,13 +95,15 @@ FIGHTSTATUS round(CHARACTER player, CHARACTER enemy)
 
 bool attackPhase(CHARACTER player)
 {
-	CHARACTER enemy = createEnemy(player.level);
+	CHARACTER enemy; 
+	
+	matchEnemyToCharacterStats(&enemy, &player);
 
 	FIGHTSTATUS current = NWIN;
 
 	while (NWIN == current)
 	{
-		current = round(player, enemy);
+		current = round(&player, &enemy);
 	}
 
 	if (EWIN == current)
