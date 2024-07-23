@@ -1,6 +1,7 @@
 #pragma once
 // By Grae Watson - 2024/07/10 - Colosseum King
 
+#include <stdbool.h>
 #include "character.h"
 
 //NWIN = no wins, PWIN = player wins, EWIN enemy wins
