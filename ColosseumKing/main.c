@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
 
 	//-------------------------------------------
 	//temporary testing for character module, I will remove later, feel free to comment it out -andy
-	struct Player* player1 = loadPlayer("abcde", 50, 70, 80, 90, 100, 1);
+	/*struct Player* player1 = loadPlayer("abcde", 50, 70, 80, 90, 100, 1);
 	struct Enemy* zorb = initializeEnemy(LION);
 	struct Player* ko = initializePlayer("po");
 	matchEnemyToCharacterStats(zorb, ko);
@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
 	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
 	randomHealthIncrease(player1);
 	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
-	//end of character module temmporary testing
+	*///end of character module temmporary testing
 	//-------------------------------------------
 
 

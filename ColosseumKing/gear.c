@@ -2,154 +2,153 @@
 #include "menu.h"
 #include "training.h"
 #include "gear.h"
-#include "gear.h"
 #include "buffer.h"
 #include "asterisk.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void initializeGear(STATSWITHCOLOR* gear) {
-    gear->coins = 1; // Default 1 coins
-    gear->helmet = 0;
-    gear->chestplate = 0;
-    gear->leggings = 0;
-    gear->boots = 0;
-    gear->gauntlets = 0;
-    gear->shoulderPads = 0;
-    gear->belt = 0;
-    gear->bracers = 0;
-    gear->cape = 0;
-    gear->shield = 0;
-    gear->isHelmetBlue = 0;
-    gear->isChestplateBlue = 0;
-    gear->isLeggingsBlue = 0;
-    gear->isBootsBlue = 0;
-    gear->isGauntletsBlue = 0;
-    gear->isShoulderPadsBlue = 0;
-    gear->isBeltBlue = 0;
-    gear->isBracersBlue = 0;
-    gear->isCapeBlue = 0;
-    gear->isShieldBlue = 0;
+void initializeGear(struct Player* player) {
+    player->coins = 1; // Default 1 coins
+    player->helmet = 0;
+    player->chestplate = 0;
+    player->leggings = 0;
+    player->boots = 0;
+    player->gauntlets = 0;
+    player->shoulderPads = 0;
+    player->belt = 0;
+    player->bracers = 0;
+    player->cape = 0;
+    player->shield = 0;
+    player->isHelmetBlue = 0;
+    player->isChestplateBlue = 0;
+    player->isLeggingsBlue = 0;
+    player->isBootsBlue = 0;
+    player->isGauntletsBlue = 0;
+    player->isShoulderPadsBlue = 0;
+    player->isBeltBlue = 0;
+    player->isBracersBlue = 0;
+    player->isCapeBlue = 0;
+    player->isShieldBlue = 0;
 }
 
-void buyGear(STATSWITHCOLOR* gear) {
-    printf("\033[32mYou have %d coins.\033[0m\n", gear->coins);
+void buyGear(struct Player* player) {
+    printf("\033[32mYou have %d coins.\033[0m\n", player->coins);
 
-    int gearCost = 10;
+    int playerCost = 10;
 
-    if (gear->coins >= gearCost) {
-        printf("\033[32mYou have enough coins to buy the gear set.\033[0m\n");
-        gear->coins -= gearCost;
+    if (player->coins >= playerCost) {
+        printf("\033[32mYou have enough coins to buy the player set.\033[0m\n");
+        player->coins -= playerCost;
 
-        printf("\033[32mPurchase successful! Your remaining coins: %d\033[0m\n", gear->coins);
+        printf("\033[32mPurchase successful! Your remaining coins: %d\033[0m\n", player->coins);
 
-        gear->helmet = 1;
-        gear->chestplate = 1;
-        gear->leggings = 1;
-        gear->boots = 1;
-        gear->gauntlets = 1;
-        gear->shoulderPads = 1;
-        gear->belt = 1;
-        gear->bracers = 1;
-        gear->cape = 1;
-        gear->shield = 1;
+        player->helmet = 1;
+        player->chestplate = 1;
+        player->leggings = 1;
+        player->boots = 1;
+        player->gauntlets = 1;
+        player->shoulderPads = 1;
+        player->belt = 1;
+        player->bracers = 1;
+        player->cape = 1;
+        player->shield = 1;
 
-        printf("\033[32mYou have successfully bought the gear set!\033[0m\n");
+        printf("\033[32mYou have successfully bought the player set!\033[0m\n");
     }
     else {
-        printf("\033[31mYou do not have enough coins to buy the gear set.\033[0m\n");
-        printf("\033[31mYou need %d more coins to buy the gear set.\033[0m\n", gearCost - gear->coins);
+        printf("\033[31mYou do not have enough coins to buy the player set.\033[0m\n");
+        printf("\033[31mYou need %d more coins to buy the player set.\033[0m\n", playerCost - player->coins);
     }
     asteriskShortLine();
 }
 
-void displayArmor(STATSWITHCOLOR* gear) {
-    //printf("\nCurrent Armor for %s:\n", gear->userName);
+void displayArmor(struct Player* player) {
+    //printf("\nCurrent Armor for %s:\n", player->userName);
     printf("+-------------------+--------+\n");
     printf("| \033[32m      Armor       \033[0m| \033[32m Value\033[0m |\n");
     printf("+-------------------+--------+\n");
 
-    if (gear->isHelmetBlue) {
-        printf("| \033[1;33mHelmet\033[0m            |   \033[1;36m%2d\033[0m   |\n", gear->helmet);
+    if (player->isHelmetBlue) {
+        printf("| \033[1;33mHelmet\033[0m            |   \033[1;36m%2d\033[0m   |\n", player->helmet);
     }
     else {
-        printf("| \033[1;33mHelmet\033[0m            |   %2d   |\n", gear->helmet);
+        printf("| \033[1;33mHelmet\033[0m            |   %2d   |\n", player->helmet);
     }
 
-    if (gear->isChestplateBlue) {
-        printf("| \033[1;33mChestplate\033[0m        |   \033[1;36m%2d\033[0m   |\n", gear->chestplate);
+    if (player->isChestplateBlue) {
+        printf("| \033[1;33mChestplate\033[0m        |   \033[1;36m%2d\033[0m   |\n", player->chestplate);
     }
     else {
-        printf("| \033[1;33mChestplate\033[0m        |   %2d   |\n", gear->chestplate);
+        printf("| \033[1;33mChestplate\033[0m        |   %2d   |\n", player->chestplate);
     }
 
-    if (gear->isLeggingsBlue) {
-        printf("| \033[1;33mLeggings\033[0m          |   \033[1;36m%2d\033[0m   |\n", gear->leggings);
+    if (player->isLeggingsBlue) {
+        printf("| \033[1;33mLeggings\033[0m          |   \033[1;36m%2d\033[0m   |\n", player->leggings);
     }
     else {
-        printf("| \033[1;33mLeggings\033[0m          |   %2d   |\n", gear->leggings);
+        printf("| \033[1;33mLeggings\033[0m          |   %2d   |\n", player->leggings);
     }
 
-    if (gear->isBootsBlue) {
-        printf("| \033[1;33mBoots\033[0m             |   \033[1;36m%2d\033[0m   |\n", gear->boots);
+    if (player->isBootsBlue) {
+        printf("| \033[1;33mBoots\033[0m             |   \033[1;36m%2d\033[0m   |\n", player->boots);
     }
     else {
-        printf("| \033[1;33mBoots\033[0m             |   %2d   |\n", gear->boots);
+        printf("| \033[1;33mBoots\033[0m             |   %2d   |\n", player->boots);
     }
 
-    if (gear->isGauntletsBlue) {
-        printf("| \033[1;33mGauntlets\033[0m         |   \033[1;36m%2d\033[0m   |\n", gear->gauntlets);
+    if (player->isGauntletsBlue) {
+        printf("| \033[1;33mGauntlets\033[0m         |   \033[1;36m%2d\033[0m   |\n", player->gauntlets);
     }
     else {
-        printf("| \033[1;33mGauntlets\033[0m         |   %2d   |\n", gear->gauntlets);
+        printf("| \033[1;33mGauntlets\033[0m         |   %2d   |\n", player->gauntlets);
     }
 
-    if (gear->isShoulderPadsBlue) {
-        printf("| \033[1;33mShoulder Pads\033[0m     |   \033[1;36m%2d\033[0m   |\n", gear->shoulderPads);
+    if (player->isShoulderPadsBlue) {
+        printf("| \033[1;33mShoulder Pads\033[0m     |   \033[1;36m%2d\033[0m   |\n", player->shoulderPads);
     }
     else {
-        printf("| \033[1;33mShoulder Pads\033[0m     |   %2d   |\n", gear->shoulderPads);
+        printf("| \033[1;33mShoulder Pads\033[0m     |   %2d   |\n", player->shoulderPads);
     }
 
-    if (gear->isBeltBlue) {
-        printf("| \033[1;33mBelt\033[0m              |   \033[1;36m%2d\033[0m   |\n", gear->belt);
+    if (player->isBeltBlue) {
+        printf("| \033[1;33mBelt\033[0m              |   \033[1;36m%2d\033[0m   |\n", player->belt);
     }
     else {
-        printf("| \033[1;33mBelt\033[0m              |   %2d   |\n", gear->belt);
+        printf("| \033[1;33mBelt\033[0m              |   %2d   |\n", player->belt);
     }
 
-    if (gear->isBracersBlue) {
-        printf("| \033[1;33mBracers\033[0m           |   \033[1;36m%2d\033[0m   |\n", gear->bracers);
+    if (player->isBracersBlue) {
+        printf("| \033[1;33mBracers\033[0m           |   \033[1;36m%2d\033[0m   |\n", player->bracers);
     }
     else {
-        printf("| \033[1;33mBracers\033[0m           |   %2d   |\n", gear->bracers);
+        printf("| \033[1;33mBracers\033[0m           |   %2d   |\n", player->bracers);
     }
 
-    if (gear->isCapeBlue) {
-        printf("| \033[1;33mCape\033[0m              |   \033[1;36m%2d\033[0m   |\n", gear->cape);
+    if (player->isCapeBlue) {
+        printf("| \033[1;33mCape\033[0m              |   \033[1;36m%2d\033[0m   |\n", player->cape);
     }
     else {
-        printf("| \033[1;33mCape\033[0m              |   %2d   |\n", gear->cape);
+        printf("| \033[1;33mCape\033[0m              |   %2d   |\n", player->cape);
     }
 
-    if (gear->isShieldBlue) {
-        printf("| \033[1;33mShield\033[0m            |   \033[1;36m%2d\033[0m   |\n", gear->shield);
+    if (player->isShieldBlue) {
+        printf("| \033[1;33mShield\033[0m            |   \033[1;36m%2d\033[0m   |\n", player->shield);
     }
     else {
-        printf("| \033[1;33mShield\033[0m            |   %2d   |\n", gear->shield);
+        printf("| \033[1;33mShield\033[0m            |   %2d   |\n", player->shield);
     }
 
     printf("+-------------------+--------+\n");
 }
 
-void trainArmor(STATSWITHCOLOR* gear) {
+void trainArmor(struct Player* player) {
     int points = MAXSIZE;
     int choice;
     char operation;
 
     while (points > 0) {
-        displayArmor(gear);
+        displayArmor(player);
         printf("\033[1;31mYou have %d points to use on armor.\n\033[0m", points);
         printf("1. Helmet\n");
         printf("2. Chestplate\n");
@@ -232,53 +231,53 @@ void trainArmor(STATSWITHCOLOR* gear) {
             else if (operation == '+') {
                 switch (choice) {
                 case 1:
-                    gear->helmet++;
-                    gear->isHelmetBlue = 1;
+                    player->helmet++;
+                    player->isHelmetBlue = 1;
                     points--;
                     break;
                 case 2:
-                    gear->chestplate++;
-                    gear->isChestplateBlue = 1;
+                    player->chestplate++;
+                    player->isChestplateBlue = 1;
                     points--;
                     break;
                 case 3:
-                    gear->leggings++;
-                    gear->isLeggingsBlue = 1;
+                    player->leggings++;
+                    player->isLeggingsBlue = 1;
                     points--;
                     break;
                 case 4:
-                    gear->boots++;
-                    gear->isBootsBlue = 1;
+                    player->boots++;
+                    player->isBootsBlue = 1;
                     points--;
                     break;
                 case 5:
-                    gear->gauntlets++;
-                    gear->isGauntletsBlue = 1;
+                    player->gauntlets++;
+                    player->isGauntletsBlue = 1;
                     points--;
                     break;
                 case 6:
-                    gear->shoulderPads++;
-                    gear->isShoulderPadsBlue = 1;
+                    player->shoulderPads++;
+                    player->isShoulderPadsBlue = 1;
                     points--;
                     break;
                 case 7:
-                    gear->belt++;
-                    gear->isBeltBlue = 1;
+                    player->belt++;
+                    player->isBeltBlue = 1;
                     points--;
                     break;
                 case 8:
-                    gear->bracers++;
-                    gear->isBracersBlue = 1;
+                    player->bracers++;
+                    player->isBracersBlue = 1;
                     points--;
                     break;
                 case 9:
-                    gear->cape++;
-                    gear->isCapeBlue = 1;
+                    player->cape++;
+                    player->isCapeBlue = 1;
                     points--;
                     break;
                 case 10:
-                    gear->shield++;
-                    gear->isShieldBlue = 1;
+                    player->shield++;
+                    player->isShieldBlue = 1;
                     points--;
                     break;
                 }
@@ -286,8 +285,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
             else if (operation == '-') {
                 switch (choice) {
                 case 1:
-                    if (gear->helmet > 0) {
-                        gear->helmet--;
+                    if (player->helmet > 0) {
+                        player->helmet--;
                         points++;
                     }
                     else {
@@ -295,8 +294,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
                     }
                     break;
                 case 2:
-                    if (gear->chestplate > 0) {
-                        gear->chestplate--;
+                    if (player->chestplate > 0) {
+                        player->chestplate--;
                         points++;
                     }
                     else {
@@ -304,8 +303,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
                     }
                     break;
                 case 3:
-                    if (gear->leggings > 0) {
-                        gear->leggings--;
+                    if (player->leggings > 0) {
+                        player->leggings--;
                         points++;
                     }
                     else {
@@ -313,8 +312,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
                     }
                     break;
                 case 4:
-                    if (gear->boots > 0) {
-                        gear->boots--;
+                    if (player->boots > 0) {
+                        player->boots--;
                         points++;
                     }
                     else {
@@ -322,8 +321,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
                     }
                     break;
                 case 5:
-                    if (gear->gauntlets > 0) {
-                        gear->gauntlets--;
+                    if (player->gauntlets > 0) {
+                        player->gauntlets--;
                         points++;
                     }
                     else {
@@ -331,8 +330,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
                     }
                     break;
                 case 6:
-                    if (gear->shoulderPads > 0) {
-                        gear->shoulderPads--;
+                    if (player->shoulderPads > 0) {
+                        player->shoulderPads--;
                         points++;
                     }
                     else {
@@ -340,8 +339,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
                     }
                     break;
                 case 7:
-                    if (gear->belt > 0) {
-                        gear->belt--;
+                    if (player->belt > 0) {
+                        player->belt--;
                         points++;
                     }
                     else {
@@ -349,8 +348,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
                     }
                     break;
                 case 8:
-                    if (gear->bracers > 0) {
-                        gear->bracers--;
+                    if (player->bracers > 0) {
+                        player->bracers--;
                         points++;
                     }
                     else {
@@ -358,8 +357,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
                     }
                     break;
                 case 9:
-                    if (gear->cape > 0) {
-                        gear->cape--;
+                    if (player->cape > 0) {
+                        player->cape--;
                         points++;
                     }
                     else {
@@ -367,8 +366,8 @@ void trainArmor(STATSWITHCOLOR* gear) {
                     }
                     break;
                 case 10:
-                    if (gear->shield > 0) {
-                        gear->shield--;
+                    if (player->shield > 0) {
+                        player->shield--;
                         points++;
                     }
                     else {
@@ -384,36 +383,36 @@ void trainArmor(STATSWITHCOLOR* gear) {
             if (points == 0) {
                 break;
             }
-            displayArmor(gear);
+            displayArmor(player);
             printf("\033[1;31mYou have %d points to use on armor.\n\033[0m", points);
         }
     }
-    displayArmor(gear);
+    displayArmor(player);
 }
 
 void startTrainingGear() {
     char name[MAXSIZE];
 
     while (1) {
-        printf("Enter the name of your gear: ");
+        printf("Enter the name of your player: ");
         fgets(name, sizeof(name), stdin);
         name[strcspn(name, "\n")] = '\0';
 
         if (strlen(name) > 0) {
             break;
         }
-        printf("\033[31mgear name cannot be empty. Please enter a valid name.\n\n\033[0m");
+        printf("\033[31mplayer name cannot be empty. Please enter a valid name.\n\n\033[0m");
         asteriskShortLine();
     }
 
-    STATSWITHCOLOR* gear = (STATSWITHCOLOR*)malloc(sizeof(STATSWITHCOLOR));
-    if (gear == NULL) {
-        printf("Failed to create gear.\n");
+    struct Player* player = (struct Player*)malloc(sizeof(struct Player));
+    if (player == NULL) {
+        printf("Failed to create player.\n");
         return;
     }
-    initializeGear(gear); // Initialize gear attributes
+    initializeGear(player); // Initialize player attributes
 
-    trainArmor(gear);
+    trainArmor(player);
 
-    free(gear);
+    free(player);
 }

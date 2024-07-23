@@ -145,6 +145,7 @@ void trainStats(struct Player* player) {
         case 7:
             //Attack module 
             printf("Attack module section.\n");
+            //call attackPhase(player);
             inGameLoop(); //this is just a test
         default:
             printf("\033[31mInvalid choice. Please enter a number between 1 and 7.\n\033[0m");

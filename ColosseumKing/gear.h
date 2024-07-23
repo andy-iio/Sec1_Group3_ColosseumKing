@@ -31,7 +31,7 @@ typedef struct statsWithColor {
     int coins;
 } STATSWITHCOLOR;
 
-void displayArmor(STATSWITHCOLOR* gear);
-void trainArmor(STATSWITHCOLOR* gear);
+void displayArmor(struct Player* player);
+void trainArmor(struct Player* player);
 void startTrainingGear();
-void buyGear(STATSWITHCOLOR* gear);
+void buyGear(struct Player* player);
