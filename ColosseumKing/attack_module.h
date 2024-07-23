@@ -29,6 +29,10 @@ bool attackPhase(CHARACTER player);
 
 void printFight(CHARACTER player, CHARACTER enemy);
 
+void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy);
+
+void printCharacterNEnemyAvatar(int Pavatar, int Eavatar);
+
 char** characterAvatar(int);
 
 

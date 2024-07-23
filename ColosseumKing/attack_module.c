@@ -138,7 +138,9 @@ void printFight(CHARACTER player, CHARACTER enemy)
 {
 	printCharacterNEnemyAvatar(player.avatar, enemy.avatar);
 
+	printf("\n");
 
+	printCharacterNEnemyStats(player, enemy);
 }
 
 //void printCharacterAvatar(int avatar)
