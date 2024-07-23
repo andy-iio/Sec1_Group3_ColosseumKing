@@ -108,7 +108,7 @@ void trainStats(struct Player* player) {
         printf("1. Strength\n");
         printf("2. Speed\n");
         printf("3. Coordination\n");
-        printf("4. Health\n");
+        printf("4. Constitution\n");
         printf("5. Sword Skills\n");
         printf("6. Back\n");
         printf("7. \033[32mBattle!\n\033[0m");
@@ -132,7 +132,7 @@ void trainStats(struct Player* player) {
             printf("\033[1;31mCoordination selected.\n\033[0m");
             break;
         case 4:
-            printf("\033[1;31mHealth selected.\n\033[0m");
+            printf("\033[1;31mConstitution selected.\n\033[0m");
             break;
         case 5:
             printf("\033[1;31mSword Skills selected.\n\033[0m");

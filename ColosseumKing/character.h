@@ -32,7 +32,7 @@ struct Player {
 	struct Character;
 	struct statsWithColor; //gear stats, find this struct in gear.h
 	char userName[50];
-	int level;
+	//int level;
 	int avatar; //this will hold the avatar # that will be printed in attack module
 };
 
