@@ -51,7 +51,7 @@ struct Player* initializePlayer(char* username);
 struct Enemy* initializeEnemy(enum enemyType type);
 
 //load enemy from save file
-struct Enemy* loadEnemy(enum enemyType type, int health, int attackDamage, int strength, int speed, int coordination);
+struct Enemy* loadEnemy(enum enemyType type, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill);
 
 void matchEnemyToCharacterStats(struct Enemy* enemy, struct Player* player);
 
