@@ -4,33 +4,33 @@
 
 //the types of enemies avaliable
 //these are temporary types we can change them
-enum enemyType {
+typedef enum enemyType {
 	MONSTER,
 	SWORDSMAN,
 	ALIEN
-};
+} ENEMYTYPE;
 
 
-struct Character {
+typedef struct Character {
 	int health;
 	int attackDamage;
 	int strength;
 	int speed;
 	int coordination;
 	//also in here will be the characters ascii image if we decide to do that
-};
+} CHARACTER;
 
-struct Player {
+typedef struct Player {
 	struct Character;
 	char userName[50];
 	int level;
 	int gearLevel;
-};
+} PLAYER;
 
-struct Enemy {
+typedef struct Enemy {
 	struct Character;
 	enum enemyType type;
-};
+} ENEMY;
 
 //----INITILIZE NEW CHARACTER----//
 

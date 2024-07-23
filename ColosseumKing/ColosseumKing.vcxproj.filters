@@ -24,12 +24,18 @@
     <ClCompile Include="save_load_login.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="attack_module.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="save_load_login.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="attack_module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

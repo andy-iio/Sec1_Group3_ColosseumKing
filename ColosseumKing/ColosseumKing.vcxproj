@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="attack_module.c" />
     <ClCompile Include="character.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="save_load_login.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="attack_module.h" />
     <ClInclude Include="character.h" />
     <ClInclude Include="save_load_login.h" />
   </ItemGroup>

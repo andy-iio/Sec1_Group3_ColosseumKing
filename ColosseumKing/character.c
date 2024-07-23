@@ -1,6 +1,6 @@
 #include "character.h"
 #include <string.h>
-#define DEFAULT_VALUE 10
+#define DEFAULT_VALUE 1
 //Andy
 
 //----INITILIZE----//

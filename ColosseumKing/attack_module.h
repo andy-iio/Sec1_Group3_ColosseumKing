@@ -4,7 +4,7 @@
 #include "character.h"
 
 //NWIN = no wins, PWIN = player wins, EWIN enemy wins
-typedef enum fightstatus { NWIN, PWIN, EWIN}FIGHTSTATUS;
+typedef enum fightstatus { NWIN, PWIN, EWIN }FIGHTSTATUS;
 
 
 //
@@ -26,6 +26,14 @@ bool attackPhase(CHARACTER player);
 
 
 void printFight(CHARACTER player, CHARACTER enemy);
+
+void printCharacterAvatar(int avatar);
+
+void printCharacterNEnemyAvatar(int Pavatar, int Eavatar);
+
+void printCharacterStats(int avatar);
+
+void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy);
 
 char** characterAvatar(int);
 
