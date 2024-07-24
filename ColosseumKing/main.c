@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
     // Validate login using the function
     if (Login(username, password)) {
         printf("\nLogin successful!\n");
-		mainMenu();
+		topMainMenu();
 		inGameLoop(); // Start the game and run the game loop
     }
     else {
