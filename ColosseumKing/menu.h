@@ -1,6 +1,7 @@
 #pragma once
 
 void clearInputBuffer();
+int topMainMenu();
 int mainMenu();
 int loadGameMenu();
 void trainingMenu();
