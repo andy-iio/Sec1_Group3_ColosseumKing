@@ -45,6 +45,7 @@ struct Player* initializePlayer(char* username) {
 	struct Player* player = _allocateMemory();
 	strcpy_s(player->userName, sizeof(player->userName) - 1, username);
 	_initalizeCharacter(player);
+	initializeGear(player);
 };
 
 //load a player from save file 
@@ -71,6 +72,7 @@ struct Enemy* loadEnemy(enum enemyType type, int health, int attackDamage, int s
 };
 
 //will match the enemy to the characters stats and randomly add or decrease each stat value by 1 or 0
+//same # of stats as character total but split up differently added random on top 
 void matchEnemyToCharacterStats(struct Enemy* enemy, struct Player* player) {
 	enemy = loadEnemy(enemy->type, player->health, player->attackDamage, player->strength, player->speed, player->coordination, player->armourLevel, player->armourSkill, player->swordLevel, player->swordSkill);
 }

@@ -74,6 +74,7 @@ int mainMenu() {
         do {
             printf("\033\n[1;31mMAIN MENU\n\033[0m");
             printf("1. New Game\n"); //call initailzePlayer(username)
+
             printf("2. Load Game\n"); // Load an existing game -> struct Player* player = loadCharacterFromFile();
             printf("3. Buy Armor Set\n"); // Buy armor for the player -> buyGear(&player);
             printf("4. Training\n"); // Start the training module -> startTraining();
@@ -108,6 +109,7 @@ int mainMenu() {
             break;
         case 3:
             buyGear(&player); // Allow player to buy gear
+
             clearInputBuffer();
             break;
         case 4:

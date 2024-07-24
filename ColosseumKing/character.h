@@ -25,6 +25,8 @@ struct Character {
 	int swordLevel;
 	int swordSkill;
 	int tempHealth;
+	int constitution;
+	int avatar; //this will hold the avatar # that will be printed in attack module
 };
 
 struct Player {
@@ -32,7 +34,6 @@ struct Player {
 	struct statsWithColor; //gear stats, find this struct in gear.h
 	char userName[50];
 	int level;
-	int avatar; //this will hold the avatar # that will be printed in attack module
 };
 
 struct Enemy {
@@ -43,8 +44,7 @@ struct Enemy {
 //----INITILIZE NEW CHARACTER----//
 
 //load a player from save file 
-struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel);
-
+struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill);
 //initialize a new player with default values 
 struct Player* initializePlayer(char* username);
 
