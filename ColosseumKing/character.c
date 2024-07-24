@@ -24,6 +24,7 @@ struct Player* _allocateMemoryPlayer() {
 	}
 	return player;
 }
+
 //this function is only to be used on this file, use initalizePlayer or initalizeEnemy instead
 void _initalizeCharacter(struct Character* c) {
 c->health = DEFAULT_VALUE;
@@ -55,7 +56,7 @@ void _loadCharacter(struct Character* c, int health, int attackDamage, int stren
 struct Player* initializePlayer(char* username) {
 	struct Player* player = _allocateMemoryPlayer();
 	strcpy_s(player->userName, sizeof(player->userName) - 1, username);
-	_initalizeCharacter(player);
+	_initalizeCharacter(&player->character);
 	initializeGear(player);
 	return player;
 };
@@ -65,16 +66,15 @@ struct Player* loadPlayer(char* username, int health, int attackDamage, int stre
 	struct Player* player = _allocateMemoryPlayer();
 	player->character.avatar = avatar;
 	strcpy_s(player->userName, sizeof(player->userName) - 1, username);
-	_loadCharacter(player, health, attackDamage, strength, speed, coordination, armourLevel, armourSkill, swordLevel, swordSkill, avatar);
+	_loadCharacter(&player->character, health, attackDamage, strength, speed, coordination, armourLevel, armourSkill, swordLevel, swordSkill, avatar);
 	return player;
 }
-
 
 //initalize a new enemy with default values
 struct Enemy* initializeEnemy(enum enemyType type) {
 	struct Enemy* enemy = _allocateMemoryEnemy();
 	enemy->type = type;
-	_initalizeCharacter(enemy);
+	_initalizeCharacter(&enemy->character);
 	return enemy;
 }
 
@@ -82,7 +82,7 @@ struct Enemy* initializeEnemy(enum enemyType type) {
 struct Enemy* loadEnemy(enum enemyType type, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill, int avatar) {
 	struct Enemy* enemy = _allocateMemoryEnemy();
 	enemy->type = type;
-	_loadCharacter(enemy, health, attackDamage, strength, speed, coordination, armourLevel, armourSkill, swordLevel, swordSkill, avatar);
+	_loadCharacter(&enemy->character, health, attackDamage, strength, speed, coordination, armourLevel, armourSkill, swordLevel, swordSkill, avatar);
 	return enemy;
 };
 
@@ -91,7 +91,7 @@ struct Enemy* loadEnemy(enum enemyType type, int health, int attackDamage, int s
 void matchEnemyToCharacterStats(struct Enemy* enemy, struct Player* player) {
 	int characterStatsTotalPoints = (player->character.health + player->character.attackDamage + player->character.speed + player->character.strength + player->character.coordination + player->character.armourLevel + player->character.armourSkill + player->character.swordSkill + player->character.swordLevel);
 
-	int remainingPoints = characterStatsTotalPoints;
+	int remainingPoints = characterStatsTotalPoints + (rand() % 5 + 1);
 	while (remainingPoints != 0) {
 		int randomStat = (rand() % 9 + 1); //random num between 1 and 9 (9 stats)
 
@@ -160,7 +160,6 @@ void randomHealthIncrease(struct Character* character) {
 };
 
 //----Stats & Skills----//
-
 //increase the level of a player by 1
 void increasePlayerLevel(struct Player* player) {
 	player->level++;

@@ -50,11 +50,6 @@ int main(int argc, char* argv[]) {
     else {
         printf("Invalid username or password.\n");
     }
-	
-
-
-
-
 
 	//-------------------------------------------
 	//temporary testing for character module, I will remove later, feel free to comment it out -andy

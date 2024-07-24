@@ -34,3 +34,4 @@ void displayArmor(struct Player* player);
 void trainArmor(struct Player* player);
 void startTrainingGear(struct Player* player);
 void buyGear(struct Player* player);
+void initializeGear(struct Player* player);

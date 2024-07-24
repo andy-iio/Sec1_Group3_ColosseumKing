@@ -392,7 +392,7 @@ void trainArmor(struct Player* player) {
 
 void startTrainingGear(struct Player* player) {
 
-    initializeGear(player); // Initialize player attributes
+    //initializeGear(player); //  this is not needed, gear is initalized in character 
 
     trainArmor(player);
 
