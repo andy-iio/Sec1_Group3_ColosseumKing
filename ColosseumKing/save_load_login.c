@@ -14,13 +14,13 @@ bool saveCharacter(struct Player Player) {
 
     fprintf(file,"PLAYER DATA:\n");
     fprintf(file,"Username: %s\n", Player.userName);
-    fprintf(file,"Attack: %d\n",Player.attackDamage);
-    fprintf(file,"Coordination : %d\n", Player.coordination);
-    fprintf(file,"Gear : %d\n", Player.armourLevel);
-    fprintf(file,"Health : %d\n", Player.health);
+    fprintf(file,"Attack: %d\n",Player.character.attackDamage);
+    fprintf(file,"Coordination : %d\n", Player.character.coordination);
+    fprintf(file,"Gear : %d\n", Player.character.armourLevel);
+    fprintf(file,"Health : %d\n", Player.character.health);
     fprintf(file,"Level : %d\n", Player.level);
-    fprintf(file,"Speed : %d\n", Player.speed);
-    fprintf(file,"Strength : %d\n", Player.strength);
+    fprintf(file,"Speed : %d\n", Player.character.speed);
+    fprintf(file,"Strength : %d\n", Player.character.strength);
     fprintf(file,"Avatar :\n");
     
     fclose(file);
@@ -48,14 +48,14 @@ bool loadCharcterFromFile(struct Player* player) {
                 return false;
             }
             fscanf(buffer, "Username: %[^\n]", player->userName);
-            fscanf(buffer, "Attack : %d", player->attackDamage);
-            fscanf(buffer, "Coordanation : %d", player->coordination);
-            fscanf(buffer, "Gear : %d", player->armourLevel);
-            fscanf(buffer, "Health : %d", player->health);
+            fscanf(buffer, "Attack : %d", player->character.attackDamage);
+            fscanf(buffer, "Coordanation : %d", player->character.coordination);
+            fscanf(buffer, "Gear : %d", player->character.armourLevel);
+            fscanf(buffer, "Health : %d", player->character.health);
             fscanf(buffer, "Level : %d", player->level);
-            fscanf(buffer, "Speed : %d", player->speed);
-            fscanf(buffer, "Strength : %d", player->strength);
-            fscanf(buffer, "Strength : %d", player->strength);
+            fscanf(buffer, "Speed : %d", player->character.speed);
+            fscanf(buffer, "Strength : %d", player->character.strength);
+            fscanf(buffer, "Strength : %d", player->character.strength);
         }
         fclose(file);
         printf("Player loaded from file");

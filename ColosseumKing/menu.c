@@ -37,9 +37,22 @@ int topMainMenu() {
             printf("\033[1;31mStarting New Game...\n\033[0m");
             asteriskShortLine();
             printf("\033[1;31mTRAINING\n\033[0m");
-            //ask player for username 
-            struct Player* player = initializePlayer("username here");
-            startTraining();  // Start the training module
+            char username[MAXSIZE];
+
+            while (1) {
+                printf("Create a Username: ");
+                fgets(username, sizeof(username), stdin);
+                username[strcspn(username, "\n")] = '\0';
+
+                if (strlen(username) > 0) {
+                    break;
+                }
+                printf("\033[31mplayer name cannot be empty. Please enter a valid name.\n\n\033[0m");
+                asteriskShortLine();
+            }
+
+            struct Player* player = initializePlayer(username);
+            startTraining(player);  // Start the training module
             clearInputBuffer();
             return 0;
         case 2:
@@ -63,7 +76,7 @@ int topMainMenu() {
     }
 }
 
-int mainMenu() {
+int mainMenu(struct Player* currentPlayer) {
     int choice = 0;
     char input[MAXSIZE];
     //delete this below
@@ -74,7 +87,6 @@ int mainMenu() {
         do {
             printf("\033\n[1;31mMAIN MENU\n\033[0m");
             printf("1. New Game\n"); //call initailzePlayer(username)
-
             printf("2. Load Game\n"); // Load an existing game -> struct Player* player = loadCharacterFromFile();
             printf("3. Buy Armor Set\n"); // Buy armor for the player -> buyGear(&player);
             printf("4. Training\n"); // Start the training module -> startTraining();
@@ -96,24 +108,38 @@ int mainMenu() {
             printf("\033[1;31mStarting New Game...\n\033[0m");
             asteriskShortLine();
             printf("\033[1;31mTRAINING\n\033[0m");
-            //ask player for username 
-            struct Player* player = initializePlayer("username here");
-            startTraining();  // Start the training module
+            char username[MAXSIZE];
+
+            while (1) {
+                printf("Create a Username: ");
+                fgets(username, sizeof(username), stdin);
+                username[strcspn(username, "\n")] = '\0';
+
+                if (strlen(username) > 0) {
+                    break;
+                }
+                printf("\033[31mplayer name cannot be empty. Please enter a valid name.\n\n\033[0m");
+                asteriskShortLine();
+            }
+
+            struct Player* newPlayer = initializePlayer(username);
+            startTraining(newPlayer);  // Start the training module
             clearInputBuffer();
             return 0;
         case 2:
             if (loadGameMenu() == 0) {
-                //struct Player* player = loadCharacterFromFile();
+                //SAVE & LOAD stuff here
+                //struct Player* newPlayer = initializePlayer("temp")//initalizing the player to send to save and load
+                //loadCharacterFromFile(newPlayer);
                 return 0; // Exit mainMenu after successful load
             }
             break;
         case 3:
-            buyGear(&player); // Allow player to buy gear
-
+            buyGear(currentPlayer); // Allow player to buy gear
             clearInputBuffer();
             break;
         case 4:
-            trainingMenu(); // Open the training menu
+            trainingMenu(currentPlayer); // Open the training menu
             clearInputBuffer();
             break;
         case 5:
@@ -180,7 +206,7 @@ int loadGameMenu() {
         }
     }
     fclose(fp);
-    inGameLoop();
+    //inGameLoop(player);
     return 0;
 }
 
@@ -243,6 +269,7 @@ void exitGameMenu() {
         switch (subChoice) {
         case 'a':
             printf("\033[1;31mSaving and exiting game...\n\033[0m");
+            //save file function here
             exit(0);
         case 'b':
             printf("\033[1;31mExiting game...\n\033[0m");
@@ -255,7 +282,7 @@ void exitGameMenu() {
     }
 }
 
-int inGameMenu() {
+int inGameMenu(struct Player* player) {
     int choice;
     char choice1;
 
@@ -291,7 +318,7 @@ int inGameMenu() {
             case 'y':
                 printf("\n\033[1;34mExiting game and returning to main menu...\n\033[0m");
                 asteriskShortLine();
-                mainMenu(); // Return to the main menu -> mainMenu();
+                mainMenu(player); // Return to the main menu -> mainMenu();
                 return 0;
             case 'n':
                 asteriskShortLine();
@@ -308,7 +335,7 @@ int inGameMenu() {
         }
     }
 }
-void inGameLoop() {
+void inGameLoop(struct Player* player) {
     int ch;
 
     while (1) {
@@ -317,7 +344,7 @@ void inGameLoop() {
 
         if (ch == 27) { // 27 is the ASCII value of the ESC key
             asteriskShortLine();
-            inGameMenu(); // Open the in-game menu -> inGameMenu();
+            inGameMenu(player); // Open the in-game menu -> inGameMenu();
         }
     }
 }

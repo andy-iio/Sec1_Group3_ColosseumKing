@@ -9,134 +9,134 @@
 #include <string.h>
 
 void initializeGear(struct Player* player) {
-    player->coins = 1; // Default 1 coins
-    player->helmet = 0;
-    player->chestplate = 0;
-    player->leggings = 0;
-    player->boots = 0;
-    player->gauntlets = 0;
-    player->shoulderPads = 0;
-    player->belt = 0;
-    player->bracers = 0;
-    player->cape = 0;
-    player->shield = 0;
-    player->isHelmetBlue = 0;
-    player->isChestplateBlue = 0;
-    player->isLeggingsBlue = 0;
-    player->isBootsBlue = 0;
-    player->isGauntletsBlue = 0;
-    player->isShoulderPadsBlue = 0;
-    player->isBeltBlue = 0;
-    player->isBracersBlue = 0;
-    player->isCapeBlue = 0;
-    player->isShieldBlue = 0;
+    player->stats.coins = 1; // Default 1 coins
+    player->stats.helmet = 0;
+    player->stats.chestplate = 0;
+    player->stats.leggings = 0;
+    player->stats.boots = 0;
+    player->stats.gauntlets = 0;
+    player->stats.shoulderPads = 0;
+    player->stats.belt = 0;
+    player->stats.bracers = 0;
+    player->stats.cape = 0;
+    player->stats.shield = 0;
+    player->stats.isHelmetBlue = 0;
+    player->stats.isChestplateBlue = 0;
+    player->stats.isLeggingsBlue = 0;
+    player->stats.isBootsBlue = 0;
+    player->stats.isGauntletsBlue = 0;
+    player->stats.isShoulderPadsBlue = 0;
+    player->stats.isBeltBlue = 0;
+    player->stats.isBracersBlue = 0;
+    player->stats.isCapeBlue = 0;
+    player->stats.isShieldBlue = 0;
 }
 
 void buyGear(struct Player* player) {
-    printf("\033[32mYou have %d coins.\033[0m\n", player->coins);
+    printf("\033[32mYou have %d coins.\033[0m\n", player->stats.coins);
 
     int playerCost = 10;
 
-    if (player->coins >= playerCost) {
+    if (player->stats.coins >= playerCost) {
         printf("\033[32mYou have enough coins to buy the player set.\033[0m\n");
-        player->coins -= playerCost;
+        player->stats.coins -= playerCost;
 
-        printf("\033[32mPurchase successful! Your remaining coins: %d\033[0m\n", player->coins);
+        printf("\033[32mPurchase successful! Your remaining coins: %d\033[0m\n", player->stats.coins);
 
-        player->helmet = 1;
-        player->chestplate = 1;
-        player->leggings = 1;
-        player->boots = 1;
-        player->gauntlets = 1;
-        player->shoulderPads = 1;
-        player->belt = 1;
-        player->bracers = 1;
-        player->cape = 1;
-        player->shield = 1;
+        player->stats.helmet = 1;
+        player->stats.chestplate = 1;
+        player->stats.leggings = 1;
+        player->stats.boots = 1;
+        player->stats.gauntlets = 1;
+        player->stats.shoulderPads = 1;
+        player->stats.belt = 1;
+        player->stats.bracers = 1;
+        player->stats.cape = 1;
+        player->stats.shield = 1;
 
         printf("\033[32mYou have successfully bought the player set!\033[0m\n");
     }
     else {
         printf("\033[31mYou do not have enough coins to buy the player set.\033[0m\n");
-        printf("\033[31mYou need %d more coins to buy the player set.\033[0m\n", playerCost - player->coins);
+        printf("\033[31mYou need %d more coins to buy the player set.\033[0m\n", playerCost - player->stats.coins);
     }
     asteriskShortLine();
 }
 
 void displayArmor(struct Player* player) {
-    //printf("\nCurrent Armor for %s:\n", player->userName);
+    //printf("\nCurrent Armor for %s:\n", player->stats.userName);
     printf("+-------------------+--------+\n");
     printf("| \033[32m      Armor       \033[0m| \033[32m Value\033[0m |\n");
     printf("+-------------------+--------+\n");
 
-    if (player->isHelmetBlue) {
-        printf("| \033[1;33mHelmet\033[0m            |   \033[1;36m%2d\033[0m   |\n", player->helmet);
+    if (player->stats.isHelmetBlue) {
+        printf("| \033[1;33mHelmet\033[0m            |   \033[1;36m%2d\033[0m   |\n", player->stats.helmet);
     }
     else {
-        printf("| \033[1;33mHelmet\033[0m            |   %2d   |\n", player->helmet);
+        printf("| \033[1;33mHelmet\033[0m            |   %2d   |\n", player->stats.helmet);
     }
 
-    if (player->isChestplateBlue) {
-        printf("| \033[1;33mChestplate\033[0m        |   \033[1;36m%2d\033[0m   |\n", player->chestplate);
+    if (player->stats.isChestplateBlue) {
+        printf("| \033[1;33mChestplate\033[0m        |   \033[1;36m%2d\033[0m   |\n", player->stats.chestplate);
     }
     else {
-        printf("| \033[1;33mChestplate\033[0m        |   %2d   |\n", player->chestplate);
+        printf("| \033[1;33mChestplate\033[0m        |   %2d   |\n", player->stats.chestplate);
     }
 
-    if (player->isLeggingsBlue) {
-        printf("| \033[1;33mLeggings\033[0m          |   \033[1;36m%2d\033[0m   |\n", player->leggings);
+    if (player->stats.isLeggingsBlue) {
+        printf("| \033[1;33mLeggings\033[0m          |   \033[1;36m%2d\033[0m   |\n", player->stats.leggings);
     }
     else {
-        printf("| \033[1;33mLeggings\033[0m          |   %2d   |\n", player->leggings);
+        printf("| \033[1;33mLeggings\033[0m          |   %2d   |\n", player->stats.leggings);
     }
 
-    if (player->isBootsBlue) {
-        printf("| \033[1;33mBoots\033[0m             |   \033[1;36m%2d\033[0m   |\n", player->boots);
+    if (player->stats.isBootsBlue) {
+        printf("| \033[1;33mBoots\033[0m             |   \033[1;36m%2d\033[0m   |\n", player->stats.boots);
     }
     else {
-        printf("| \033[1;33mBoots\033[0m             |   %2d   |\n", player->boots);
+        printf("| \033[1;33mBoots\033[0m             |   %2d   |\n", player->stats.boots);
     }
 
-    if (player->isGauntletsBlue) {
-        printf("| \033[1;33mGauntlets\033[0m         |   \033[1;36m%2d\033[0m   |\n", player->gauntlets);
+    if (player->stats.isGauntletsBlue) {
+        printf("| \033[1;33mGauntlets\033[0m         |   \033[1;36m%2d\033[0m   |\n", player->stats.gauntlets);
     }
     else {
-        printf("| \033[1;33mGauntlets\033[0m         |   %2d   |\n", player->gauntlets);
+        printf("| \033[1;33mGauntlets\033[0m         |   %2d   |\n", player->stats.gauntlets);
     }
 
-    if (player->isShoulderPadsBlue) {
-        printf("| \033[1;33mShoulder Pads\033[0m     |   \033[1;36m%2d\033[0m   |\n", player->shoulderPads);
+    if (player->stats.isShoulderPadsBlue) {
+        printf("| \033[1;33mShoulder Pads\033[0m     |   \033[1;36m%2d\033[0m   |\n", player->stats.shoulderPads);
     }
     else {
-        printf("| \033[1;33mShoulder Pads\033[0m     |   %2d   |\n", player->shoulderPads);
+        printf("| \033[1;33mShoulder Pads\033[0m     |   %2d   |\n", player->stats.shoulderPads);
     }
 
-    if (player->isBeltBlue) {
-        printf("| \033[1;33mBelt\033[0m              |   \033[1;36m%2d\033[0m   |\n", player->belt);
+    if (player->stats.isBeltBlue) {
+        printf("| \033[1;33mBelt\033[0m              |   \033[1;36m%2d\033[0m   |\n", player->stats.belt);
     }
     else {
-        printf("| \033[1;33mBelt\033[0m              |   %2d   |\n", player->belt);
+        printf("| \033[1;33mBelt\033[0m              |   %2d   |\n", player->stats.belt);
     }
 
-    if (player->isBracersBlue) {
-        printf("| \033[1;33mBracers\033[0m           |   \033[1;36m%2d\033[0m   |\n", player->bracers);
+    if (player->stats.isBracersBlue) {
+        printf("| \033[1;33mBracers\033[0m           |   \033[1;36m%2d\033[0m   |\n", player->stats.bracers);
     }
     else {
-        printf("| \033[1;33mBracers\033[0m           |   %2d   |\n", player->bracers);
+        printf("| \033[1;33mBracers\033[0m           |   %2d   |\n", player->stats.bracers);
     }
 
-    if (player->isCapeBlue) {
-        printf("| \033[1;33mCape\033[0m              |   \033[1;36m%2d\033[0m   |\n", player->cape);
+    if (player->stats.isCapeBlue) {
+        printf("| \033[1;33mCape\033[0m              |   \033[1;36m%2d\033[0m   |\n", player->stats.cape);
     }
     else {
-        printf("| \033[1;33mCape\033[0m              |   %2d   |\n", player->cape);
+        printf("| \033[1;33mCape\033[0m              |   %2d   |\n", player->stats.cape);
     }
 
-    if (player->isShieldBlue) {
-        printf("| \033[1;33mShield\033[0m            |   \033[1;36m%2d\033[0m   |\n", player->shield);
+    if (player->stats.isShieldBlue) {
+        printf("| \033[1;33mShield\033[0m            |   \033[1;36m%2d\033[0m   |\n", player->stats.shield);
     }
     else {
-        printf("| \033[1;33mShield\033[0m            |   %2d   |\n", player->shield);
+        printf("| \033[1;33mShield\033[0m            |   %2d   |\n", player->stats.shield);
     }
 
     printf("+-------------------+--------+\n");
@@ -210,7 +210,7 @@ void trainArmor(struct Player* player) {
         case 12:
             //Attack module 
             printf("Attack module section.\n");
-            inGameLoop(); //this is just a test
+            inGameLoop(player); //this is just a test
         default:
             printf("\033[31mInvalid choice. Please enter a number between 1 and 12.\n\033[0m");
             asteriskLongLine();
@@ -231,53 +231,53 @@ void trainArmor(struct Player* player) {
             else if (operation == '+') {
                 switch (choice) {
                 case 1:
-                    player->helmet++;
-                    player->isHelmetBlue = 1;
+                    player->stats.helmet++;
+                    player->stats.isHelmetBlue = 1;
                     points--;
                     break;
                 case 2:
-                    player->chestplate++;
-                    player->isChestplateBlue = 1;
+                    player->stats.chestplate++;
+                    player->stats.isChestplateBlue = 1;
                     points--;
                     break;
                 case 3:
-                    player->leggings++;
-                    player->isLeggingsBlue = 1;
+                    player->stats.leggings++;
+                    player->stats.isLeggingsBlue = 1;
                     points--;
                     break;
                 case 4:
-                    player->boots++;
-                    player->isBootsBlue = 1;
+                    player->stats.boots++;
+                    player->stats.isBootsBlue = 1;
                     points--;
                     break;
                 case 5:
-                    player->gauntlets++;
-                    player->isGauntletsBlue = 1;
+                    player->stats.gauntlets++;
+                    player->stats.isGauntletsBlue = 1;
                     points--;
                     break;
                 case 6:
-                    player->shoulderPads++;
-                    player->isShoulderPadsBlue = 1;
+                    player->stats.shoulderPads++;
+                    player->stats.isShoulderPadsBlue = 1;
                     points--;
                     break;
                 case 7:
-                    player->belt++;
-                    player->isBeltBlue = 1;
+                    player->stats.belt++;
+                    player->stats.isBeltBlue = 1;
                     points--;
                     break;
                 case 8:
-                    player->bracers++;
-                    player->isBracersBlue = 1;
+                    player->stats.bracers++;
+                    player->stats.isBracersBlue = 1;
                     points--;
                     break;
                 case 9:
-                    player->cape++;
-                    player->isCapeBlue = 1;
+                    player->stats.cape++;
+                    player->stats.isCapeBlue = 1;
                     points--;
                     break;
                 case 10:
-                    player->shield++;
-                    player->isShieldBlue = 1;
+                    player->stats.shield++;
+                    player->stats.isShieldBlue = 1;
                     points--;
                     break;
                 }
@@ -285,8 +285,8 @@ void trainArmor(struct Player* player) {
             else if (operation == '-') {
                 switch (choice) {
                 case 1:
-                    if (player->helmet > 0) {
-                        player->helmet--;
+                    if (player->stats.helmet > 0) {
+                        player->stats.helmet--;
                         points++;
                     }
                     else {
@@ -294,8 +294,8 @@ void trainArmor(struct Player* player) {
                     }
                     break;
                 case 2:
-                    if (player->chestplate > 0) {
-                        player->chestplate--;
+                    if (player->stats.chestplate > 0) {
+                        player->stats.chestplate--;
                         points++;
                     }
                     else {
@@ -303,8 +303,8 @@ void trainArmor(struct Player* player) {
                     }
                     break;
                 case 3:
-                    if (player->leggings > 0) {
-                        player->leggings--;
+                    if (player->stats.leggings > 0) {
+                        player->stats.leggings--;
                         points++;
                     }
                     else {
@@ -312,8 +312,8 @@ void trainArmor(struct Player* player) {
                     }
                     break;
                 case 4:
-                    if (player->boots > 0) {
-                        player->boots--;
+                    if (player->stats.boots > 0) {
+                        player->stats.boots--;
                         points++;
                     }
                     else {
@@ -321,8 +321,8 @@ void trainArmor(struct Player* player) {
                     }
                     break;
                 case 5:
-                    if (player->gauntlets > 0) {
-                        player->gauntlets--;
+                    if (player->stats.gauntlets > 0) {
+                        player->stats.gauntlets--;
                         points++;
                     }
                     else {
@@ -330,8 +330,8 @@ void trainArmor(struct Player* player) {
                     }
                     break;
                 case 6:
-                    if (player->shoulderPads > 0) {
-                        player->shoulderPads--;
+                    if (player->stats.shoulderPads > 0) {
+                        player->stats.shoulderPads--;
                         points++;
                     }
                     else {
@@ -339,8 +339,8 @@ void trainArmor(struct Player* player) {
                     }
                     break;
                 case 7:
-                    if (player->belt > 0) {
-                        player->belt--;
+                    if (player->stats.belt > 0) {
+                        player->stats.belt--;
                         points++;
                     }
                     else {
@@ -348,8 +348,8 @@ void trainArmor(struct Player* player) {
                     }
                     break;
                 case 8:
-                    if (player->bracers > 0) {
-                        player->bracers--;
+                    if (player->stats.bracers > 0) {
+                        player->stats.bracers--;
                         points++;
                     }
                     else {
@@ -357,8 +357,8 @@ void trainArmor(struct Player* player) {
                     }
                     break;
                 case 9:
-                    if (player->cape > 0) {
-                        player->cape--;
+                    if (player->stats.cape > 0) {
+                        player->stats.cape--;
                         points++;
                     }
                     else {
@@ -366,8 +366,8 @@ void trainArmor(struct Player* player) {
                     }
                     break;
                 case 10:
-                    if (player->shield > 0) {
-                        player->shield--;
+                    if (player->stats.shield > 0) {
+                        player->stats.shield--;
                         points++;
                     }
                     else {
@@ -390,26 +390,8 @@ void trainArmor(struct Player* player) {
     displayArmor(player);
 }
 
-void startTrainingGear() {
-    char name[MAXSIZE];
+void startTrainingGear(struct Player* player) {
 
-    while (1) {
-        printf("Enter the name of your player: ");
-        fgets(name, sizeof(name), stdin);
-        name[strcspn(name, "\n")] = '\0';
-
-        if (strlen(name) > 0) {
-            break;
-        }
-        printf("\033[31mplayer name cannot be empty. Please enter a valid name.\n\n\033[0m");
-        asteriskShortLine();
-    }
-
-    struct Player* player = (struct Player*)malloc(sizeof(struct Player));
-    if (player == NULL) {
-        printf("Failed to create player.\n");
-        return;
-    }
     initializeGear(player); // Initialize player attributes
 
     trainArmor(player);
