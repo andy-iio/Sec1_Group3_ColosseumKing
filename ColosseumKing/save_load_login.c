@@ -5,31 +5,36 @@
 #define MAX 100
 
 // saving charcter 
-bool saveCharacter(struct Player Player) {
+bool saveCharacter(struct Player* player, char username) {
     FILE* file = fopen("character_data.txt", "w");
     if (file == NULL) {
         printf("Error opening file for writing\n");
         return false;
     };
 
-    fprintf(file,"PLAYER DATA:\n");
-    fprintf(file,"Username: %s\n", Player.userName);
-    fprintf(file,"Attack: %d\n",Player.attackDamage);
-    fprintf(file,"Coordination : %d\n", Player.coordination);
-    fprintf(file,"Gear : %d\n", Player.gearLevel);
-    fprintf(file,"Health : %d\n", Player.health);
-    fprintf(file,"Level : %d\n", Player.level);
-    fprintf(file,"Speed : %d\n", Player.speed);
-    fprintf(file,"Strength : %d\n", Player.strength);
-    fprintf(file,"Avatar :\n");
-    
+    initializePlayer(player, username);
+
     fclose(file);
     printf("Character saved to file\n");
     return true;
+    
 }
 
+/*
+   fprintf(file,"PLAYER DATA:\n");
+   fprintf(file,"Username: %s\n", Player.userName);
+   fprintf(file,"Attack: %d\n",Player.attackDamage);
+   fprintf(file,"Coordination : %d\n", Player.coordination);
+   fprintf(file,"Gear : %d\n", Player.gearLevel);
+   fprintf(file,"Health : %d\n", Player.health);
+   fprintf(file,"Level : %d\n", Player.level);
+   fprintf(file,"Speed : %d\n", Player.speed);
+   fprintf(file,"Strength : %d\n", Player.strength);
+   fprintf(file,"Avatar :\n");
+   */
+
 // loading charcter 
-bool loadCharcterFromFile(struct Player* player) {
+bool loadCharcterFromFile(struct Player* player, char username) {
     FILE* file = fopen("character_data.txt", "r");
     if (file == NULL) {
         printf("No existing file found\n");
@@ -37,30 +42,36 @@ bool loadCharcterFromFile(struct Player* player) {
     }
 
     char buffer[MAX];
- 
     while (fgets(buffer, sizeof(buffer), file) != NULL) {
         if (strcmp(buffer, "PLAYER DATA:\n") == 0) {
-            struct Player* NewPlayer = malloc(sizeof(NewPlayer));
+            struct Player* NewPlayer = loadPlayer(player, username, player->health, player->attackDamage, player->strength, player->speed, player->coordination, player->gearLevel);
 
             if (NewPlayer == NULL) {
                 fprintf(stderr, "Memory Allocation failed\n");
                 fclose(file);
                 return false;
             }
-            fscanf(buffer, "Username: %[^\n]", player->userName);
-            fscanf(buffer, "Attack : %d", player->attackDamage);
-            fscanf(buffer, "Coordanation : %d", player->coordination);
-            fscanf(buffer, "Gear : %d", player->gearLevel);
-            fscanf(buffer, "Health : %d", player->health);
-            fscanf(buffer, "Level : %d", player->level);
-            fscanf(buffer, "Speed : %d", player->speed);
-            fscanf(buffer, "Strength : %d", player->strength);
-            fscanf(buffer, "Strength : %d", player->strength);
+            else {
+                printf("Player loaded from file\n");
+            }
+            fclose(file);
         }
-        fclose(file);
-        printf("Player loaded from file");
     }
+        
 }
+
+/*
+fscanf(buffer, "Username: %[^\n]", player->userName);
+fscanf(buffer, "Attack : %d", player->attackDamage);
+fscanf(buffer, "Coordanation : %d", player->coordination);
+fscanf(buffer, "Gear : %d", player->gearLevel);
+fscanf(buffer, "Health : %d", player->health);
+fscanf(buffer, "Level : %d", player->level);
+fscanf(buffer, "Speed : %d", player->speed);
+fscanf(buffer, "Strength : %d", player->strength);
+fscanf(buffer, "Strength : %d", player->strength);
+}
+*/
 
 //saving training << need file still 
 bool savetraining() {
@@ -99,7 +110,7 @@ bool saveLogin(struct login* info) {
     }
     fprintf(file, "LOGIN INFORMATION:\n");
     fprintf(file, "Username: %s\n",info->userName);
-    fprintf(file, "Password: %s %d\n",info->password);
+    //fprintf(file, "Password: %s %d\n",info->password);
     fclose(file);
     printf("Data loaded from file \n");
     return true;
