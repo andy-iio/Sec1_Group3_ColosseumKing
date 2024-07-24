@@ -14,6 +14,7 @@
 #include "save_load_login.h"
 
 int main(int argc, char* argv[]) {
+	srand(time(NULL)); //seeding the random number generator used in character module
 
 	char filename[] = "ascii.txt";
 
@@ -44,15 +45,13 @@ int main(int argc, char* argv[]) {
     if (Login(username, password)) {
         printf("\nLogin successful!\n");
 		topMainMenu();
-		inGameLoop(); // Start the game and run the game loop
+		//inGameLoop(player); // Start the game and run the game loop
     }
     else {
         printf("Invalid username or password.\n");
     }
 	
 
-
-	srand(time(NULL)); //seeding the random number generator used in character module
 
 
 
