@@ -30,21 +30,21 @@ struct Character {
 };
 
 struct Player {
-	struct Character;
-	struct statsWithColor; //gear stats, find this struct in gear.h
+	struct Character character;
+	struct statsWithColor stats; //gear stats, find this struct in gear.h
 	char userName[50];
 	int level;
 };
 
 struct Enemy {
-	struct Character;
+	struct Character character;
 	enum enemyType type;
 };
 
 //----INITILIZE NEW CHARACTER----//
 
 //load a player from save file 
-struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill);
+struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill, int avatar);
 //initialize a new player with default values 
 struct Player* initializePlayer(char* username);
 
@@ -52,7 +52,7 @@ struct Player* initializePlayer(char* username);
 struct Enemy* initializeEnemy(enum enemyType type);
 
 //load enemy from save file
-struct Enemy* loadEnemy(enum enemyType type, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill);
+struct Enemy* loadEnemy(enum enemyType type, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill, int avatar);
 
 void matchEnemyToCharacterStats(struct Enemy* enemy, struct Player* player);
 
@@ -61,10 +61,10 @@ void matchEnemyToCharacterStats(struct Enemy* enemy, struct Player* player);
 //randomly increase the health of a character
 void randomHealthIncrease(struct Character* character);
 
-//----SKILLS----//
+//----GEAR----//
+void loadGear(struct Player* player, int helmet, int chestPlate, int leggings, int boots, int gauntlets, int shoulderPads, int belt, int bracers, int cape, int sheild, int coins);
 
-//randomly increase a skill 
-void randomSkillIncrease(struct Character* character, char skill);
+//----SKILLS----//
 
 //increase the level of a player by 1
 void increasePlayerLevel(struct Player* player);

@@ -11,7 +11,7 @@
 
 #define MAXSIZE 10
 
-void trainingMenu() {
+void trainingMenu(struct Player * player) {
     char subChoice;
     char input[MAXSIZE];
 
@@ -35,19 +35,19 @@ void trainingMenu() {
         case 'a':
             asteriskShortLine();
             printf("\033[1;31mGEAR STATS\n\033[0m");
-            startTrainingGear();
+            startTrainingGear(player);
             clearInputBuffer();
             break;
         case 'b':
             asteriskShortLine();
             printf("\033[1;31mSKILL STATS\n\033[0m");
-            startTraining();
+            startTraining(player);
             clearInputBuffer();
             break;
         case 'c':
             printf("\n\033[1;34mReturning to menu...\n\033[0m");
             asteriskShortLine();
-            mainMenu();
+            mainMenu(player);
             return;
         }
     }
@@ -59,39 +59,39 @@ void displayStats(struct Player* player) {
     printf("| \033[32m     Stat     \033[0m | \033[32m Value\033[0m |\n");
     printf("+----------------+--------+\n");
 
-    if (player->isStrengthBlue) {
-        printf("| \033[1;33mStrength\033[0m       |   \033[1;36m%2d\033[0m   |\n", player->strength);
+    if (player->stats.isStrengthBlue) {
+        printf("| \033[1;33mStrength\033[0m       |   \033[1;36m%2d\033[0m   |\n", player->character.strength);
     }
     else {
-        printf("| \033[1;33mStrength\033[0m       |   %2d   |\n", player->strength);
+        printf("| \033[1;33mStrength\033[0m       |   %2d   |\n", player->character.strength);
     }
 
-    if (player->isSpeedBlue) {
-        printf("| \033[1;33mSpeed\033[0m          |   \033[1;36m%2d\033[0m   |\n", player->speed);
+    if (player->stats.isSpeedBlue) {
+        printf("| \033[1;33mSpeed\033[0m          |   \033[1;36m%2d\033[0m   |\n", player->character.speed);
     }
     else {
-        printf("| \033[1;33mSpeed\033[0m          |   %2d   |\n", player->speed);
+        printf("| \033[1;33mSpeed\033[0m          |   %2d   |\n", player->character.speed);
     }
 
-    if (player->isCoordinationBlue) {
-        printf("| \033[1;33mCoordination\033[0m   |   \033[1;36m%2d\033[0m   |\n", player->coordination);
+    if (player->stats.isCoordinationBlue) {
+        printf("| \033[1;33mCoordination\033[0m   |   \033[1;36m%2d\033[0m   |\n", player->character.coordination);
     }
     else {
-        printf("| \033[1;33mCoordination\033[0m   |   %2d   |\n", player->coordination);
+        printf("| \033[1;33mCoordination\033[0m   |   %2d   |\n", player->character.coordination);
     }
 
-    if (player->isHealthBlue) {
-        printf("| \033[1;33mHealth\033[0m         |   \033[1;36m%2d\033[0m   |\n", player->health);
+    if (player->stats.isHealthBlue) {
+        printf("| \033[1;33mHealth\033[0m         |   \033[1;36m%2d\033[0m   |\n", player->character.health);
     }
     else {
-        printf("| \033[1;33mHealth\033[0m         |   %2d   |\n", player->health);
+        printf("| \033[1;33mHealth\033[0m         |   %2d   |\n", player->character.health);
     }
 
-    if (player->isSwordSkillsBlue) {
-        printf("| \033[1;33mSword Skills\033[0m   |   \033[1;36m%2d\033[0m   |\n", player->swordSkills);
+    if (player->stats.isSwordSkillsBlue) {
+        printf("| \033[1;33mSword Skills\033[0m   |   \033[1;36m%2d\033[0m   |\n", player->character.swordSkill);
     }
     else {
-        printf("| \033[1;33mSword Skills\033[0m   |   %2d   |\n", player->swordSkills);
+        printf("| \033[1;33mSword Skills\033[0m   |   %2d   |\n", player->character.swordSkill);
     }
 
     printf("+----------------+--------+\n");
@@ -146,7 +146,7 @@ void trainStats(struct Player* player) {
             //Attack module 
             printf("Attack module section.\n");
             //call attackPhase(player);
-            inGameLoop(); //this is just a test
+            inGameLoop(player); //this is just a test
         default:
             printf("\033[31mInvalid choice. Please enter a number between 1 and 7.\n\033[0m");
             asteriskLongLine();
@@ -169,28 +169,28 @@ void trainStats(struct Player* player) {
             else if (operation == '+') {
                 switch (choice) {
                 case 1:
-                    player->strength++;
-                    player->isStrengthBlue = 1;
+                    player->character.strength++;
+                    player->stats.isStrengthBlue = 1;
                     points--;
                     break;
                 case 2:
-                    player->speed++;
-                    player->isSpeedBlue = 1;
+                    player->character.speed++;
+                    player->stats.isSpeedBlue = 1;
                     points--;
                     break;
                 case 3:
-                    player->coordination++;
-                    player->isCoordinationBlue = 1;
+                    player->character.coordination++;
+                    player->stats.isCoordinationBlue = 1;
                     points--;
                     break;
                 case 4:
-                    player->health++;
-                    player->isHealthBlue = 1;
+                    player->character.health++;
+                    player->stats.isHealthBlue = 1;
                     points--;
                     break;
                 case 5:
-                    player->swordSkills++;
-                    player->isSwordSkillsBlue = 1;
+                    player->character.swordSkill++;
+                    player->stats.isSwordSkillsBlue = 1;
                     points--;
                     break;
                 }
@@ -198,8 +198,8 @@ void trainStats(struct Player* player) {
             else if (operation == '-') {
                 switch (choice) {
                 case 1:
-                    if (player->strength > 0) {
-                        player->strength--;
+                    if (player->character.strength > 0) {
+                        player->character.strength--;
                         points++;
                     }
                     else {
@@ -207,8 +207,8 @@ void trainStats(struct Player* player) {
                     }
                     break;
                 case 2:
-                    if (player->speed > 0) {
-                        player->speed--;
+                    if (player->character.speed > 0) {
+                        player->character.speed--;
                         points++;
                     }
                     else {
@@ -216,8 +216,8 @@ void trainStats(struct Player* player) {
                     }
                     break;
                 case 3:
-                    if (player->coordination > 0) {
-                        player->coordination--;
+                    if (player->character.coordination > 0) {
+                        player->character.coordination--;
                         points++;
                     }
                     else {
@@ -225,8 +225,8 @@ void trainStats(struct Player* player) {
                     }
                     break;
                 case 4:
-                    if (player->health > 0) {
-                        player->health--;
+                    if (player->character.health > 0) {
+                        player->character.health--;
                         points++;
                     }
                     else {
@@ -234,8 +234,8 @@ void trainStats(struct Player* player) {
                     }
                     break;
                 case 5:
-                    if (player->swordSkills > 0) {
-                        player->swordSkills--;
+                    if (player->character.swordSkill > 0) {
+                        player->character.swordSkill--;
                         points++;
                     }
                     else {
@@ -277,37 +277,13 @@ void trainStats(struct Player* player) {
     displayStats(player);
 }
 
-void startTraining() {
-    char name[MAXSIZE];
+void startTraining(struct Player* player) {
 
-    while (1) {
-        printf("Enter the name of your player: ");
-        fgets(name, sizeof(name), stdin);
-        name[strcspn(name, "\n")] = '\0';
-
-        if (strlen(name) > 0) {
-            break;
-        }
-        printf("\033[31mplayer name cannot be empty. Please enter a valid name.\n\n\033[0m");
-        asteriskShortLine();
-    }
-
-    struct Player* player = (struct Player*)malloc(sizeof(struct Player));
-    if (player == NULL) {
-        printf("Failed to create player.\n");
-        return;
-    }
-    strncpy(player->userName, name, MAXSIZE);
-    player->strength = 0;
-    player->speed = 0;
-    player->coordination = 0;
-    player->health = 0;
-    player->swordSkills = 0;
-    player->isStrengthBlue = 0;
-    player->isSpeedBlue = 0;
-    player->isCoordinationBlue = 0;
-    player->isHealthBlue = 0;
-    player->isSwordSkillsBlue = 0;
+    player->stats.isStrengthBlue = 0;
+    player->stats.isSpeedBlue = 0;
+    player->stats.isCoordinationBlue = 0;
+    player->stats.isHealthBlue = 0;
+    player->stats.isSwordSkillsBlue = 0;
 
     trainStats(player);
 

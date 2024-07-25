@@ -1,10 +1,11 @@
 #pragma once
 
 void clearInputBuffer();
-int mainMenu();
+int topMainMenu();
+int mainMenu(struct Player* player);
 int loadGameMenu();
-void trainingMenu();
+void trainingMenu(struct Player* player);
 char settingsMenu();
 void exitGameMenu();
-int inGameMenu();
-void inGameLoop();
+int inGameMenu(struct Player* player);
+void inGameLoop(struct Player* player);
