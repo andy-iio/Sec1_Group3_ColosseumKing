@@ -21,7 +21,7 @@ bool saveCharacter(struct Player* player, char username) {
 }
 
 // loading charcter 
-bool loadCharcterFromFile(struct Player* player, char username) {
+bool loadCharcterFromFile(struct Character* player, char username) {
     FILE* file = fopen("character_data.txt", "r");
     if (file == NULL) {
         printf("No existing file found\n");
@@ -48,15 +48,33 @@ bool loadCharcterFromFile(struct Player* player, char username) {
 
 
 //saving training << need file still 
-bool savetraining() {
+bool savetraining(struct Player * player) {
     FILE* file = fopen("training_data.txt", "w");
     if (file == NULL) {
         printf("Error opening file for writing\n");
         return false;
     }
+    
+    char buffer[MAX];
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        if (strcmp(buffer, "GEAR DATA:\n") == 0) {
+            struct Player* NewPlayer = loadGear(player, player->stats.helmet, player->stats.chestplate, player->stats.leggings, player->stats.boots,
+                player->stats.gauntlets, player->stats.shoulderPads, player->stats.belt, player->stats.bracers, player->stats.cape, player->stats.shield, player->stats.coins
+            );
+
+            if (NewPlayer == NULL) {
+                fprintf(stderr, "Memory Allocation failed\n");
+                fclose(file);
+                return false;
+            }
+            else {
+                printf("Player loaded from file\n");
+            }
+            fclose(file);
+        }
+    }
 
 
-    fprintf(file, "test character");
 
     fclose(file);
     printf("Data saved to file\n");
