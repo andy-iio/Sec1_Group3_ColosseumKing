@@ -15,7 +15,23 @@
 
 int main(int argc, char* argv[]) {
 
-	
+	char filename[] = "ascii.txt";
+
+	FILE* file = fopen(filename, "r");
+
+	if (file == NULL) {
+		printf("Could not open file: %s\n", filename);
+		return 1;
+	}
+	char ch;
+
+	while ((ch = fgetc(file)) != EOF) {
+		putchar(ch);
+	}
+
+	fclose(file);
+
+
 	 if (argc != 3) {
         printf("Arguments were not provided\n");
         return 1;  // Exit with error code
@@ -26,7 +42,9 @@ int main(int argc, char* argv[]) {
 
     // Validate login using the function
     if (Login(username, password)) {
-        printf("Login successful!\n");
+        printf("\nLogin successful!\n");
+		mainMenu();
+		inGameLoop(); // Start the game and run the game loop
     }
     else {
         printf("Invalid username or password.\n");
@@ -36,32 +54,30 @@ int main(int argc, char* argv[]) {
 
 	srand(time(NULL)); //seeding the random number generator used in character module
 
+
+
+
 	//-------------------------------------------
 	//temporary testing for character module, I will remove later, feel free to comment it out -andy
-	struct Player player1;
-	struct Enemy zorb;
-
-	loadPlayer(&player1, "abcde", 50, 70, 80, 90, 100, 1);
-	saveCharacter(player1);
-
-	initializeEnemy(&zorb, MONSTER);
-	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
-	player1.health++;
-	zorb.health++;
-	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
-	player1.health--;
-	zorb.health--;
-	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
-	randomHealthIncrease(&player1);
-	printf("player health: %d enemy health: %d\n", player1.health, zorb.health);
-
-	loadCharcterFromFile();
-
-	//end of character module temmporary testing
+	/*struct Player* player1 = loadPlayer("abcde", 50, 70, 80, 90, 100, 1);
+	struct Enemy* zorb = initializeEnemy(LION);
+	struct Player* ko = initializePlayer("po");
+	matchEnemyToCharacterStats(zorb, ko);
+	printf("player health: %d\n", ko->health);
+	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
+	player1->health++;
+	zorb->health++;
+	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
+	player1->health--;
+	zorb->health--;
+	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
+	randomHealthIncrease(player1);
+	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
+	*///end of character module temmporary testing
 	//-------------------------------------------
 
-	mainMenu();
-	inGameLoop(); // Start the game and run the game loop
+
+	
 
 
 	return 0;

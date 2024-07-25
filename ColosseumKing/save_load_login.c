@@ -51,6 +51,20 @@ bool loadCharcterFromFile(struct Player* player, char username) {
                 fclose(file);
                 return false;
             }
+            fscanf(buffer, "Username: %[^\n]", player->userName);
+            fscanf(buffer, "Attack : %d", player->attackDamage);
+            fscanf(buffer, "Coordanation : %d", player->coordination);
+            fscanf(buffer, "Gear : %d", player->armourLevel);
+            fscanf(buffer, "Health : %d", player->health);
+            fscanf(buffer, "Level : %d", player->level);
+            fscanf(buffer, "Speed : %d", player->speed);
+            fscanf(buffer, "Strength : %d", player->strength);
+            fscanf(buffer, "Strength : %d", player->strength);
+        }
+        fclose(file);
+        printf("Player loaded from file");
+    }
+}
             else {
                 printf("Player loaded from file\n");
             }

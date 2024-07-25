@@ -2,8 +2,8 @@
 #include "buffer.h"
 #include "menu.h"
 #include "training.h"  
-#include "character.h" 
 #include "gear.h" 
+#include "save_load_login.h"
 #include "asterisk.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,13 +13,14 @@
 int mainMenu() {
     int choice = 0;
     char input[MAXSIZE];
-    STATSWITHCOLOR character;
-    initializeCharacter(&character); // Initialize character attributes
+    //delete this below
+   // struct Player gear;
+   // initializeGear(&gear); // Initialize gear attributes
 
     while (1) {
         do {
             printf("\033\n[1;31mMAIN MENU\n\033[0m");
-            printf("1. New Game\n");
+            printf("1. New Game\n"); //call initailzePlayer(username)
             printf("2. Load Game\n");
             printf("3. Buy Armor Set\n");
             printf("4. Training\n");
@@ -41,16 +42,19 @@ int mainMenu() {
             printf("\033[1;31mStarting New Game...\n\033[0m");
             asteriskShortLine();
             printf("\033[1;31mTRAINING\n\033[0m");
+            //ask player for username 
+            struct Player* player = initializePlayer("username here");
             startTraining();  // Start the training module
             clearInputBuffer();
             return 0;
         case 2:
             if (loadGameMenu() == 0) {
+                //struct Player* player = loadCharacterFromFile();
                 return 0; // Exit mainMenu after successful load
             }
             break;
         case 3:
-            buyGear(&character);
+            buyGear(&player);
             clearInputBuffer();
             break;
         case 4:

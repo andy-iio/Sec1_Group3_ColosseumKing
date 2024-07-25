@@ -53,57 +53,57 @@ void trainingMenu() {
     }
 }
 
-void displayStats(STATSWITHCOLOR* character) {
-    printf("\nCurrent Stats for %s:\n", character->userName);
+void displayStats(struct Player* player) {
+    printf("\nCurrent Stats for %s:\n", player->userName);
     printf("+----------------+--------+\n");
     printf("| \033[32m     Stat     \033[0m | \033[32m Value\033[0m |\n");
     printf("+----------------+--------+\n");
 
-    if (character->isStrengthBlue) {
-        printf("| \033[1;33mStrength\033[0m       |   \033[1;36m%2d\033[0m   |\n", character->strength);
+    if (player->isStrengthBlue) {
+        printf("| \033[1;33mStrength\033[0m       |   \033[1;36m%2d\033[0m   |\n", player->strength);
     }
     else {
-        printf("| \033[1;33mStrength\033[0m       |   %2d   |\n", character->strength);
+        printf("| \033[1;33mStrength\033[0m       |   %2d   |\n", player->strength);
     }
 
-    if (character->isSpeedBlue) {
-        printf("| \033[1;33mSpeed\033[0m          |   \033[1;36m%2d\033[0m   |\n", character->speed);
+    if (player->isSpeedBlue) {
+        printf("| \033[1;33mSpeed\033[0m          |   \033[1;36m%2d\033[0m   |\n", player->speed);
     }
     else {
-        printf("| \033[1;33mSpeed\033[0m          |   %2d   |\n", character->speed);
+        printf("| \033[1;33mSpeed\033[0m          |   %2d   |\n", player->speed);
     }
 
-    if (character->isCoordinationBlue) {
-        printf("| \033[1;33mCoordination\033[0m   |   \033[1;36m%2d\033[0m   |\n", character->coordination);
+    if (player->isCoordinationBlue) {
+        printf("| \033[1;33mCoordination\033[0m   |   \033[1;36m%2d\033[0m   |\n", player->coordination);
     }
     else {
-        printf("| \033[1;33mCoordination\033[0m   |   %2d   |\n", character->coordination);
+        printf("| \033[1;33mCoordination\033[0m   |   %2d   |\n", player->coordination);
     }
 
-    if (character->isHealthBlue) {
-        printf("| \033[1;33mHealth\033[0m         |   \033[1;36m%2d\033[0m   |\n", character->health);
+    if (player->isHealthBlue) {
+        printf("| \033[1;33mHealth\033[0m         |   \033[1;36m%2d\033[0m   |\n", player->health);
     }
     else {
-        printf("| \033[1;33mHealth\033[0m         |   %2d   |\n", character->health);
+        printf("| \033[1;33mHealth\033[0m         |   %2d   |\n", player->health);
     }
 
-    if (character->isSwordSkillsBlue) {
-        printf("| \033[1;33mSword Skills\033[0m   |   \033[1;36m%2d\033[0m   |\n", character->swordSkills);
+    if (player->isSwordSkillsBlue) {
+        printf("| \033[1;33mSword Skills\033[0m   |   \033[1;36m%2d\033[0m   |\n", player->swordSkills);
     }
     else {
-        printf("| \033[1;33mSword Skills\033[0m   |   %2d   |\n", character->swordSkills);
+        printf("| \033[1;33mSword Skills\033[0m   |   %2d   |\n", player->swordSkills);
     }
 
     printf("+----------------+--------+\n");
 }
 
-void trainStats(STATSWITHCOLOR* character) {
+void trainStats(struct Player* player) {
     int points = MAXSIZE;
     int choice;
     char operation;
 
     while (points > 0) {
-        displayStats(character);
+        displayStats(player);
         printf("\033[1;31mYou have %d points to use on skills.\n\033[0m", points);
         printf("1. Strength\n");
         printf("2. Speed\n");
@@ -145,6 +145,7 @@ void trainStats(STATSWITHCOLOR* character) {
         case 7:
             //Attack module 
             printf("Attack module section.\n");
+            //call attackPhase(player);
             inGameLoop(); //this is just a test
         default:
             printf("\033[31mInvalid choice. Please enter a number between 1 and 7.\n\033[0m");
@@ -168,28 +169,28 @@ void trainStats(STATSWITHCOLOR* character) {
             else if (operation == '+') {
                 switch (choice) {
                 case 1:
-                    character->strength++;
-                    character->isStrengthBlue = 1;
+                    player->strength++;
+                    player->isStrengthBlue = 1;
                     points--;
                     break;
                 case 2:
-                    character->speed++;
-                    character->isSpeedBlue = 1;
+                    player->speed++;
+                    player->isSpeedBlue = 1;
                     points--;
                     break;
                 case 3:
-                    character->coordination++;
-                    character->isCoordinationBlue = 1;
+                    player->coordination++;
+                    player->isCoordinationBlue = 1;
                     points--;
                     break;
                 case 4:
-                    character->health++;
-                    character->isHealthBlue = 1;
+                    player->health++;
+                    player->isHealthBlue = 1;
                     points--;
                     break;
                 case 5:
-                    character->swordSkills++;
-                    character->isSwordSkillsBlue = 1;
+                    player->swordSkills++;
+                    player->isSwordSkillsBlue = 1;
                     points--;
                     break;
                 }
@@ -197,8 +198,8 @@ void trainStats(STATSWITHCOLOR* character) {
             else if (operation == '-') {
                 switch (choice) {
                 case 1:
-                    if (character->strength > 0) {
-                        character->strength--;
+                    if (player->strength > 0) {
+                        player->strength--;
                         points++;
                     }
                     else {
@@ -206,8 +207,8 @@ void trainStats(STATSWITHCOLOR* character) {
                     }
                     break;
                 case 2:
-                    if (character->speed > 0) {
-                        character->speed--;
+                    if (player->speed > 0) {
+                        player->speed--;
                         points++;
                     }
                     else {
@@ -215,8 +216,8 @@ void trainStats(STATSWITHCOLOR* character) {
                     }
                     break;
                 case 3:
-                    if (character->coordination > 0) {
-                        character->coordination--;
+                    if (player->coordination > 0) {
+                        player->coordination--;
                         points++;
                     }
                     else {
@@ -224,8 +225,8 @@ void trainStats(STATSWITHCOLOR* character) {
                     }
                     break;
                 case 4:
-                    if (character->health > 0) {
-                        character->health--;
+                    if (player->health > 0) {
+                        player->health--;
                         points++;
                     }
                     else {
@@ -233,8 +234,8 @@ void trainStats(STATSWITHCOLOR* character) {
                     }
                     break;
                 case 5:
-                    if (character->swordSkills > 0) {
-                        character->swordSkills--;
+                    if (player->swordSkills > 0) {
+                        player->swordSkills--;
                         points++;
                     }
                     else {
@@ -269,31 +270,31 @@ void trainStats(STATSWITHCOLOR* character) {
                 break;
             }
 
-            displayStats(character);
+            displayStats(player);
             printf("\033[1;31mYou have %d points to use on skills.\n\033[0m", points);
         }
     }
-    displayStats(character);
+    displayStats(player);
 }
 
 void startTraining() {
     char name[MAXSIZE];
 
     while (1) {
-        printf("Enter the name of your character: ");
+        printf("Enter the name of your player: ");
         fgets(name, sizeof(name), stdin);
         name[strcspn(name, "\n")] = '\0';
 
         if (strlen(name) > 0) {
             break;
         }
-        printf("\033[31mCharacter name cannot be empty. Please enter a valid name.\n\n\033[0m");
+        printf("\033[31mplayer name cannot be empty. Please enter a valid name.\n\n\033[0m");
         asteriskShortLine();
     }
 
-    STATSWITHCOLOR* player = (STATSWITHCOLOR*)malloc(sizeof(STATSWITHCOLOR));
+    struct Player* player = (struct Player*)malloc(sizeof(struct Player));
     if (player == NULL) {
-        printf("Failed to create character.\n");
+        printf("Failed to create player.\n");
         return;
     }
     strncpy(player->userName, name, MAXSIZE);
