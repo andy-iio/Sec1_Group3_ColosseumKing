@@ -136,6 +136,7 @@
     <ClCompile Include="save_load_login.c">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="test_save_load_login.c" />
     <ClCompile Include="training.c" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="gear.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="save_load_login.h" />
+    <ClInclude Include="test_save_load_login.h" />
     <ClInclude Include="training.h" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +155,7 @@
   <ItemGroup>
     <Text Include="character_data.txt" />
     <Text Include="login_info.txt" />
+    <Text Include="train.txt" />
     <Text Include="training_data.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
