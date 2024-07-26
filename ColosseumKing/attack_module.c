@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "attack_module.h"
 
 
@@ -11,31 +12,41 @@
 #define NUMOFAVATARS 6
 
 
-CHARACTER playerToCharacter(struct Player p)
+CHARACTER playerToCharacter(struct Player *p)
 {
 	CHARACTER c;
 
-	c.avatar = p.avatar;
-	c.level = p.level;
-	c.health = p.health;
-	c.constitution = p.constitution;
-	c.strength = p.strength;
-	c.speed = p.speed;
-	c.coordination = p.coordination;
-	c.armourLevel = p.armourLevel;
-	c.armourSkill = p.armourSkill;
-	c.swordLevel = p.swordLevel;
-	c.swordSkill = p.swordSkill;
+	c.avatar = p->avatar;
+	c.level = p->level;
+	c.health = p->health;
+	c.constitution = p->constitution;
+	c.strength = p->strength;
+	c.speed = p->speed;
+	c.coordination = p->coordination;
+	c.armourLevel = p->armourLevel;
+	c.armourSkill = p->armourSkill;
+	c.swordLevel = p->swordLevel;
+	c.swordSkill = p->swordSkill;
 }
 
 
 bool attackSuccess(CHARACTER attacker, CHARACTER deffender)
 {
-	if (attackHitAccuracy(attacker) > defenseChance(deffender))
+	if (1 == rand() % (20 + 1))
+	{
 		return true;
-	else
-		return false;
-
+	}
+	else 
+	{
+		if (attackHitAccuracy(attacker) > defenseChance(deffender))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 
 int attackHitAccuracy(CHARACTER attacker)
@@ -119,12 +130,15 @@ bool attackPhase(CHARACTER player)
 {
 	CHARACTER enemy; 
 	
-	matchEnemyToCharacterStats(&enemy, &player);
+	player.tempHealth = player.health;
+
+	memcpy(&enemy, &player, sizeof(CHARACTER));
 
 	FIGHTSTATUS current = NWIN;
 
 	while (NWIN == current)
 	{
+		printFight(player, enemy);
 		current = round(&player, &enemy);
 	}
 
@@ -150,8 +164,8 @@ void printFight(CHARACTER player, CHARACTER enemy)
 
 void printCharacterNEnemyAvatar(int Pavatar, int Eavatar)
 {
-	char** PAvatar = characterAvatar(Pavatar);
-	char** EAvatar = characterAvatar(Eavatar);
+	char* PAvatar = characterAvatar(Pavatar);
+	char* EAvatar = characterAvatar(Eavatar);
 
 	for (int i = 0; i < AVATARHEIGHT; i++)
 	{
@@ -182,33 +196,33 @@ void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy)
 
 	printf("\n");
 
-	printf("Strength: ", player.strength);
+	printf("Strength: %d", player.strength);
 
 	printf("										");
 
-	printf("Strength: ", enemy.strength);
+	printf("Strength: %d", enemy.strength);
 
 	printf("\n");
 
-	printf("Constitution: ", player.constitution);
+	printf("Constitution: %d", player.constitution);
 
 	printf("										");
 
-	printf("Constitution: ", enemy.constitution);
+	printf("Constitution: %d", enemy.constitution);
 
 	printf("\n");
 
-	printf("Speed: ", player.speed);
+	printf("Speed: %d", player.speed);
 
 	printf("										");
 
-	printf("Speed: ", enemy.speed);
+	printf("Speed: %d", enemy.speed);
 
 	printf("\n");
 
 }
 
-char** characterAvatar(int i)
+char* characterAvatar(int i)
 {
 	char avatars[NUMOFAVATARS][AVATARHEIGHT][AVATARLENGTH] = { (
 		("                                               "),
@@ -299,5 +313,5 @@ char** characterAvatar(int i)
 
 	};
 
-	return avatars[i];
+	return avatars[i - 1];
 }

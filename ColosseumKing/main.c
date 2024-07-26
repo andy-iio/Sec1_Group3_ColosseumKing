@@ -9,50 +9,52 @@
 //all our modules, rename yours if you want to
 #include "character.h"
 #include "menu.h"
-//#include "attack.h"
+#include "attack_module.h"
 #include "training.h"
 #include "save_load_login.h"
 
 int main(int argc, char* argv[]) {
 
-	char filename[] = "ascii.txt";
+	CHARACTER player1 = { 2, 1, 70, 80, 90, 100, 1 };
+	attackPhase(player1);
+	//char filename[] = "ascii.txt";
 
-	FILE* file = fopen(filename, "r");
+	//FILE* file = fopen(filename, "r");
 
-	if (file == NULL) {
-		printf("Could not open file: %s\n", filename);
-		return 1;
-	}
-	char ch;
+	//if (file == NULL) {
+	//	printf("Could not open file: %s\n", filename);
+	//	return 1;
+	//}
+	//char ch;
 
-	while ((ch = fgetc(file)) != EOF) {
-		putchar(ch);
-	}
+	//while ((ch = fgetc(file)) != EOF) {
+	//	putchar(ch);
+	//}
 
-	fclose(file);
-
-
-	 if (argc != 3) {
-        printf("Arguments were not provided\n");
-        return 1;  // Exit with error code
-    }
-    // Retrieve username and password from command line arguments
-    char* username = argv[1];
-    char* password = argv[2];
-
-    // Validate login using the function
-    if (Login(username, password)) {
-        printf("\nLogin successful!\n");
-		mainMenu();
-		inGameLoop(); // Start the game and run the game loop
-    }
-    else {
-        printf("Invalid username or password.\n");
-    }
-	
+	//fclose(file);
 
 
-	srand(time(NULL)); //seeding the random number generator used in character module
+	// if (argc != 3) {
+ //       printf("Arguments were not provided\n");
+ //       return 1;  // Exit with error code
+ //   }
+ //   // Retrieve username and password from command line arguments
+ //   char* username = argv[1];
+ //   char* password = argv[2];
+
+ //   // Validate login using the function
+ //   if (Login(username, password)) {
+ //       printf("\nLogin successful!\n");
+	//	mainMenu();
+	//	inGameLoop(); // Start the game and run the game loop
+ //   }
+ //   else {
+ //       printf("Invalid username or password.\n");
+ //   }
+	//
+
+
+	//srand(time(NULL)); //seeding the random number generator used in character module
 
 
 
