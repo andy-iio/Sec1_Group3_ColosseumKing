@@ -9,7 +9,9 @@ struct login {
 
 bool saveCharacter(struct Player Player);
 
-bool loadCharcterFromFile();
+struct Player* loadCharcterFromFile(struct Player* player);
+
+bool LoadTraining(struct Player* player);
 
 // Function to validate username and password
 bool Login(char* username, char* password);

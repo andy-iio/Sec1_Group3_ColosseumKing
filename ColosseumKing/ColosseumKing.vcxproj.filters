@@ -39,6 +39,9 @@
     <ClCompile Include="asterisk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_save_load_login.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character.h">
@@ -62,9 +65,15 @@
     <ClInclude Include="asterisk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="test_save_load_login.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ascii.txt" />
+    <Text Include="train.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Text Include="character_data.txt">

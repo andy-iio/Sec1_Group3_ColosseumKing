@@ -62,7 +62,7 @@ void matchEnemyToCharacterStats(struct Enemy* enemy, struct Player* player);
 void randomHealthIncrease(struct Character* character);
 
 //----GEAR----//
-void loadGear(struct Player* player, int helmet, int chestPlate, int leggings, int boots, int gauntlets, int shoulderPads, int belt, int bracers, int cape, int sheild, int coins);
+struct Player* loadGear(struct Player* player, int helmet, int chestPlate, int leggings, int boots, int gauntlets, int shoulderPads, int belt, int bracers, int cape, int sheild, int coins);
 
 //----SKILLS----//
 

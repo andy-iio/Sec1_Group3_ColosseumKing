@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h> // for srand()
 #include <time.h> // to use time for srand()
+#include"test_save_load_login.h"
 
 //all our modules, rename yours if you want to
 #include "character.h"
@@ -14,6 +15,7 @@
 #include "save_load_login.h"
 
 int main(int argc, char* argv[]) {
+	/*
 	srand(time(NULL)); //seeding the random number generator used in character module
 
 	char filename[] = "ascii.txt";
@@ -70,9 +72,11 @@ int main(int argc, char* argv[]) {
 	*///end of character module temmporary testing
 	//-------------------------------------------
 
-
+	create_file_t();
+	test_load_t();
+	//test_load_c();
+	//test_load_l();
 	
-
 
 	return 0;
 }
