@@ -3,7 +3,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include "gear.h"
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 // Andy 
 
 //the types of enemies avaliable to fight against
@@ -72,3 +74,7 @@ void increasePlayerLevel(struct Player* player);
 //----PRINT CHARACTER IMAGES----//
 //prints the ASCII image of a character through a txt file
 void printCharacterImage();
+
+#ifdef __cplusplus
+}
+#endif
