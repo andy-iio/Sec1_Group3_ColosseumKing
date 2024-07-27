@@ -9,7 +9,7 @@
 //all our modules, rename yours if you want to
 #include "character.h"
 #include "menu.h"
-//#include "attack.h"
+#include "attack_module.h"
 #include "training.h"
 #include "save_load_login.h"
 
@@ -17,21 +17,23 @@
 int main(int argc, char* argv[]) {
 	srand(time(NULL)); //seeding the random number generator used in character module
 
-	char filename[] = "ascii.txt";
+	CHARACTER player1 = { 1, 1, 100, 10, 10, 10, 10 };
+	attackPhase(player1);
+	//char filename[] = "ascii.txt";
 
-	FILE* file = fopen(filename, "r");
+	//FILE* file = fopen(filename, "r");
 
-	if (file == NULL) {
-		printf("Could not open file: %s\n", filename);
-		return 1;
-	}
-	char ch;
+	//if (file == NULL) {
+	//	printf("Could not open file: %s\n", filename);
+	//	return 1;
+	//}
+	//char ch;
 
-	while ((ch = fgetc(file)) != EOF) {
-		putchar(ch);
-	}
+	//while ((ch = fgetc(file)) != EOF) {
+	//	putchar(ch);
+	//}
 
-	fclose(file);
+	//fclose(file);
 
 
 	if (argc != 3) {
@@ -57,7 +59,16 @@ int main(int argc, char* argv[]) {
 }
 
 
-
+ //   // Validate login using the function
+ //   if (Login(username, password)) {
+ //       printf("\nLogin successful!\n");
+	//	mainMenu();
+	//	inGameLoop(); // Start the game and run the game loop
+ //   }
+ //   else {
+ //       printf("Invalid username or password.\n");
+ //   }
+	//
 
 
 

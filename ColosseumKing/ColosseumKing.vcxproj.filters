@@ -39,7 +39,7 @@
     <ClCompile Include="asterisk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test_save_load_login.c">
+    <ClCompile Include="attack_module.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +65,7 @@
     <ClInclude Include="asterisk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test_save_load_login.h">
+    <ClInclude Include="attack_module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

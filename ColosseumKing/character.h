@@ -14,9 +14,11 @@ enum enemyType {
 	SWORDSMAN,
 };
 
-struct Character {
+typedef struct Character {
+	int level;
+	int avatar;
 	int health;
-	int attackDamage;
+	int constitution;
 	int strength;
 	int speed;
 	int coordination;

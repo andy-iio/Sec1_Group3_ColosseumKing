@@ -11,6 +11,7 @@ bool saveCharacter(struct Player player) {
         printf("Error opening file for writing\n");
         return false;
     };
+
     fprintf(file_Character, "PLAYER DATA:\n");
     fprintf(file_Character, "Username: %s\n",player.userName);
     fprintf(file_Character, "Attack: %d\n", player.character.attackDamage);
@@ -46,6 +47,7 @@ struct Player* loadCharcterFromFile(struct Player* player) {
                 fclose(file_Character);
                 return false;
             }
+
             if (fgets(player->userName, 50, file_Character) == NULL ||
                 (fscanf(NewPlayer->health, file_Character) == NULL ||
                     fscanf(NewPlayer->attackDamage, file_Character) == NULL ||
@@ -70,6 +72,7 @@ struct Player* loadCharcterFromFile(struct Player* player) {
              printf("Player loaded from file\n");
             }
             fclose(file_Character);
+
         }
     }
         

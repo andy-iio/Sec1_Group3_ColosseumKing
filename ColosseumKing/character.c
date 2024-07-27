@@ -27,8 +27,10 @@ struct Player* _allocateMemoryPlayer() {
 
 //this function is only to be used on this file, use initalizePlayer or initalizeEnemy instead
 void _initalizeCharacter(struct Character* c) {
+c->avatar = DEFAULT_VALUE;
+c->level = DEFAULT_VALUE;
 c->health = DEFAULT_VALUE;
-c->attackDamage = DEFAULT_VALUE;
+c->constitution = DEFAULT_VALUE;
 c->strength = DEFAULT_VALUE;
 c->speed = DEFAULT_VALUE;
 c->coordination = DEFAULT_VALUE;
@@ -41,7 +43,7 @@ c->swordSkill = DEFAULT_VALUE;
 //this function is only to be used on this file, use initalizePlayer or initalizeEnemy instead
 void _loadCharacter(struct Character* c, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill, int avatar) {
 	c->health = health;
-	c->attackDamage = attackDamage;
+	c->constitution = attackDamage;
 	c->strength = strength;
 	c->speed = speed;
 	c->coordination = coordination;
@@ -90,6 +92,7 @@ struct Enemy* loadEnemy(enum enemyType type, int health, int attackDamage, int s
 //will match the enemy to the characters stats and randomly add or decrease each stat value by 1 or 0
 //same # of stats as character total but split up differently added random on top 
 void matchEnemyToCharacterStats(struct Enemy* enemy, struct Player* player) {
+
 	int characterStatsTotalPoints = (player->character.health + player->character.attackDamage + player->character.speed + player->character.strength + player->character.coordination + player->character.armourLevel + player->character.armourSkill + player->character.swordSkill + player->character.swordLevel);
 
 	int remainingPoints = characterStatsTotalPoints + (rand() % 5 + 1);
