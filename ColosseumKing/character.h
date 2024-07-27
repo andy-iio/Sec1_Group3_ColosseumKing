@@ -34,6 +34,7 @@ struct Player {
 	struct statsWithColor stats; //gear stats, find this struct in gear.h
 	char userName[50];
 	int level;
+	int skillPoints;
 };
 
 struct Enemy {

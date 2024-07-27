@@ -58,6 +58,7 @@ struct Player* initializePlayer(char* username) {
 	strcpy_s(player->userName, sizeof(player->userName) - 1, username);
 	_initalizeCharacter(&player->character);
 	initializeGear(player);
+	player->skillPoints = 10;
 	return player;
 };
 

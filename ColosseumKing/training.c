@@ -102,13 +102,13 @@ void displayStats(struct Player* player) {
 }
 
 int trainStats(struct Player* player) {
-    int points = MAXSIZE;
+    //int points = player->skillPoints;
     int choice;
     char operation;
 
     while (1) {
         displayStats(player);
-        printf("\033[1;31mYou have %d points to use on skills.\n\033[0m", points);
+        printf("\033[1;31mYou have %d points to use on skills.\n\033[0m", player->skillPoints);
         printf("1. Strength\n");
         printf("2. Speed\n");
         printf("3. Coordination\n");
@@ -175,27 +175,27 @@ int trainStats(struct Player* player) {
                 case 1:
                     player->character.strength++;
                     player->stats.isStrengthBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 2:
                     player->character.speed++;
                     player->stats.isSpeedBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 3:
                     player->character.coordination++;
                     player->stats.isCoordinationBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 4:
                     player->character.health++;
                     player->stats.isHealthBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 5:
                     player->character.swordSkill++;
                     player->stats.isSwordSkillsBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 }
             }
@@ -204,7 +204,7 @@ int trainStats(struct Player* player) {
                 case 1:
                     if (player->character.strength > 1) {
                         player->character.strength--;
-                        points++;
+                         player->skillPoints++;
                     }
                     else {
                         printf("\033[31mStrength cannot be less than 1.\n\033[0m");
@@ -213,7 +213,7 @@ int trainStats(struct Player* player) {
                 case 2:
                     if (player->character.speed > 1) {
                         player->character.speed--;
-                        points++;
+                         player->skillPoints++;
                     }
                     else {
                         printf("\033[31mSpeed cannot be less than 1.\n\033[0m");
@@ -222,7 +222,7 @@ int trainStats(struct Player* player) {
                 case 3:
                     if (player->character.coordination > 1) {
                         player->character.coordination--;
-                        points++;
+                         player->skillPoints++;
                     }
                     else {
                         printf("\033[31mCoordination cannot be less than 1.\n\033[0m");
@@ -231,7 +231,7 @@ int trainStats(struct Player* player) {
                 case 4:
                     if (player->character.health > 1) {
                         player->character.health--;
-                        points++;
+                         player->skillPoints++;
                     }
                     else {
                         printf("\033[31mHealth cannot be less than 1.\n\033[0m");
@@ -240,7 +240,7 @@ int trainStats(struct Player* player) {
                 case 5:
                     if (player->character.swordSkill > 1) {
                         player->character.swordSkill--;
-                        points++;
+                         player->skillPoints++;
                     }
                     else {
                         printf("\033[31mSword Skills cannot be less than 1.\n\033[0m");
@@ -269,11 +269,11 @@ int trainStats(struct Player* player) {
                 printf("\033[1;31mSWORD SKILLS\033[0m");
                 break;
             }
-            if (points == 0) {
+            if (player->skillPoints == 0) {
                 break;
             }
             displayStats(player);
-            printf("\033[1;31mYou have %d points to use on skills.\n\033[0m", points);
+            printf("\033[1;31mYou have %d points to use on skills.\n\033[0m", player->skillPoints);
         }
     }
     displayStats(player);
