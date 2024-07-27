@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h> // for srand()
 #include <time.h> // to use time for srand()
-#include"test_save_load_login.h"
+//#include"test_save_load_login.h"
 
 //all our modules, rename yours if you want to
 #include "character.h"
@@ -15,6 +15,16 @@
 #include "save_load_login.h"
 
 int main(int argc, char* argv[]) {
+	struct Player* player = initializePlayer("bob");
+
+	player->level = 8; //change somthing to make sure reading is good
+	saveCharacter(player);
+	
+	loadCharcterFromFile(player);
+	//check if it read right
+	printf("\nplayer username: %s", player->userName);
+	printf("\n player elvel: %d", player->level);
+
 	/*
 	srand(time(NULL)); //seeding the random number generator used in character module
 
@@ -77,7 +87,7 @@ int main(int argc, char* argv[]) {
 	*/
 
 	//test_load_t();
-	test_load_c();
+	//test_load_c();
 	//test_load_l();
 	
 

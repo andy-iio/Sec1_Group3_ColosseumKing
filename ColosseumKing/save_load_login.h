@@ -7,7 +7,7 @@ struct login {
 	char password;
 };
 
-bool saveCharacter(struct Player Player);
+bool saveCharacter(struct Player* Player);
 
 struct Player* loadCharcterFromFile(struct Player* player);
 

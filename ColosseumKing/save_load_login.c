@@ -5,13 +5,31 @@
 #define MAX 100
 
 // saving charcter 
-bool saveCharacter(struct Player player) {
+bool saveCharacter(struct Player* player) {
     FILE* file_Character = fopen("character.txt", "w");
     if (file_Character == NULL) {
         printf("Error opening file for writing\n");
         return false;
     };
-    fprintf(file_Character, "PLAYER DATA:\n");
+
+        //fprintf(file_Character, "Username,Attack,Coordination,Armour,Health,Level,Speed,Strength,Avatar\n");
+
+        fprintf(file_Character, "%s,%d,%d,%d,%d,%d,%d,%d,%d\n",
+            player->userName,
+            player->character.attackDamage,
+            player->character.coordination,
+            player->character.armourLevel,
+            player->character.health,
+            player->level,
+            player->character.speed,
+            player->character.strength,
+            player->character.avatar);
+
+        fclose(file_Character);
+        printf("Character saved to CSV file\n");
+        return true;
+    }
+  /*  fprintf(file_Character, "PLAYER DATA:\n");
     fprintf(file_Character, "Username: %s\n",player.userName);
     fprintf(file_Character, "Attack: %d\n", player.character.attackDamage);
     fprintf(file_Character, "Coordination: %d\n", player.character.coordination);
@@ -26,7 +44,7 @@ bool saveCharacter(struct Player player) {
     printf("Character saved to file\n");
     return true;
     
-}
+}*/
 
 // loading charcter 
 struct Player* loadCharcterFromFile(struct Player* player) {
@@ -35,43 +53,66 @@ struct Player* loadCharcterFromFile(struct Player* player) {
         printf("No existing file found\n");
         return false;
     }
-
-    char buffer[MAX];
-    struct Player* NewPlayer = malloc(sizeof(struct Player));
     
-    while (fgets(buffer, sizeof(buffer), file_Character) != NULL) {
-        if (strcmp(buffer, "PLAYER DATA:\n") == 0) {
-            if (NewPlayer == NULL) {
-                fprintf(stderr, "Memory Allocation failed\n");
-                fclose(file_Character);
-                return false;
-            }
-            if (fgets(player->userName, 50, file_Character) != NULL ||
-                    fscanf("Attack: %d\n",NewPlayer->character.attackDamage, file_Character) != NULL ||
-                    fscanf("Coordination: %d\n",NewPlayer->character.coordination, file_Character) != NULL ||
-                    fscanf("Armour: %d\n",NewPlayer->character.armourLevel, file_Character) != NULL ||
-                    fscanf("Health: %d\n",NewPlayer->character.health, file_Character) != NULL ||
-                    fscanf("Level: %d\n",NewPlayer->level, file_Character) != NULL ||
-                    fscanf("Speed: %d\n",NewPlayer->character.speed, file_Character) != NULL ||
-                    fscanf("Strength: %d\n",NewPlayer->character.strength, file_Character) != NULL ||
-                    fscanf("Avatar: %d\n",NewPlayer->character.avatar, file_Character) != NULL) {
-
-                printf("Error reading player data");
-                free(NewPlayer);
-                return false;
-
-            };
-
-            //NewPlayer = loadPlayer(player,NewPlayer->health, NewPlayer->attackDamage, NewPlayer->strength, NewPlayer->speed, 
-                //NewPlayer->coordination, NewPlayer->armourLevel, NewPlayer->armourSkill, NewPlayer->swordLevel, NewPlayer->swordSkill, NewPlayer->avatar);
-            
-             printf("Player loaded from file\n");
-            }
-            fclose(file_Character);
-            printf("Player loaded from file\n");
-            return true;
-        }
+    // Read the data line
+    if (fscanf(file_Character,
+        "%49[^,],%d,%d,%d,%d,%d,%d,%d,%d\n",
+        player->userName,
+        &player->character.attackDamage,
+        &player->character.coordination,
+        &player->character.armourLevel,
+        &player->character.health,
+        &player->level,
+        &player->character.speed,
+        &player->character.strength,
+        &player->character.avatar) != 9) {
+        printf("error\n");
+        free(player);
+        fclose(file_Character);
+        return NULL;
     }
+    printf("character read from fiile");
+    fclose(file_Character);
+    return player;
+}
+    //char buffer[MAX];
+    //struct Player* NewPlayer = malloc(sizeof(struct Player));
+    //
+    //while (fgets(buffer, sizeof(buffer), file_Character) != NULL) {
+    //    if (strcmp(buffer, "PLAYER DATA:\n") == 0) {
+    //        if (NewPlayer == NULL) {
+    //            fprintf(stderr, "Memory Allocation failed\n");
+    //            fclose(file_Character);
+    //            return false;
+    //        }
+
+    //        if (fgets(player->userName, 50, file_Character) != NULL ||
+    //                fscanf("Attack: %d\n",NewPlayer->character.attackDamage, file_Character) != NULL ||
+    //                fscanf("Coordination: %d\n",NewPlayer->character.coordination, file_Character) != NULL ||
+    //                fscanf("Armour: %d\n",NewPlayer->character.armourLevel, file_Character) != NULL ||
+    //                fscanf("Health: %d\n",NewPlayer->character.health, file_Character) != NULL ||
+    //                fscanf("Level: %d\n",NewPlayer->level, file_Character) != NULL ||
+    //                fscanf("Speed: %d\n",NewPlayer->character.speed, file_Character) != NULL ||
+    //                fscanf("Strength: %d\n",NewPlayer->character.strength, file_Character) != NULL ||
+    //                fscanf("Avatar: %d\n",NewPlayer->character.avatar, file_Character) != NULL) {
+
+    //            printf("Error reading player data");
+    //            free(NewPlayer);
+    //            return false;
+
+    //        };
+
+    //        printf("player attack: %d", NewPlayer->character.attackDamage);
+    //        //NewPlayer = loadPlayer(player,NewPlayer->health, NewPlayer->attackDamage, NewPlayer->strength, NewPlayer->speed, 
+    //            //NewPlayer->coordination, NewPlayer->armourLevel, NewPlayer->armourSkill, NewPlayer->swordLevel, NewPlayer->swordSkill, NewPlayer->avatar);
+    //        
+    //         printf("Player loaded from file\n");
+    //        }
+    //        fclose(file_Character);
+    //        printf("Player loaded from file\n");
+    //        return true;
+    //    }
+    //}
         
 // save training << need file still  
 bool SaveTraining(struct Player player) {
