@@ -31,6 +31,8 @@ void printFight(CHARACTER player, CHARACTER enemy);
 
 void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy);
 
+void printCharacterNEnemyCurrentHealth(CHARACTER player, CHARACTER enemy);
+
 void printCharacterNEnemyAvatar(int Pavatar, int Eavatar);
 
 void characterAvatar(int, char*);

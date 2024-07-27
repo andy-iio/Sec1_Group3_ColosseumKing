@@ -15,7 +15,9 @@
 
 int main(int argc, char* argv[]) {
 
-	CHARACTER player1 = { 2, 1, 70, 80, 90, 100, 1 };
+	srand(time(NULL)); //seeding the random number generator used in character module
+
+	CHARACTER player1 = { 1, 1, 100, 10, 10, 10, 10 };
 	attackPhase(player1);
 	//char filename[] = "ascii.txt";
 

@@ -141,6 +141,10 @@ bool attackPhase(CHARACTER player)
 	while (NWIN == current)
 	{
 		current = round(&player, &enemy);
+
+		printf("\n");
+
+		printCharacterNEnemyCurrentHealth(player, enemy);
 	}
 
 	if (EWIN == current)
@@ -178,7 +182,11 @@ void printCharacterNEnemyAvatar(int Pavatar, int Eavatar)
 			printf("%c", PAvatar[i][j]);
 		}
 
-		printf("										 ");
+		//printf("%s", PAvatar[i]);
+
+		printf("                                 ");
+
+		//printf("%s", EAvatar[i]);
 
 		for (int j = 0; j < (AVATARLENGTH - 1); j++)
 		{
@@ -202,7 +210,9 @@ void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy)
 
 	lineUpBasedOnNumSize(player.tempHealth);
 
-	printf("                                       ");
+	lineUpBasedOnNumSize(player.health);
+
+	printf("                                                               ");
 
 	printf("Health: %d/%d", enemy.tempHealth, enemy.health);
 
@@ -212,7 +222,7 @@ void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy)
 
 	lineUpBasedOnNumSize(player.strength);
 	
-	printf("                                        ");
+	printf("                                                                   ");
 
 	printf("Strength: %d", enemy.strength);
 
@@ -222,7 +232,7 @@ void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy)
 
 	lineUpBasedOnNumSize(player.constitution);
 
-	printf("                                    ");
+	printf("                                                               ");
 
 	printf("Constitution: %d", enemy.constitution);
 
@@ -232,12 +242,37 @@ void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy)
 
 	lineUpBasedOnNumSize(player.speed);
 
-	printf("                                           ");
+	printf("                                                                      ");
 
 	printf("Speed: %d", enemy.speed);
 
 	printf("\n");
 
+	printf("Coordination: %d", player.coordination);
+
+	lineUpBasedOnNumSize(player.coordination);
+
+	printf("                                                               ");
+
+	printf("Coordination: %d", enemy.coordination);
+
+	printf("\n");
+
+}
+
+void printCharacterNEnemyCurrentHealth(CHARACTER player, CHARACTER enemy)
+{
+	printf("Health: %d/%d", player.tempHealth, player.health);
+
+	lineUpBasedOnNumSize(player.tempHealth);
+
+	lineUpBasedOnNumSize(player.health);
+
+	printf("                                                               ");
+
+	printf("Health: %d/%d", enemy.tempHealth, enemy.health);
+
+	printf("\n");
 }
 
 void characterAvatar(int i, char* characterAvatar)
@@ -295,7 +330,7 @@ void characterAvatar(int i, char* characterAvatar)
 		"|             .#########.#######..            |",
 		"|          .#######################.          |",
 		"|        .############################.       |",
-		"|       .################################.	   |",
+		"|       .################################.    |",
 		"|      .#########,##,#####################.   |",
 		"|     .#########-#,'########## ############.  |",
 		"|    .######'#-##' # ##'### #. `####:#######. |",
@@ -320,8 +355,8 @@ void characterAvatar(int i, char* characterAvatar)
 		"|.# ######|  |       ___       / /' /#######  |",
 		"|# #'#####||  |    -     -    /  ,'|### #. #. |",
 		"|`#  #####| '-.`             ' ,-'  |### #  # |",
-		"|    #' `#|    '._         ,.-'     #`#`#.	   |",
-		"|         |       .'------' :       |#   #	   |",
+		"|    #' `#|    '._         ,.-'     #`#`#.    |",
+		"|         |       .'------' :       |#   #    |",
 		"|         |       :         :       |         |",
 		"|         |       :         :       |         |",
 		"|                 :         :                 |",
@@ -331,29 +366,25 @@ void characterAvatar(int i, char* characterAvatar)
 
 	};
 
-	memcpy(characterAvatar, avatars[0], (AVATARHEIGHT * AVATARLENGTH * sizeof(char)));
+	memcpy(characterAvatar, avatars[i], (AVATARHEIGHT * AVATARLENGTH * sizeof(char)));
 }
 
 void lineUpBasedOnNumSize(int x)
 {
 	// makes column line up
-	if (10 > x)
-	{
-		printf("     ");
-	}
-	else if (10 > x)
+	if (10 > x && x >= 0)
 	{
 		printf("    ");
 	}
-	else if (100 > x)
+	else if (100 > x && x > -10)
 	{
 		printf("   ");
 	}
-	else if (1000 > x)
+	else if (1000 > x && x > -100)
 	{
 		printf("  ");
 	}
-	else if (10000 > x)
+	else if (10000 > x && x > -1000)
 	{
 		printf(" ");
 	}
