@@ -2,7 +2,6 @@
 #define MAXSIZE 10
 
 typedef struct statsWithColor {
-    int swordSkills;
     int isStrengthBlue;
     int isSpeedBlue;
     int isCoordinationBlue;
@@ -31,7 +30,8 @@ typedef struct statsWithColor {
     int coins;
 } STATSWITHCOLOR;
 
-void displayArmor(STATSWITHCOLOR* gear);
-void trainArmor(STATSWITHCOLOR* gear);
-void startTrainingGear();
-void buyGear(STATSWITHCOLOR* gear);
+void displayArmor(struct Player* player);
+int trainArmor(struct Player* player);
+int startTrainingGear(struct Player* player);
+void buyGear(struct Player* player);
+void initializeGear(struct Player* player);

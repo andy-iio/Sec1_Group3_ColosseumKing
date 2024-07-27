@@ -13,8 +13,8 @@
 #include "training.h"
 #include "save_load_login.h"
 
-int main(int argc, char* argv[]) {
 
+int main(int argc, char* argv[]) {
 	srand(time(NULL)); //seeding the random number generator used in character module
 
 	CHARACTER player1 = { 1, 1, 100, 10, 10, 10, 10 };
@@ -36,13 +36,28 @@ int main(int argc, char* argv[]) {
 	//fclose(file);
 
 
-	// if (argc != 3) {
- //       printf("Arguments were not provided\n");
- //       return 1;  // Exit with error code
- //   }
- //   // Retrieve username and password from command line arguments
- //   char* username = argv[1];
- //   char* password = argv[2];
+	if (argc != 3) {
+		printf("Arguments were not provided\n");
+		return 1;  // Exit with error code
+	}
+	// Retrieve username and password from command line arguments
+	char* username = argv[1];
+	char* password = argv[2];
+
+	// Validate login using the function
+	//if (Login(username, password)) {
+	//	printf("\nLogin successful!\n");
+	//	topMainMenu();
+	//	//inGameLoop(player); // Start the game and run the game loop
+	//}
+	//else {
+	//	printf("Invalid username or password.\n");
+	//}
+
+	topMainMenu(); //remove this line once the save & load stuff is fixed above^^
+	return 0;
+}
+
 
  //   // Validate login using the function
  //   if (Login(username, password)) {
@@ -56,12 +71,8 @@ int main(int argc, char* argv[]) {
 	//
 
 
-	//srand(time(NULL)); //seeding the random number generator used in character module
 
-
-
-
-	//-------------------------------------------
+//-------------------------------------------
 	//temporary testing for character module, I will remove later, feel free to comment it out -andy
 	/*struct Player* player1 = loadPlayer("abcde", 50, 70, 80, 90, 100, 1);
 	struct Enemy* zorb = initializeEnemy(LION);
@@ -76,13 +87,6 @@ int main(int argc, char* argv[]) {
 	zorb->health--;
 	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
 	randomHealthIncrease(player1);
-	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);*/
-	//end of character module temmporary testing
+	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
+	*///end of character module temmporary testing
 	//-------------------------------------------
-
-
-	
-
-
-	return 0;
-}

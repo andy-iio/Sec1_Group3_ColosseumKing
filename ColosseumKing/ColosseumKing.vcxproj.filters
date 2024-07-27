@@ -71,6 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ascii.txt" />
+    <Text Include="train.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Text Include="character_data.txt">

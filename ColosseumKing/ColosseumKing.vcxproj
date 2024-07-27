@@ -155,6 +155,7 @@
   <ItemGroup>
     <Text Include="character_data.txt" />
     <Text Include="login_info.txt" />
+    <Text Include="train.txt" />
     <Text Include="training_data.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
