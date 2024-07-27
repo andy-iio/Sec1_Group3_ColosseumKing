@@ -11,7 +11,7 @@ bool saveCharacter(struct Player* Player);
 
 struct Player* loadCharcterFromFile(struct Player* player);
 
-bool SaveTraining(struct Player player);
+bool SaveTraining(struct Player* player);
 
 bool LoadTraining(struct Player* player);
 

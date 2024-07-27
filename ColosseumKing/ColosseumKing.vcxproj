@@ -155,7 +155,7 @@
     <Text Include="ascii.txt" />
     <Text Include="character.txt" />
     <Text Include="log.txt" />
-    <Text Include="training2.txt" />
+    <Text Include="trainfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

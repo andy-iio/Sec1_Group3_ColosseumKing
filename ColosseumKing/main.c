@@ -22,8 +22,26 @@ int main(int argc, char* argv[]) {
 	
 	loadCharcterFromFile(player);
 	//check if it read right
-	printf("\nplayer username: %s", player->userName);
-	printf("\n player elvel: %d", player->level);
+	printf("\nplayer username: %s\n", player->userName);
+	printf("player level: %d\n", player->level);
+
+	player->stats.belt = 2;
+	player->stats.boots = 4;
+	player->stats.bracers = 6;
+	player->stats.cape = 8;
+	player->stats.coins = 10;
+	player->stats.gauntlets = 12;
+	player->stats.helmet = 14;
+	player->stats.leggings = 16;
+	player->stats.shield = 18;
+	
+	SaveTraining(player);
+	LoadTraining(player);
+
+	//saveLogin();
+	//loadLogin();
+	
+	
 
 	/*
 	srand(time(NULL)); //seeding the random number generator used in character module
