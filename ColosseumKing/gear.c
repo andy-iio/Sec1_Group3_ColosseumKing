@@ -1,3 +1,4 @@
+// Ceren
 #define _CRT_SECURE_NO_WARNINGS
 #include "menu.h"
 #include "training.h"
@@ -9,7 +10,7 @@
 #include <string.h>
 
 void initializeGear(struct Player* player) {
-    player->stats.coins = 1; // Default 1 coins
+    player->stats.coins = 10; // Default 1 coins
     player->stats.helmet = 0;
     player->stats.chestplate = 0;
     player->stats.leggings = 0;
@@ -39,28 +40,46 @@ void buyGear(struct Player* player) {
 
     if (player->stats.coins >= playerCost) {
         printf("\033[32mYou have enough coins to buy the player set.\033[0m\n");
-        player->stats.coins -= playerCost;
+        printf("Do you want to buy the player set for %d coins? (y/n): ", playerCost);
 
-        printf("\033[32mPurchase successful! Your remaining coins: %d\033[0m\n", player->stats.coins);
+        char choice = getchar();
+        while (getchar() != '\n');
 
-        player->stats.helmet = 1;
-        player->stats.chestplate = 1;
-        player->stats.leggings = 1;
-        player->stats.boots = 1;
-        player->stats.gauntlets = 1;
-        player->stats.shoulderPads = 1;
-        player->stats.belt = 1;
-        player->stats.bracers = 1;
-        player->stats.cape = 1;
-        player->stats.shield = 1;
+        if (choice == 'y' || choice == 'Y') {
+            player->stats.coins -= playerCost;
 
-        printf("\033[32mYou have successfully bought the player set!\033[0m\n");
+            printf("\033[32mPurchase successful! Your remaining coins: %d\033[0m\n", player->stats.coins);
+
+            player->stats.helmet = 1;
+            player->stats.chestplate = 1;
+            player->stats.leggings = 1;
+            player->stats.boots = 1;
+            player->stats.gauntlets = 1;
+            player->stats.shoulderPads = 1;
+            player->stats.belt = 1;
+            player->stats.bracers = 1;
+            player->stats.cape = 1;
+            player->stats.shield = 1;
+
+            printf("\033[32mYou have successfully bought the player set!\033[0m\n");
+            asteriskShortLine();
+            mainMenu(player);
+            exit(1);
+        }
+        else {
+            printf("\n\033[1;34mReturning to menu...\n\033[0m");
+            asteriskShortLine();
+            mainMenu(player);
+            exit(1);
+        }
     }
     else {
         printf("\033[31mYou do not have enough coins to buy the player set.\033[0m\n");
         printf("\033[31mYou need %d more coins to buy the player set.\033[0m\n", playerCost - player->stats.coins);
+        asteriskShortLine();
+        mainMenu(player);
+        exit(1);
     }
-    asteriskShortLine();
 }
 
 void displayArmor(struct Player* player) {
@@ -142,12 +161,12 @@ void displayArmor(struct Player* player) {
     printf("+-------------------+--------+\n");
 }
 
-void trainArmor(struct Player* player) {
+int trainArmor(struct Player* player) {
     int points = MAXSIZE;
     int choice;
     char operation;
 
-    while (points > 0) {
+    while (1) {
         displayArmor(player);
         printf("\033[1;31mYou have %d points to use on armor.\n\033[0m", points);
         printf("1. Helmet\n");
@@ -206,11 +225,13 @@ void trainArmor(struct Player* player) {
             printf("\n\033[1;31mTraining session complete.\033[0m");
             printf("\n\033[1;34mReturning to menu...\n\033[0m");
             asteriskShortLine();
-            return;
+            return 6; // Back to menu return value 6
         case 12:
-            //Attack module 
-            printf("Attack module section.\n");
-            inGameLoop(player); //this is just a test
+            // Battle
+            printf("\n\033[1;31mTraining session complete.\033[0m");
+            printf("\n\033[1;31mEntering Battle...\033[0m\n");
+            inGameLoop(player); // Battle in game loop (ESC)
+            return 7; // Battle mode return value 7
         default:
             printf("\033[31mInvalid choice. Please enter a number between 1 and 12.\n\033[0m");
             asteriskLongLine();
@@ -388,13 +409,19 @@ void trainArmor(struct Player* player) {
         }
     }
     displayArmor(player);
+    return 6;
 }
 
-void startTrainingGear(struct Player* player) {
+
+int startTrainingGear(struct Player* player) {
 
     //initializeGear(player); //  this is not needed, gear is initalized in character 
 
-    trainArmor(player);
+    int result;
 
-    free(player);
+    result = trainArmor(player);
+
+    //free(player);
+
+    return result;
 }
