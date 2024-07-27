@@ -33,7 +33,9 @@ void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy);
 
 void printCharacterNEnemyAvatar(int Pavatar, int Eavatar);
 
-char* characterAvatar(int);
+void characterAvatar(int, char*);
+
+void lineUpBasedOnNumSize(int x);
 
 
 
