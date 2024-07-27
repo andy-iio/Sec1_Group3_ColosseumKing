@@ -27,6 +27,8 @@ CHARACTER playerToCharacter(struct Player *p)
 	c.armourSkill = p->armourSkill;
 	c.swordLevel = p->swordLevel;
 	c.swordSkill = p->swordSkill;
+
+	return c;
 }
 
 
