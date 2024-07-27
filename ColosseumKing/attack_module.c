@@ -16,17 +16,17 @@ CHARACTER playerToCharacter(struct Player *p)
 {
 	CHARACTER c;
 
-	c.avatar = p->avatar;
-	c.level = p->level;
-	c.health = p->health;
-	c.constitution = p->constitution;
-	c.strength = p->strength;
-	c.speed = p->speed;
-	c.coordination = p->coordination;
-	c.armourLevel = p->armourLevel;
-	c.armourSkill = p->armourSkill;
-	c.swordLevel = p->swordLevel;
-	c.swordSkill = p->swordSkill;
+	c.avatar = p->character.avatar;
+	c.level = p->character.level;
+	c.health = p->character.health;
+	c.constitution = p->character.constitution;
+	c.strength = p->character.strength;
+	c.speed = p->character.speed;
+	c.coordination = p->character.coordination;
+	c.armourLevel = p->character.armourLevel;
+	c.armourSkill = p->character.armourSkill;
+	c.swordLevel = p->character.swordLevel;
+	c.swordSkill = p->character.swordSkill;
 
 	return c;
 }

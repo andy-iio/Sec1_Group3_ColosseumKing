@@ -229,6 +229,7 @@ int trainArmor(struct Player* player) {
             // Battle
             printf("\n\033[1;31mTraining session complete.\033[0m");
             printf("\n\033[1;31mEntering Battle...\033[0m\n");
+            attackPhase(player->character);
             inGameLoop(player); // Battle in game loop (ESC)
             return 7; // Battle mode return value 7
         default:

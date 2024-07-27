@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "attack_module.h"
 #define MAXSIZE 50
 
 int topMainMenu() {
@@ -60,8 +61,8 @@ int topMainMenu() {
                 continue; // Return to top menu
             }
             else if (result == 7) {
-                // Battle
                 inGameLoop(player);
+                attackPhase(player->character);
                 return 0;
             }
             clearInputBuffer();
@@ -142,7 +143,9 @@ int mainMenu(struct Player* currentPlayer) {
                 // Battle section
                 printf("\n\033[1;31mTraining session complete.\033[0m");
                 printf("Entering battle mode...\n");
+                attackPhase(newPlayer->character);
                 inGameLoop(newPlayer); // Battle in game loop (ESC)
+                
                 return 0;
             }
             clearInputBuffer();
@@ -167,6 +170,7 @@ int mainMenu(struct Player* currentPlayer) {
                 // Battle
                 printf("\n\033[1;31mTraining session complete.\033[0m");
                 printf("Entering battle mode...\n");
+                attackPhase(currentPlayer->character);
                 inGameLoop(currentPlayer); // Battle in game loop (ESC)
                 return 0;
             }

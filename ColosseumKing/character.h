@@ -16,7 +16,7 @@ enum enemyType {
 
 typedef struct Character {
 	int level;
-	int avatar;
+	int attackDamage;
 	int health;
 	int constitution;
 	int strength;
@@ -27,9 +27,8 @@ typedef struct Character {
 	int swordLevel;
 	int swordSkill;
 	int tempHealth;
-	int constitution;
 	int avatar; //this will hold the avatar # that will be printed in attack module
-};
+}CHARACTER;
 
 struct Player {
 	struct Character character;

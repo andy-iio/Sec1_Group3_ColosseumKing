@@ -17,34 +17,32 @@
 int main(int argc, char* argv[]) {
 	srand(time(NULL)); //seeding the random number generator used in character module
 
-	CHARACTER player1 = { 1, 1, 100, 10, 10, 10, 10 };
-	attackPhase(player1);
-	//char filename[] = "ascii.txt";
+	char filename[] = "ascii.txt";
 
-	//FILE* file = fopen(filename, "r");
+	FILE* file = fopen(filename, "r");
 
-	//if (file == NULL) {
-	//	printf("Could not open file: %s\n", filename);
-	//	return 1;
-	//}
-	//char ch;
-
-	//while ((ch = fgetc(file)) != EOF) {
-	//	putchar(ch);
-	//}
-
-	//fclose(file);
-
-
-	if (argc != 3) {
-		printf("Arguments were not provided\n");
-		return 1;  // Exit with error code
+	if (file == NULL) {
+		printf("Could not open file: %s\n", filename);
+		return 1;
 	}
-	// Retrieve username and password from command line arguments
-	char* username = argv[1];
-	char* password = argv[2];
+	char ch;
 
-	// Validate login using the function
+	while ((ch = fgetc(file)) != EOF) {
+		putchar(ch);
+	}
+
+	fclose(file);
+
+
+	//if (argc != 3) {
+	//	printf("Arguments were not provided\n");
+	//	return 1;  // Exit with error code
+	//}
+	//// Retrieve username and password from command line arguments
+	//char* username = argv[1];
+	//char* password = argv[2];
+
+	//// Validate login using the function
 	//if (Login(username, password)) {
 	//	printf("\nLogin successful!\n");
 	//	topMainMenu();
