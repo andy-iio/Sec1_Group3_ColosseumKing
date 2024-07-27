@@ -54,7 +54,6 @@ struct Player* loadCharcterFromFile(struct Player* player) {
         return false;
     }
     
-    // Read the data line
     if (fscanf(file_Character,
         "%49[^,],%d,%d,%d,%d,%d,%d,%d,%d\n",
         player->userName,
