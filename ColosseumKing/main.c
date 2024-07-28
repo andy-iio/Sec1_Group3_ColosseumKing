@@ -15,7 +15,7 @@
 #include "save_load_login.h"
 
 int main(int argc, char* argv[]) {
-	struct Player* player = initializePlayer("bob");
+	struct Player* player = initializePlayer("Player1","Password123");
 
 	player->level = 8; //change somthing to make sure reading is good
 	saveCharacter(player);
@@ -35,14 +35,15 @@ int main(int argc, char* argv[]) {
 	player->stats.leggings = 16;
 	player->stats.shield = 18;
 	
+	
 	SaveTraining(player);
 	LoadTraining(player);
 
-	//saveLogin();
-	//loadLogin();
+	
+	saveLogin(player);
+	loadLogin(player);
 	
 	
-
 	/*
 	srand(time(NULL)); //seeding the random number generator used in character module
 

@@ -118,7 +118,7 @@ bool LoadTraining(struct Player* player) {
 }
     
 // save login information
-bool saveLogin(struct login* info) {
+bool saveLogin(struct Player* info) {
     FILE* file_login = fopen("login.txt", "w");
     if (file_login == NULL) {
         printf("No existing file found\n");
@@ -126,7 +126,7 @@ bool saveLogin(struct login* info) {
     }
     fprintf(file_login,"%s,%s,\n",
         info->userName,
-        info->password);
+        info->Password);
     
     fclose(file_login);
     printf("Info saved to file \n");
@@ -134,16 +134,15 @@ bool saveLogin(struct login* info) {
 }
 
 // load login information 
-bool loadLogin(struct login* info) {
-    FILE* file_login = fopen("login.txt", "w");
+bool loadLogin(struct Player* info) {
+    FILE* file_login = fopen("login.txt", "r");
     if (file_login == NULL) {
         printf("Error opening file for writing\n");
         return false;
     }
-    if (fscanf(file_login,
-        "%s, %s\n",
+    if (fscanf(file_login, "%s, %s\n",
         info->userName,
-        info->password) != 2)
+        info->Password) != 2)
     
     fclose(file_login);
     printf("Info loaded from file\n");
