@@ -112,7 +112,7 @@ bool LoadTraining(struct Player* player) {
         fclose(file_Gear);
         return NULL;
     }
-    printf("training read from fiile\n");
+    printf("training read from file\n");
     fclose(file_Gear);
     return player;
 }

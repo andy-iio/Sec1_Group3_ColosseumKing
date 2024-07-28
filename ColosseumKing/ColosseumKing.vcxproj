@@ -154,7 +154,7 @@
   <ItemGroup>
     <Text Include="ascii.txt" />
     <Text Include="character.txt" />
-    <Text Include="log.txt" />
+    <Text Include="login.txt" />
     <Text Include="trainfile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
