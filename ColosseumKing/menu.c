@@ -139,11 +139,23 @@ int mainMenu(struct Player* currentPlayer) {
                 if (strlen(username) > 0) {
                     break;
                 }
-                printf("\033[31mPlayer name cannot be empty. Please enter a valid name.\n\033[0m");
+                printf("\033[31mUsername cannot be empty. Please enter a valid username.\n\033[0m");
+                asteriskShortLine();
+            }
+            char password[MAXSIZE];
+            while (1) {
+                printf("Create a Password: ");
+                fgets(password, sizeof(password), stdin);
+                password[strcspn(password, "\n")] = '\'\0';
+
+                if (strlen(password) > 0) {
+                    break;
+                }
+                printf("\033[31mPassword cannot be empty. Please enter a valid password.\n\033[0m");
                 asteriskShortLine();
             }
 
-            struct Player* newPlayer = initializePlayer(username);
+            struct Player* newPlayer = initializePlayer(username, password);
             int result = startTraining(newPlayer);  // Start the training module
             if (result == 6) {
                 // Return menu
