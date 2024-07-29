@@ -71,18 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ascii.txt" />
-    <Text Include="train.txt">
+    <Text Include="character.txt">
       <Filter>Resource Files</Filter>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="character_data.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="training_data.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="login_info.txt">
+    <Text Include="trainfile.txt" />
+    <Text Include="login.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

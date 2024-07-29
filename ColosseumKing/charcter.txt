@@ -1,0 +1,10 @@
+PLAYER DATA:
+Username: d
+Attack: 2
+Coordination: 4
+Armour: 6
+Health: 8
+Level: 10
+Speed: 12
+Strength: 14
+Avatar: 0

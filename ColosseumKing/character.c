@@ -55,9 +55,10 @@ void _loadCharacter(struct Character* c, int health, int attackDamage, int stren
 }
 
 //initialize a new player
-struct Player* initializePlayer(char* username) {
+struct Player* initializePlayer(char* username, char* password) {
 	struct Player* player = _allocateMemoryPlayer();
 	strcpy_s(player->userName, sizeof(player->userName) - 1, username);
+	strcpy_s(player->Password, sizeof(player->Password) - 1, password);
 	_initalizeCharacter(&player->character);
 	initializeGear(player);
 	player->skillPoints = 10;
