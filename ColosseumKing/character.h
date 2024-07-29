@@ -14,9 +14,11 @@ enum enemyType {
 	SWORDSMAN,
 };
 
-struct Character {
-	int health;
+typedef struct Character {
+	int level;
 	int attackDamage;
+	int health;
+	int constitution;
 	int strength;
 	int speed;
 	int coordination;
@@ -25,9 +27,8 @@ struct Character {
 	int swordLevel;
 	int swordSkill;
 	int tempHealth;
-	int constitution;
 	int avatar; //this will hold the avatar # that will be printed in attack module
-};
+}CHARACTER;
 
 struct Player {
 	struct Character character;
@@ -35,6 +36,7 @@ struct Player {
 	char userName[50];
 	char Password[50];
 	int level;
+	int skillPoints;
 };
 
 struct Enemy {

@@ -1,12 +1,14 @@
 #pragma once
 // By Grae Watson - 2024/07/10 - Colosseum King
 
+#include <stdbool.h>
 #include "character.h"
 
 //NWIN = no wins, PWIN = player wins, EWIN enemy wins
 typedef enum fightstatus { NWIN, PWIN, EWIN}FIGHTSTATUS;
 
 
+CHARACTER playerToCharacter(struct Player*);
 //
 bool attackSuccess(CHARACTER attacker, CHARACTER deffender);
 
@@ -19,7 +21,7 @@ int defenseChance(CHARACTER deffender);
 int defensePower(CHARACTER deffender);
 
 //returns FIGHTSTATUS that decides if fight continues. NWIN it continues attack phase. PWIN or EWIN it ends attack phase
-FIGHTSTATUS round(CHARACTER player, CHARACTER enemy);
+FIGHTSTATUS round(CHARACTER* player, CHARACTER* enemy);
 
 //returns false if player dies
 bool attackPhase(CHARACTER player);
@@ -27,7 +29,15 @@ bool attackPhase(CHARACTER player);
 
 void printFight(CHARACTER player, CHARACTER enemy);
 
-char** characterAvatar(int);
+void printCharacterNEnemyStats(CHARACTER player, CHARACTER enemy);
+
+void printCharacterNEnemyCurrentHealth(CHARACTER player, CHARACTER enemy);
+
+void printCharacterNEnemyAvatar(int Pavatar, int Eavatar);
+
+void characterAvatar(int, char*);
+
+void lineUpBasedOnNumSize(int x);
 
 
 

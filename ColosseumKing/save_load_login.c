@@ -5,13 +5,13 @@
 #define MAX 100
 
 // saving charcter 
+
 bool saveCharacter(struct Player* player) {
     FILE* file_Character = fopen("character.txt", "w");
     if (file_Character == NULL) {
         printf("Error opening file for writing\n");
         return false;
     };
-
     
         fprintf(file_Character, "%s,%d,%d,%d,%d,%d,%d,%d,%d\n",
             player->userName,
@@ -68,6 +68,25 @@ bool SaveTraining(struct Player* player) {
         return false;
     }
 
+            char buffer[MAX];
+            struct Player* NewPlayer = malloc(sizeof(struct Character));
+            
+            if (fgets(player->userName, 50, file_Gear) == NULL ||
+                (fscanf(NewPlayer->stats.helmet,file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.chestplate, file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.leggings, file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.boots, file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.gauntlets, file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.shoulderPads, file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.belt, file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.bracers, file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.cape, file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.shield, file_Gear) == NULL ||
+                    fscanf(NewPlayer->stats.coins, file_Gear) == NULL)) {
+
+                printf("Error reading player data");
+                free(NewPlayer);
+                return false;
 
     fprintf(file_Gear, "%s,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
         player->userName,

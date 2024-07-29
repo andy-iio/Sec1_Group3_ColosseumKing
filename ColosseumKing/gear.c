@@ -1,3 +1,4 @@
+// Ceren
 #define _CRT_SECURE_NO_WARNINGS
 #include "menu.h"
 #include "training.h"
@@ -9,7 +10,7 @@
 #include <string.h>
 
 void initializeGear(struct Player* player) {
-    player->stats.coins = 1; // Default 1 coins
+    player->stats.coins = 10; // Default 1 coins
     player->stats.helmet = 0;
     player->stats.chestplate = 0;
     player->stats.leggings = 0;
@@ -39,28 +40,46 @@ void buyGear(struct Player* player) {
 
     if (player->stats.coins >= playerCost) {
         printf("\033[32mYou have enough coins to buy the player set.\033[0m\n");
-        player->stats.coins -= playerCost;
+        printf("Do you want to buy the player set for %d coins? (y/n): ", playerCost);
 
-        printf("\033[32mPurchase successful! Your remaining coins: %d\033[0m\n", player->stats.coins);
+        char choice = getchar();
+        while (getchar() != '\n');
 
-        player->stats.helmet = 1;
-        player->stats.chestplate = 1;
-        player->stats.leggings = 1;
-        player->stats.boots = 1;
-        player->stats.gauntlets = 1;
-        player->stats.shoulderPads = 1;
-        player->stats.belt = 1;
-        player->stats.bracers = 1;
-        player->stats.cape = 1;
-        player->stats.shield = 1;
+        if (choice == 'y' || choice == 'Y') {
+            player->stats.coins -= playerCost;
 
-        printf("\033[32mYou have successfully bought the player set!\033[0m\n");
+            printf("\033[32mPurchase successful! Your remaining coins: %d\033[0m\n", player->stats.coins);
+
+            player->stats.helmet = 1;
+            player->stats.chestplate = 1;
+            player->stats.leggings = 1;
+            player->stats.boots = 1;
+            player->stats.gauntlets = 1;
+            player->stats.shoulderPads = 1;
+            player->stats.belt = 1;
+            player->stats.bracers = 1;
+            player->stats.cape = 1;
+            player->stats.shield = 1;
+
+            printf("\033[32mYou have successfully bought the player set!\033[0m\n");
+            asteriskShortLine();
+            mainMenu(player);
+            exit(1);
+        }
+        else {
+            printf("\n\033[1;34mReturning to menu...\n\033[0m");
+            asteriskShortLine();
+            mainMenu(player);
+            exit(1);
+        }
     }
     else {
         printf("\033[31mYou do not have enough coins to buy the player set.\033[0m\n");
         printf("\033[31mYou need %d more coins to buy the player set.\033[0m\n", playerCost - player->stats.coins);
+        asteriskShortLine();
+        mainMenu(player);
+        exit(1);
     }
-    asteriskShortLine();
 }
 
 void displayArmor(struct Player* player) {
@@ -142,14 +161,13 @@ void displayArmor(struct Player* player) {
     printf("+-------------------+--------+\n");
 }
 
-void trainArmor(struct Player* player) {
-    int points = MAXSIZE;
+int trainArmor(struct Player* player) {
     int choice;
     char operation;
 
-    while (points > 0) {
+    while (1) {
         displayArmor(player);
-        printf("\033[1;31mYou have %d points to use on armor.\n\033[0m", points);
+        printf("\033[1;31mYou have %d points to use on armor.\n\033[0m", player->skillPoints);
         printf("1. Helmet\n");
         printf("2. Chestplate\n");
         printf("3. Leggings\n");
@@ -206,11 +224,14 @@ void trainArmor(struct Player* player) {
             printf("\n\033[1;31mTraining session complete.\033[0m");
             printf("\n\033[1;34mReturning to menu...\n\033[0m");
             asteriskShortLine();
-            return;
+            return 6; // Back to menu return value 6
         case 12:
-            //Attack module 
-            printf("Attack module section.\n");
-            inGameLoop(player); //this is just a test
+            // Battle
+            printf("\n\033[1;31mTraining session complete.\033[0m");
+            printf("\n\033[1;31mEntering Battle...\033[0m\n");
+            attackPhase(player->character);
+            inGameLoop(player); // Battle in game loop (ESC)
+            return 7; // Battle mode return value 7
         default:
             printf("\033[31mInvalid choice. Please enter a number between 1 and 12.\n\033[0m");
             asteriskLongLine();
@@ -233,52 +254,52 @@ void trainArmor(struct Player* player) {
                 case 1:
                     player->stats.helmet++;
                     player->stats.isHelmetBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 2:
                     player->stats.chestplate++;
                     player->stats.isChestplateBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 3:
                     player->stats.leggings++;
                     player->stats.isLeggingsBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 4:
                     player->stats.boots++;
                     player->stats.isBootsBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 5:
                     player->stats.gauntlets++;
                     player->stats.isGauntletsBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 6:
                     player->stats.shoulderPads++;
                     player->stats.isShoulderPadsBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 7:
                     player->stats.belt++;
                     player->stats.isBeltBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 8:
                     player->stats.bracers++;
                     player->stats.isBracersBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 9:
                     player->stats.cape++;
                     player->stats.isCapeBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 case 10:
                     player->stats.shield++;
                     player->stats.isShieldBlue = 1;
-                    points--;
+                    player->skillPoints--;
                     break;
                 }
             }
@@ -287,7 +308,7 @@ void trainArmor(struct Player* player) {
                 case 1:
                     if (player->stats.helmet > 0) {
                         player->stats.helmet--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mHelmet cannot be less than 0.\n\033[0m");
@@ -296,7 +317,7 @@ void trainArmor(struct Player* player) {
                 case 2:
                     if (player->stats.chestplate > 0) {
                         player->stats.chestplate--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mChestplate cannot be less than 0.\n\033[0m");
@@ -305,7 +326,7 @@ void trainArmor(struct Player* player) {
                 case 3:
                     if (player->stats.leggings > 0) {
                         player->stats.leggings--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mLeggings cannot be less than 0.\n\033[0m");
@@ -314,7 +335,7 @@ void trainArmor(struct Player* player) {
                 case 4:
                     if (player->stats.boots > 0) {
                         player->stats.boots--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mBoots cannot be less than 0.\n\033[0m");
@@ -323,7 +344,7 @@ void trainArmor(struct Player* player) {
                 case 5:
                     if (player->stats.gauntlets > 0) {
                         player->stats.gauntlets--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mGauntlets cannot be less than 0.\n\033[0m");
@@ -332,7 +353,7 @@ void trainArmor(struct Player* player) {
                 case 6:
                     if (player->stats.shoulderPads > 0) {
                         player->stats.shoulderPads--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mShoulder Pads cannot be less than 0.\n\033[0m");
@@ -341,7 +362,7 @@ void trainArmor(struct Player* player) {
                 case 7:
                     if (player->stats.belt > 0) {
                         player->stats.belt--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mBelt cannot be less than 0.\n\033[0m");
@@ -350,7 +371,7 @@ void trainArmor(struct Player* player) {
                 case 8:
                     if (player->stats.bracers > 0) {
                         player->stats.bracers--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mBracers cannot be less than 0.\n\033[0m");
@@ -359,7 +380,7 @@ void trainArmor(struct Player* player) {
                 case 9:
                     if (player->stats.cape > 0) {
                         player->stats.cape--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mCape cannot be less than 0.\n\033[0m");
@@ -368,7 +389,7 @@ void trainArmor(struct Player* player) {
                 case 10:
                     if (player->stats.shield > 0) {
                         player->stats.shield--;
-                        points++;
+                        player->skillPoints++;
                     }
                     else {
                         printf("\033[31mShield cannot be less than 0.\n\033[0m");
@@ -380,21 +401,27 @@ void trainArmor(struct Player* player) {
                 printf("\n\033[36mInvalid input. Please enter '+', '-', or 's (save)'.\n\033[0m");
             }
 
-            if (points == 0) {
+            if (player->skillPoints == 0) {
                 break;
             }
             displayArmor(player);
-            printf("\033[1;31mYou have %d points to use on armor.\n\033[0m", points);
+            printf("\033[1;31mYou have %d points to use on armor.\n\033[0m", player->skillPoints);
         }
     }
     displayArmor(player);
+    return 6;
 }
 
-void startTrainingGear(struct Player* player) {
+
+int startTrainingGear(struct Player* player) {
 
     //initializeGear(player); //  this is not needed, gear is initalized in character 
 
-    trainArmor(player);
+    int result;
 
-    free(player);
+    result = trainArmor(player);
+
+    //free(player);
+
+    return result;
 }
