@@ -5,29 +5,29 @@
 #define MAX 100
 
 // saving charcter 
-
 bool saveCharacter(struct Player* player) {
     FILE* file_Character = fopen("character.txt", "w");
     if (file_Character == NULL) {
         printf("Error opening file for writing\n");
         return false;
     };
-    
-        fprintf(file_Character, "%s,%d,%d,%d,%d,%d,%d,%d,%d\n",
-            player->userName,
-            player->character.attackDamage,
-            player->character.coordination,
-            player->character.armourLevel,
-            player->character.health,
-            player->level,
-            player->character.speed,
-            player->character.strength,
-            player->character.avatar);
 
-        fclose(file_Character);
-        printf("Character saved to CSV file\n");
-        return true;
-    }
+
+    fprintf(file_Character, "%s,%d,%d,%d,%d,%d,%d,%d,%d\n",
+        player->userName,
+        player->character.attackDamage,
+        player->character.coordination,
+        player->character.armourLevel,
+        player->character.health,
+        player->level,
+        player->character.speed,
+        player->character.strength,
+        player->character.avatar);
+
+    fclose(file_Character);
+    printf("Character saved to CSV file\n");
+    return true;
+}
 
 
 // loading charcter 
@@ -37,7 +37,7 @@ struct Player* loadCharcterFromFile(struct Player* player) {
         printf("No existing file found\n");
         return false;
     }
-    
+
     if (fscanf(file_Character,
         "%49[^,],%d,%d,%d,%d,%d,%d,%d,%d\n",
         player->userName,
@@ -58,7 +58,7 @@ struct Player* loadCharcterFromFile(struct Player* player) {
     fclose(file_Character);
     return player;
 }
-  
+
 
 // Save Training  
 bool SaveTraining(struct Player* player) {
@@ -68,25 +68,6 @@ bool SaveTraining(struct Player* player) {
         return false;
     }
 
-            char buffer[MAX];
-            struct Player* NewPlayer = malloc(sizeof(struct Character));
-            
-            if (fgets(player->userName, 50, file_Gear) == NULL ||
-                (fscanf(NewPlayer->stats.helmet,file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.chestplate, file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.leggings, file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.boots, file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.gauntlets, file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.shoulderPads, file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.belt, file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.bracers, file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.cape, file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.shield, file_Gear) == NULL ||
-                    fscanf(NewPlayer->stats.coins, file_Gear) == NULL)) {
-
-                printf("Error reading player data");
-                free(NewPlayer);
-                return false;
 
     fprintf(file_Gear, "%s,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
         player->userName,
@@ -135,7 +116,7 @@ bool LoadTraining(struct Player* player) {
     fclose(file_Gear);
     return player;
 }
-    
+
 // save login information
 bool saveLogin(struct Player* info) {
     FILE* file_login = fopen("login.txt", "w");
@@ -143,10 +124,10 @@ bool saveLogin(struct Player* info) {
         printf("No existing file found\n");
         return false;
     }
-    fprintf(file_login,"%s,%s,\n",
+    fprintf(file_login, "%s,%s,\n",
         info->userName,
         info->Password);
-    
+
     fclose(file_login);
     printf("Info saved to file \n");
     return true;
@@ -162,8 +143,8 @@ bool loadLogin(struct Player* info) {
     if (fscanf(file_login, "%s, %s\n",
         info->userName,
         info->Password) != 2)
-    
-    fclose(file_login);
+
+        fclose(file_login);
     printf("Info loaded from file\n");
     return true;
 }

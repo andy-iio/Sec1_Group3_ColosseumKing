@@ -16,36 +16,36 @@
 
 
 int main(int argc, char* argv[]) {
-	struct Player* player = initializePlayer("Player1","Password123");
+	//struct Player* player = initializePlayer("Player1", "Password123");
 
-	player->level = 8; //change somthing to make sure reading is good
-	saveCharacter(player);
-	
-	loadCharcterFromFile(player);
-	//check if it read right
-	printf("\nplayer username: %s\n", player->userName);
-	printf("player level: %d\n", player->level);
+	//player->level = 8; //change somthing to make sure reading is good
+	//saveCharacter(player);
 
-	player->stats.belt = 2;
-	player->stats.boots = 4;
-	player->stats.bracers = 6;
-	player->stats.cape = 8;
-	player->stats.coins = 10;
-	player->stats.gauntlets = 12;
-	player->stats.helmet = 14;
-	player->stats.leggings = 16;
-	player->stats.shield = 18;
-	
-	
-	SaveTraining(player);
-	LoadTraining(player);
+	//loadCharcterFromFile(player);
+	////check if it read right
+	//printf("\nplayer username: %s\n", player->userName);
+	//printf("player level: %d\n", player->level);
 
+//	player->stats.belt = 2;
+//	player->stats.boots = 4;
+//	player->stats.bracers = 6;
+//	player->stats.cape = 8;
+//	player->stats.coins = 10;
+//	player->stats.gauntlets = 12;
+//	player->stats.helmet = 14;
+//	player->stats.leggings = 16;
+//	player->stats.shield = 18;
+//
+//
+//	SaveTraining(player);
+//	LoadTraining(player);
+//
+//
+//	saveLogin(player);
+//	loadLogin(player);
+//
+//}
 	
-	saveLogin(player);
-	loadLogin(player);
-	
-	
-	/*
 	srand(time(NULL)); //seeding the random number generator used in character module
 
 	char filename[] = "ascii.txt";

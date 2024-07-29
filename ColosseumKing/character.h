@@ -49,7 +49,7 @@ struct Enemy {
 //load a player from save file 
 struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill, int avatar);
 //initialize a new player with default values 
-struct Player* initializePlayer(char* username);
+struct Player* initializePlayer(char* username, char* password);
 
 //initalize a new enemy with default values
 struct Enemy* initializeEnemy(enum enemyType type);
