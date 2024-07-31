@@ -67,15 +67,16 @@ int topMainMenu(struct Player* Nplayer) {
 
             struct Player* player = initializePlayer(username, password);
             int result = startTraining(player); // Start the training module
-            SaveTraining(player); // save trainig stats (new game)
+            //SaveTraining(player); // save trainig stats (new game)
             if (result == 6) {
                 // Return menu
                 clearInputBuffer();
                 continue; // Return to top menu
             }
             else if (result == 7) {
-                inGameLoop(player);
-                attackPhase(player->character);
+                //inGameLoop(player);
+                tempAttack(player);
+               // attackPhase(player->character);
                 return 0;
             }
             clearInputBuffer();
@@ -173,8 +174,9 @@ int mainMenu(struct Player* currentPlayer) {
 
 
                 printf("Entering battle mode...\n");
-                attackPhase(newPlayer->character);
-                inGameLoop(newPlayer); // Battle in game loop (ESC)
+                tempAttack(newPlayer);
+                //attackPhase(newPlayer->character);
+                //inGameLoop(newPlayer); // Battle in game loop (ESC)
 
                 return 0;
             }
@@ -202,8 +204,9 @@ int mainMenu(struct Player* currentPlayer) {
                 // Battle
                 printf("\n\033[1;31mTraining session complete.\033[0m");
                 printf("Entering battle mode...\n");
-                attackPhase(currentPlayer->character);
-                inGameLoop(currentPlayer); // Battle in game loop (ESC)
+                tempAttack(currentPlayer);
+                //attackPhase(currentPlayer->character);
+                //inGameLoop(currentPlayer); // Battle in game loop (ESC)
                 return 0;
             }
             clearInputBuffer();
@@ -225,56 +228,59 @@ int mainMenu(struct Player* currentPlayer) {
 
 
 int loadGameMenu() {
-    char filename[MAXSIZE];
-    char input[MAXSIZE];
-    int choice = 0;
-    int count = 0;
+    struct Player* player = initializePlayer("temp", "temp");
+    loadCharcterFromFile(player);
+    startTraining(player);
+    //char filename[MAXSIZE];
+    //char input[MAXSIZE];
+    //int choice = 0;
+    //int count = 0;
 
-    FILE* fp = fopen("character.txt", "r");
-    if (fp == NULL) {
-        printf("No save files found.\n");
-        return 1; // Return to main menu if no save files found
-    }
+    //FILE* fp = fopen("character.txt", "r");
+    //if (fp == NULL) {
+    //    printf("No save files found.\n");
+    //    return 1; // Return to main menu if no save files found
+    //}
 
-    asteriskShortLine();
-    printf("\033[1;31mLOAD GAME\n\033[0m");
+    //asteriskShortLine();
+    //printf("\033[1;31mLOAD GAME\n\033[0m");
 
-    // Read the save files and display them as menu options
-    while (fgets(filename, sizeof(filename), fp)) {
-        printf("%d. %s", ++count, filename); // Display save files
-    }
-    fclose(fp);
+    //// Read the save files and display them as menu options
+    //while (fgets(filename, sizeof(filename), fp)) {
+    //    printf("%d. %s", ++count, filename); // Display save files
+    //}
+    //fclose(fp);
 
-    if (count == 0) {
-        printf("No save files available.\n");
-        return 1; // Return to main menu if no save files available
-    }
+    //if (count == 0) {
+    //    printf("No save files available.\n");
+    //    return 1; // Return to main menu if no save files available
+    //}
 
-    // Prompt the user to choose a file to load
-    printf("\nEnter the number of the save file to load: ");
-    fgets(input, sizeof(input), stdin);
-    if (sscanf(input, "%d", &choice) != 1 || choice < 1 || choice > count) {
-        printf("\033[31mInvalid choice. Please enter a valid save file number (1-%d).\n\033[0m", count);
-        return 1; // Return to main menu if invalid choice
-    }
+    //// Prompt the user to choose a file to load
+    //printf("\nEnter the number of the save file to load: ");
+    //fgets(input, sizeof(input), stdin);
+    //if (sscanf(input, "%d", &choice) != 1 || choice < 1 || choice > count) {
+    //    printf("\033[31mInvalid choice. Please enter a valid save file number (1-%d).\n\033[0m", count);
+    //    return 1; // Return to main menu if invalid choice
+    //}
 
-    // Reopen the file to get the chosen save file
-    fp = fopen("save_files.txt", "r");
-    if (fp == NULL) {
-        printf("Error reopening save files.\n");
-        return 1; // Return to main menu if error reopening file
-    }
+    //// Reopen the file to get the chosen save file
+    //fp = fopen("save_files.txt", "r");
+    //if (fp == NULL) {
+    //    printf("Error reopening save files.\n");
+    //    return 1; // Return to main menu if error reopening file
+    //}
 
-    count = 0;
-    while (fgets(filename, sizeof(filename), fp)) {
-        if (++count == choice) {
-            printf("Loading save file: %s\n", filename); // Load the chosen save file
-            break;
-        }
-    }
-    fclose(fp);
-    //inGameLoop(player);
-    return 0;
+    //count = 0;
+    //while (fgets(filename, sizeof(filename), fp)) {
+    //    if (++count == choice) {
+    //        printf("Loading save file: %s\n", filename); // Load the chosen save file
+    //        break;
+    //    }
+    //}
+    //fclose(fp);
+    ////inGameLoop(player);
+    //return 0;
 }
 
 int settingsMenu() {

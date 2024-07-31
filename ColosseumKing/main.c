@@ -10,12 +10,58 @@
 //all our modules, rename yours if you want to
 #include "character.h"
 #include "menu.h"
-#include "attack_module.h"
+//#include "attack_module.h"
 #include "training.h"
 #include "save_load_login.h"
 
 
 int main(int argc, char* argv[]) {
+
+	
+	srand(time(NULL)); //seeding the random number generator used in character module
+
+	char filename[] = "ascii.txt";
+
+	FILE* file = fopen(filename, "r");
+
+	if (file == NULL) {
+		printf("Could not open file: %s\n", filename);
+		return 1;
+	}
+	char ch;
+
+	while ((ch = fgetc(file)) != EOF) {
+		putchar(ch);
+	}
+
+	fclose(file);
+
+	struct Player* player;
+
+	topMainMenu(&player); 
+	return 0;
+}
+
+	//temporary testing for character module, I will remove later, feel free to comment it out -andy
+	/*struct Player* player1 = loadPlayer("abcde", 50, 70, 80, 90, 100, 1);
+	struct Enemy* zorb = initializeEnemy(LION);
+	struct Player* ko = initializePlayer("po");
+	matchEnemyToCharacterStats(zorb, ko);
+	printf("player health: %d\n", ko->health);
+	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
+	player1->health++;
+	zorb->health++;
+	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
+	player1->health--;
+	zorb->health--;
+	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
+	randomHealthIncrease(player1);
+	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
+	*/
+  //end of character module temmporary testing
+	//-------------------------------------------
+
+
 	//struct Player* player = initializePlayer("Player1", "Password123");
 
 	//player->level = 8; //change somthing to make sure reading is good
@@ -45,24 +91,6 @@ int main(int argc, char* argv[]) {
 //	loadLogin(player);
 //
 //}
-	
-	srand(time(NULL)); //seeding the random number generator used in character module
-
-	char filename[] = "ascii.txt";
-
-	FILE* file = fopen(filename, "r");
-
-	if (file == NULL) {
-		printf("Could not open file: %s\n", filename);
-		return 1;
-	}
-	char ch;
-
-	while ((ch = fgetc(file)) != EOF) {
-		putchar(ch);
-	}
-
-	fclose(file);
 
 
 	//if (argc != 3) {
@@ -82,28 +110,3 @@ int main(int argc, char* argv[]) {
 	//else {
 	//	printf("Invalid username or password.\n");
 	//}
-
-	struct Player* player;
-
-	topMainMenu(&player); //remove this line once the save & load stuff is fixed above^^
-	return 0;
-}
-
-	//temporary testing for character module, I will remove later, feel free to comment it out -andy
-	/*struct Player* player1 = loadPlayer("abcde", 50, 70, 80, 90, 100, 1);
-	struct Enemy* zorb = initializeEnemy(LION);
-	struct Player* ko = initializePlayer("po");
-	matchEnemyToCharacterStats(zorb, ko);
-	printf("player health: %d\n", ko->health);
-	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
-	player1->health++;
-	zorb->health++;
-	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
-	player1->health--;
-	zorb->health--;
-	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
-	randomHealthIncrease(player1);
-	printf("player health: %d enemy health: %d\n", player1->health, zorb->health);
-	*/
-  //end of character module temmporary testing
-	//-------------------------------------------

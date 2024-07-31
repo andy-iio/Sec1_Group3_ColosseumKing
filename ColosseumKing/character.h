@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "gear.h"
+#define _CRT_SECURE_NO_WARNINGS
 
 // Andy 
 
@@ -44,6 +45,7 @@ struct Enemy {
 	enum enemyType type;
 };
 
+void tempAttack(struct Player* player);
 //----INITILIZE NEW CHARACTER----//
 
 //load a player from save file 

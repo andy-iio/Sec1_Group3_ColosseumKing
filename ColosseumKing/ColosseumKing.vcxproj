@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ascii.txt" />
+    <Text Include="battleImage.txt" />
     <Text Include="character.txt" />
     <Text Include="login.txt" />
     <Text Include="trainfile.txt" />

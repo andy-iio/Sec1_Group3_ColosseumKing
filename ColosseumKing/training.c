@@ -113,7 +113,7 @@ int trainStats(struct Player* player) {
         printf("1. Strength\n");
         printf("2. Speed\n");
         printf("3. Coordination\n");
-        printf("4. Constitution\n");
+        printf("4. Health\n");
         printf("5. Sword Skills\n");
         printf("6. Back\n");
         printf("7. \033[1;32mBattle!\n\033[0m");
@@ -137,7 +137,7 @@ int trainStats(struct Player* player) {
             printf("\033[1;31mCoordination selected.\n\033[0m");
             break;
         case 4:
-            printf("\033[1;31mConstitution selected.\n\033[0m");
+            printf("\033[1;31mHealth selected.\n\033[0m");
             break;
         case 5:
             printf("\033[1;31mSword Skills selected.\n\033[0m");
@@ -151,10 +151,13 @@ int trainStats(struct Player* player) {
 
             printf("\n\033[1;31mTraining session complete.\033[0m");
             printf("\n\033[1;31mEntering Battle...\033[0m\n");
-            attackPhase(player->character);
-            inGameLoop(player); // Battle in game loop (ESC)
+            tempAttack(player);
+
+            //attackPhase(player->character);
+           // inGameLoop(player); // Battle in game loop (ESC)
             
-            return 7;
+            return 6;
+            
 
         default:
             printf("\033[31mInvalid choice. Please enter a number between 1 and 7.\n\033[0m");

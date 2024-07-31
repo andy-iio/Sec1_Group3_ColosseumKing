@@ -229,9 +229,10 @@ int trainArmor(struct Player* player) {
             // Battle
             printf("\n\033[1;31mTraining session complete.\033[0m");
             printf("\n\033[1;31mEntering Battle...\033[0m\n");
-            attackPhase(player->character);
-            inGameLoop(player); // Battle in game loop (ESC)
+           // attackPhase(player->character);
+            tempAttack(player);
             return 7; // Battle mode return value 7
+            inGameLoop(player); // Battle in game loop (ESC)
         default:
             printf("\033[31mInvalid choice. Please enter a number between 1 and 12.\n\033[0m");
             asteriskLongLine();

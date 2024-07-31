@@ -1,6 +1,7 @@
 #include "character.h"
 #define DEFAULT_VALUE 1
 
+
 //Andy
 
 //----INITILIZE----//
@@ -176,3 +177,55 @@ void increasePlayerLevel(struct Player* player) {
 void printCharacterImage() {
 
 };
+
+void tempAttack(struct Player* player) {
+	srand(time(NULL)); //seeding the random number generator used in character module
+
+
+	char filename[] = "battleImage.txt";
+
+	FILE* file = fopen(filename, "r");
+
+	if (file == NULL) {
+		printf("Could not open file: %s\n", filename);
+		return 1;
+	}
+	char ch;
+
+	while ((ch = fgetc(file)) != EOF) {
+		putchar(ch);
+	}
+
+	fclose(file);
+
+
+	printf("\n\n");
+
+	int randomNum = (rand() % 2) + 1;
+	if (randomNum == 1) {
+		printf("You won the battle! congrats!\n");
+		increasePlayerLevel(player);
+		printf("LEVEL UP! You are now level %d\n", player->level);
+		player->skillPoints += 5;
+	}
+	else {
+		printf("You were defeated... better luck next time.\n");
+	}
+
+	printf("\n\n");
+	//press c to continue
+	char operation;
+	while (1) {
+		printf("Battle session complete. Press c to continue");
+		if (scanf_s(" %c", &operation) != 1) {
+			printf("\n\033[31mInvalid input. Please enter c to continue: \n\033[0m");
+			while (getchar() != '\n');
+			continue;
+		}
+
+		if (operation == 'c') {
+			asteriskLongLine();
+			break;
+		}
+	}
+}

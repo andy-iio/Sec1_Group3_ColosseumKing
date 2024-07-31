@@ -54,7 +54,7 @@ struct Player* loadCharcterFromFile(struct Player* player) {
         fclose(file_Character);
         return NULL;
     }
-    printf("character read from fiile");
+    printf("character successfully loaded from file!");
     fclose(file_Character);
     return player;
 }
