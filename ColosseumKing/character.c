@@ -28,7 +28,7 @@ struct Player* _allocateMemoryPlayer() {
 
 //this function is only to be used on this file, use initalizePlayer or initalizeEnemy instead
 void _initalizeCharacter(struct Character* c) {
-c->avatar = DEFAULT_VALUE;
+c->avatar = 3; //need to hardcode this for save and load since attack doesnt set it
 c->level = DEFAULT_VALUE;
 c->health = DEFAULT_VALUE;
 c->constitution = DEFAULT_VALUE;

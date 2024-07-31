@@ -10,7 +10,7 @@
 //all our modules, rename yours if you want to
 #include "character.h"
 #include "menu.h"
-//#include "attack_module.h"
+#include "attack_module.h"
 #include "training.h"
 #include "save_load_login.h"
 
@@ -36,12 +36,12 @@ int main(int argc, char* argv[]) {
 
 	fclose(file);
 
-	struct Player* player;
-
-	topMainMenu(&player); 
+	struct Player* player = initializePlayer("temp", "temp");
+	
+	topMainMenu(player); 
 	return 0;
 }
-
+//attackPhase(player->character);
 	//temporary testing for character module, I will remove later, feel free to comment it out -andy
 	/*struct Player* player1 = loadPlayer("abcde", 50, 70, 80, 90, 100, 1);
 	struct Enemy* zorb = initializeEnemy(LION);
