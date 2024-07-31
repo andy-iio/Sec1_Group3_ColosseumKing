@@ -42,10 +42,12 @@ bool attackSuccess(CHARACTER attacker, CHARACTER deffender)
 	{
 		if (attackHitAccuracy(attacker) > defenseChance(deffender))
 		{
+			printf("Hit\n");
 			return true;
 		}
 		else
 		{
+			printf("Miss\n");
 			return false;
 		}
 	}
