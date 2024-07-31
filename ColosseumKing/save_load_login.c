@@ -13,7 +13,7 @@ bool saveCharacter(struct Player* player) {
     };
 
 
-    fprintf(file_Character,"%s,%d,%d,%d,%d,%d,%d,%d,%d\n",
+    fprintf(file_Character,"%s,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
         player->userName,
         player->character.attackDamage,
         player->character.coordination,
@@ -22,6 +22,7 @@ bool saveCharacter(struct Player* player) {
         player->character.level,
         player->character.speed,
         player->character.strength,
+        player->skillPoints,
         player->character.avatar);
 
     fclose(file_Character);
@@ -31,7 +32,7 @@ bool saveCharacter(struct Player* player) {
 
 
 // loading character 
-struct Player* loadCharcterFromFile(struct Player* player) {
+void loadCharcterFromFile(struct Player* player) {
     FILE* file_Character = fopen("character.txt", "r");
     if (file_Character == NULL) {
         printf("No existing file found\n");
@@ -39,7 +40,7 @@ struct Player* loadCharcterFromFile(struct Player* player) {
     }
 
     if (fscanf(file_Character,
-        "%49[^,],%d,%d,%d,%d,%d,%d,%d,%d\n",
+        "%49[^,],%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
         player->userName,
         &player->character.attackDamage,
         &player->character.coordination,
@@ -48,7 +49,8 @@ struct Player* loadCharcterFromFile(struct Player* player) {
         &player->level,
         &player->character.speed,
         &player->character.strength,
-        &player->character.avatar) != 9) {
+        &player->skillPoints,
+        &player->character.avatar) != 10) {
         printf("error\n");
         free(player);
         fclose(file_Character);
@@ -56,7 +58,6 @@ struct Player* loadCharcterFromFile(struct Player* player) {
     }
     printf("character successfully loaded from file!");
     fclose(file_Character);
-    return player;
 }
 
 

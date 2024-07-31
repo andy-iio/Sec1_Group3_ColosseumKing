@@ -4,7 +4,7 @@
 
 bool saveCharacter(struct Player* Player);
 
-struct Player* loadCharcterFromFile(struct Player* player);
+void loadCharcterFromFile(struct Player* player);
 
 bool SaveTraining(struct Player* player);
 

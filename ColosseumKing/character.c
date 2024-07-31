@@ -70,9 +70,10 @@ struct Player* initializePlayer(char* username, char* password) {
 };
 
 //load a player from save file 
-struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill, int avatar) {
+struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill, int skillPoints, int avatar) {
 	struct Player* player = _allocateMemoryPlayer();
 	player->character.avatar = avatar;
+	player->skillPoints = skillPoints;
 	strcpy_s(player->userName, sizeof(player->userName) - 1, username);
 	_loadCharacter(&player->character, health, attackDamage, strength, speed, coordination, armourLevel, armourSkill, swordLevel, swordSkill, avatar);
 	return player;
