@@ -1,6 +1,8 @@
 #include "character.h"
 #include "training.h"
 #define DEFAULT_VALUE 1
+#define _CRT_SECURE_NO_WARNINGS
+
 
 
 //Andy
@@ -209,7 +211,8 @@ void tempAttack(struct Player* player) {
 		printf("You won the battle! congrats!\n");
 		increasePlayerLevel(player);
 		printf("LEVEL UP! You are now level %d\n", player->level);
-		player->skillPoints += 5;
+		printf("You won +1 skill point! Use it to increase your stats in training.\n");
+		player->skillPoints += 1;
 	}
 	else {
 		printf("You were defeated... better luck next time.\n");
@@ -220,15 +223,19 @@ void tempAttack(struct Player* player) {
 	//press c to continue
 	char choice;
 	while (1) {
-		printf("Battle session complete. Press c to continue or pres m to go to the in game menu");
+		printf("\033\n[1;31mBattle session complete!\n\033[0m");
+		printf("\033[1;36mPress 'c' to training - (Required for next round)\n\033[0m");
+		printf("\033[1;36mPress 'm' to open menu\n\033[0m");
+		printf("Choice: ");
 		if (scanf_s(" %c", &choice) != 1) {
 			printf("\n\033[31mInvalid input. Please enter c to continue or m to go to the in game menu: \n\033[0m");
 			while (getchar() != '\n'); // Clear input buffer
 			continue;
 		}
 		if (choice == 'm') {
+			asteriskShortLine();
 			inGameMenu(player);
-			break;
+			continue;
 		}
 		else if (choice == 'c') {
 			startTraining(player);
@@ -240,4 +247,4 @@ void tempAttack(struct Player* player) {
 
 		}
 	}
-	}
+}

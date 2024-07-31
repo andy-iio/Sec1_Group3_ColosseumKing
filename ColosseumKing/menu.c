@@ -374,8 +374,9 @@ int inGameMenu(struct Player* player) {
 
         switch (choice) {
         case 1:
-            printf("Returning...\n");
-            return 0;
+            printf("\n\033[1;34mReturning...\n\033[0m");
+            asteriskShortLine();
+            return 1;
         case 2:
             printf("\n\033[1;34mSaving game...\n\033[0m");
             asteriskShortLine();
