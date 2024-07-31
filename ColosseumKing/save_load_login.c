@@ -124,7 +124,7 @@ bool LoadTraining(struct Player* player) {
             struct Player* NewPlayer = malloc(sizeof(struct Character));
             
             if (fgets(player->userName, 50, file_Gear) == NULL ||
-                (fscanf(NewPlayer->stats.helmet,file_Gear) == NULL ||
+                (fscanf(NewPlayer->stats.helmet, file_Gear) == NULL ||
                     fscanf(NewPlayer->stats.chestplate, file_Gear) == NULL ||
                     fscanf(NewPlayer->stats.leggings, file_Gear) == NULL ||
                     fscanf(NewPlayer->stats.boots, file_Gear) == NULL ||

@@ -151,7 +151,7 @@ int trainStats(struct Player* player) {
 
             printf("\n\033[1;31mTraining session complete.\033[0m");
             printf("\n\033[1;31mEntering Battle...\033[0m\n");
-            attackPhase(player->character);
+            attackPhase(player);
             inGameLoop(player); // Battle in game loop (ESC)
             
             return 7;
@@ -193,7 +193,7 @@ int trainStats(struct Player* player) {
                     player->skillPoints--;
                     break;
                 case 4:
-                    player->character.health++;
+                    player->character.constitution++;
                     player->stats.isHealthBlue = 1;
                     player->skillPoints--;
                     break;
@@ -234,8 +234,8 @@ int trainStats(struct Player* player) {
                     }
                     break;
                 case 4:
-                    if (player->character.health > 1) {
-                        player->character.health--;
+                    if (player->character.constitution > 1) {
+                        player->character.constitution--;
                          player->skillPoints++;
                     }
                     else {

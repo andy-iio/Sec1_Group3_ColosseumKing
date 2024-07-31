@@ -62,7 +62,7 @@ int topMainMenu() {
             }
             else if (result == 7) {
                 inGameLoop(player);
-                attackPhase(player->character);
+                attackPhase(player);
                 return 0;
             }
             clearInputBuffer();
@@ -143,7 +143,7 @@ int mainMenu(struct Player* currentPlayer) {
                 // Battle section
                 printf("\n\033[1;31mTraining session complete.\033[0m");
                 printf("Entering battle mode...\n");
-                attackPhase(newPlayer->character);
+                attackPhase(newPlayer);
                 inGameLoop(newPlayer); // Battle in game loop (ESC)
                 
                 return 0;
@@ -170,7 +170,7 @@ int mainMenu(struct Player* currentPlayer) {
                 // Battle
                 printf("\n\033[1;31mTraining session complete.\033[0m");
                 printf("Entering battle mode...\n");
-                attackPhase(currentPlayer->character);
+                attackPhase(currentPlayer);
                 inGameLoop(currentPlayer); // Battle in game loop (ESC)
                 return 0;
             }
