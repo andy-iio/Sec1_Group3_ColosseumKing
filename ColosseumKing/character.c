@@ -1,4 +1,5 @@
 #include "character.h"
+#include "training.h"
 #define DEFAULT_VALUE 1
 
 
@@ -214,19 +215,28 @@ void tempAttack(struct Player* player) {
 	}
 
 	printf("\n\n");
+
 	//press c to continue
-	char operation;
+	char choice;
 	while (1) {
-		printf("Battle session complete. Press c to continue");
-		if (scanf_s(" %c", &operation) != 1) {
-			printf("\n\033[31mInvalid input. Please enter c to continue: \n\033[0m");
-			while (getchar() != '\n');
+		printf("Battle session complete. Press c to continue or pres m to go to the in game menu");
+		if (scanf_s(" %c", &choice) != 1) {
+			printf("\n\033[31mInvalid input. Please enter c to continue or m to go to the in game menu: \n\033[0m");
+			while (getchar() != '\n'); // Clear input buffer
 			continue;
 		}
-
-		if (operation == 'c') {
+		if (choice == 'm') {
+			inGameMenu(player);
+			break;
+		}
+		else if (choice == 'c') {
+			startTraining(player);
 			asteriskLongLine();
 			break;
 		}
+		else {
+			printf("\n\033[31mInvalid input. Please enter c to continue or m to go to the in game menu: \n\033[0m");
+
+		}
 	}
-}
+	}

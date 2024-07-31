@@ -156,7 +156,7 @@ int trainStats(struct Player* player) {
             //attackPhase(player->character);
            // inGameLoop(player); // Battle in game loop (ESC)
             
-            return 6;
+            return;
             
 
         default:
