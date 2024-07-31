@@ -13,13 +13,13 @@ bool saveCharacter(struct Player* player) {
     };
 
 
-    fprintf(file_Character, "%s,%d,%d,%d,%d,%d,%d,%d,%d\n",
+    fprintf(file_Character,"%s,%d,%d,%d,%d,%d,%d,%d,%d\n",
         player->userName,
         player->character.attackDamage,
         player->character.coordination,
         player->character.armourLevel,
         player->character.health,
-        player->level,
+        player->character.level,
         player->character.speed,
         player->character.strength,
         player->character.avatar);
@@ -30,7 +30,7 @@ bool saveCharacter(struct Player* player) {
 }
 
 
-// loading charcter 
+// loading character 
 struct Player* loadCharcterFromFile(struct Player* player) {
     FILE* file_Character = fopen("character.txt", "r");
     if (file_Character == NULL) {
@@ -118,15 +118,15 @@ bool LoadTraining(struct Player* player) {
 }
 
 // save login information
-bool saveLogin(struct Player* info) {
+bool saveLogin(char* username, char* password) {
     FILE* file_login = fopen("login.txt", "w");
     if (file_login == NULL) {
         printf("No existing file found\n");
         return false;
     }
-    fprintf(file_login, "%s,%s,\n",
-        info->userName,
-        info->Password);
+    fprintf(file_login, "%s ,%s,\n",
+        username,
+        password);
 
     fclose(file_login);
     printf("Info saved to file \n");
@@ -134,15 +134,15 @@ bool saveLogin(struct Player* info) {
 }
 
 // load login information 
-bool loadLogin(struct Player* info) {
+bool loadLogin(char* username, char* password) {
     FILE* file_login = fopen("login.txt", "r");
     if (file_login == NULL) {
         printf("Error opening file for writing\n");
         return false;
     }
     if (fscanf(file_login, "%s, %s\n",
-        info->userName,
-        info->Password) != 2)
+        &username,
+        &password) != 2)
 
         fclose(file_login);
     printf("Info loaded from file\n");
@@ -156,7 +156,7 @@ bool Login(char* username, char* password) {
     char key1 = username;
     char key2 = password;
 
-    loadLogin(username);
+    loadLogin(username, password);
 
     if (strcmp(username, key1) == 0 && strcmp(password, key2) == 0) {
         return true;// Login successful

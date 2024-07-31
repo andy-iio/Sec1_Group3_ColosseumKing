@@ -83,7 +83,9 @@ int main(int argc, char* argv[]) {
 	//	printf("Invalid username or password.\n");
 	//}
 
-	topMainMenu(); //remove this line once the save & load stuff is fixed above^^
+	struct Player* player;
+
+	topMainMenu(&player); //remove this line once the save & load stuff is fixed above^^
 	return 0;
 }
 

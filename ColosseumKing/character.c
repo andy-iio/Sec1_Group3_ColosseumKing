@@ -31,6 +31,7 @@ c->avatar = DEFAULT_VALUE;
 c->level = DEFAULT_VALUE;
 c->health = DEFAULT_VALUE;
 c->constitution = DEFAULT_VALUE;
+c->attackDamage = DEFAULT_VALUE;
 c->strength = DEFAULT_VALUE;
 c->speed = DEFAULT_VALUE;
 c->coordination = DEFAULT_VALUE;

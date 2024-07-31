@@ -12,7 +12,7 @@
 #include "attack_module.h"
 #define MAXSIZE 50
 
-int topMainMenu() {
+int topMainMenu(struct Player* Nplayer) {
     int choice = 0;
     char input[MAXSIZE];
 
@@ -45,7 +45,6 @@ int topMainMenu() {
                 printf("Create a Username: ");
                 fgets(username, sizeof(username), stdin);
                 username[strcspn(username, "\n")] = '\0';
-
                 if (strlen(username) > 0) {
                     break;
                 }
@@ -64,9 +63,11 @@ int topMainMenu() {
                 printf("\033[31Password cannot be empty. Please enter a valid password.\n\n\033[0m");
                 asteriskShortLine();
             }
+            saveLogin(username, password);
 
             struct Player* player = initializePlayer(username, password);
-            int result = startTraining(player);  // Start the training module
+            int result = startTraining(player); // Start the training module
+            SaveTraining(player); // save trainig stats (new game)
             if (result == 6) {
                 // Return menu
                 clearInputBuffer();
@@ -91,7 +92,7 @@ int topMainMenu() {
             }
             break;
         case 4:
-            exitGameMenu(); // Exit the game
+            exitGameMenu(Nplayer); // Exit the game
             break;
         default:
             printf("Invalid choice, please try again.\n");
@@ -156,6 +157,9 @@ int mainMenu(struct Player* currentPlayer) {
             }
 
             struct Player* newPlayer = initializePlayer(username, password);
+            saveLogin(newPlayer->userName, newPlayer->Password); // saving login information 
+
+
             int result = startTraining(newPlayer);  // Start the training module
             if (result == 6) {
                 // Return menu
@@ -166,16 +170,20 @@ int mainMenu(struct Player* currentPlayer) {
             else if (result == 7) {
                 // Battle section
                 printf("\n\033[1;31mTraining session complete.\033[0m");
+
+
                 printf("Entering battle mode...\n");
                 attackPhase(newPlayer->character);
                 inGameLoop(newPlayer); // Battle in game loop (ESC)
-                
+
                 return 0;
             }
-            clearInputBuffer();
+            clearInputBuffer(currentPlayer);
             return 0;
         case 2:
             if (loadGameMenu() == 0) {
+                loadCharcterFromFile(&newPlayer);
+                LoadTraining(&newPlayer);
                 return 0; // Exit mainMenu after successful load
             }
             break;
@@ -207,7 +215,7 @@ int mainMenu(struct Player* currentPlayer) {
             }
             break;
         case 6:
-            exitGameMenu(); // Exit the game
+            exitGameMenu(currentPlayer); // Exit the game
             break;
         default:
             printf("Invalid choice, please try again.\n");
@@ -215,13 +223,14 @@ int mainMenu(struct Player* currentPlayer) {
     }
 }
 
+
 int loadGameMenu() {
     char filename[MAXSIZE];
     char input[MAXSIZE];
     int choice = 0;
     int count = 0;
 
-    FILE* fp = fopen("save_files.txt", "r");
+    FILE* fp = fopen("character.txt", "r");
     if (fp == NULL) {
         printf("No save files found.\n");
         return 1; // Return to main menu if no save files found
@@ -305,7 +314,7 @@ int settingsMenu() {
     return 0;
 }
 
-void exitGameMenu() {
+void exitGameMenu(struct Player* player) {
     char subChoice;
     char input[MAXSIZE];
 
@@ -328,7 +337,8 @@ void exitGameMenu() {
         switch (subChoice) {
         case 'a':
             printf("\033[1;31mSaving and exiting game...\n\033[0m");
-            //save file function here
+            saveCharacter(player);
+            SaveTraining(player);
             exit(0);
         case 'b':
             printf("\033[1;31mExiting game...\n\033[0m");
@@ -363,7 +373,8 @@ int inGameMenu(struct Player* player) {
         case 2:
             printf("\n\033[1;34mSaving game...\n\033[0m");
             asteriskShortLine();
-            // Save file function here
+            saveCharacter(player); // save character info 
+            SaveTraining(player); // save training information 
             break;
         case 3:
             settingsMenu(); // Open the settings menu -> settingsMenu();
@@ -387,7 +398,7 @@ int inGameMenu(struct Player* player) {
             }
             break;
         case 5:
-            exitGameMenu(); // Exit the game -> exitGameMenu();
+            exitGameMenu(player); // Exit the game -> exitGameMenu();
             return 0;
         default:
             printf("\033[1;31mInvalid choice, please try again.\n\033[0m");
