@@ -64,6 +64,7 @@ struct Player* initializePlayer(char* username, char* password) {
 	_initalizeCharacter(&player->character);
 	initializeGear(player);
 	player->skillPoints = 10;
+	player->level = 1;
 	return player;
 };
 
