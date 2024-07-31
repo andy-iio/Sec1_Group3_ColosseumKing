@@ -1,7 +1,10 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "character.h"
 #include "training.h"
+#include "menu.h"
+#include "asterisk.h"
 #define DEFAULT_VALUE 1
-#define _CRT_SECURE_NO_WARNINGS
+
 
 
 
@@ -217,8 +220,6 @@ void tempAttack(struct Player* player) {
 	else {
 		printf("You were defeated... better luck next time.\n");
 	}
-
-	printf("\n\n");
 
 	//press c to continue
 	char choice;
