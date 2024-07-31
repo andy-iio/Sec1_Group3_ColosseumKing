@@ -49,7 +49,7 @@ void tempAttack(struct Player* player);
 //----INITILIZE NEW CHARACTER----//
 
 //load a player from save file 
-struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill, int avatar);
+struct Player* loadPlayer(char* username, int health, int attackDamage, int strength, int speed, int coordination, int armourLevel, int armourSkill, int swordLevel, int swordSkill, int skillPoints, int avatar);
 //initialize a new player with default values 
 struct Player* initializePlayer(char* username, char* password);
 
