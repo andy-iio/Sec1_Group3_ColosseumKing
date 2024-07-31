@@ -166,6 +166,7 @@ struct Player* loadGear(struct Player* player, int helmet, int chestPlate, int l
 	player->stats.cape = cape;
 	player->stats.shield = sheild;
 	player->stats.coins = coins;
+	return player;
 }
 
 //----HEALTH----//
@@ -196,7 +197,7 @@ void tempAttack(struct Player* player) {
 
 	if (file == NULL) {
 		printf("Could not open file: %s\n", filename);
-		return 1;
+		return;
 	}
 	char ch;
 
@@ -228,7 +229,7 @@ void tempAttack(struct Player* player) {
 		printf("\033[1;36mPress 'c' to training - (Required for next round)\n\033[0m");
 		printf("\033[1;36mPress 'm' to open menu\n\033[0m");
 		printf("Choice: ");
-		if (scanf_s(" %c", &choice) != 1) {
+		if (scanf(" %c", &choice) != 1) {
 			printf("\n\033[31mInvalid input. Please enter c to continue or m to go to the in game menu: \n\033[0m");
 			while (getchar() != '\n'); // Clear input buffer
 			continue;

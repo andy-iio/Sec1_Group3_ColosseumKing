@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "gear.h"
-#define _CRT_SECURE_NO_WARNINGS
 
 // Andy 
 
