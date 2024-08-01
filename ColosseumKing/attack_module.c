@@ -158,8 +158,12 @@ bool attackPhase(struct Player* player)
 	}
 
 	if (EWIN == current)
+	{
+		printf("You Lose\n");
 		return false;
+	}
 	
+	printf("You Won\n");
 	return true;
 }
 
