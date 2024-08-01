@@ -380,7 +380,7 @@ void characterAvatar(int i, char* characterAvatar)
 
 	};
 
-	memcpy(characterAvatar, avatars[i], (AVATARHEIGHT * AVATARLENGTH * sizeof(char)));
+	memcpy(characterAvatar, avatars[0], (AVATARHEIGHT * AVATARLENGTH * sizeof(char)));
 }
 
 void lineUpBasedOnNumSize(int x)
