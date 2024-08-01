@@ -46,7 +46,6 @@ bool attackSuccess(CHARACTER attacker, CHARACTER deffender)
 		}
 		else
 		{
-			printf("Miss\n");
 			return false;
 		}
 	}
