@@ -205,7 +205,7 @@ int mainMenu(struct Player* currentPlayer) {
                 printf("\n\033[1;31mTraining session complete.\033[0m");
                 printf("Entering battle mode...\n");
                 tempAttack(currentPlayer);
-                //attackPhase(currentPlayer->character);
+                attackPhase(currentPlayer);
                 //inGameLoop(currentPlayer); // Battle in game loop (ESC)
                 return 0;
             }
