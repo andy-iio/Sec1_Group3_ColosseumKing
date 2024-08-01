@@ -24,7 +24,7 @@ int defensePower(CHARACTER deffender);
 FIGHTSTATUS round(CHARACTER* player, CHARACTER* enemy);
 
 //returns false if player dies
-bool attackPhase(CHARACTER player);
+bool attackPhase(struct Player* player);
 
 
 void printFight(CHARACTER player, CHARACTER enemy);

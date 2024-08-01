@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "character.h"
 #include "training.h"
 #define DEFAULT_VALUE 1

@@ -42,10 +42,12 @@ bool attackSuccess(CHARACTER attacker, CHARACTER deffender)
 	{
 		if (attackHitAccuracy(attacker) > defenseChance(deffender))
 		{
+			printf("Hit\n");
 			return true;
 		}
 		else
 		{
+			printf("Miss\n");
 			return false;
 		}
 	}
@@ -128,30 +130,40 @@ FIGHTSTATUS round(CHARACTER *player, CHARACTER *enemy)
 
 }
 
-bool attackPhase(CHARACTER player)
+bool attackPhase(struct Player* player)
 {
-	CHARACTER enemy; 
-	
-	player.tempHealth = player.health;
+	struct Enemy enemy; 
 
-	memcpy(&enemy, &player, sizeof(CHARACTER));
+	matchEnemyToCharacterStats(&enemy, player);
+
+	CHARACTER Enemy = enemy.character;
+
+	CHARACTER Player = player->character;
+
+	Player.tempHealth = Player.health = Player.constitution * 10;
+
+	Enemy.tempHealth = Enemy.health = Enemy.constitution * 10;
 
 	FIGHTSTATUS current = NWIN;
 
-	printFight(player, enemy);
+	printFight(Player, Enemy);
 
 	while (NWIN == current)
 	{
-		current = round(&player, &enemy);
+		current = round(&player, &Enemy);
 
 		printf("\n");
 
-		printCharacterNEnemyCurrentHealth(player, enemy);
+		printCharacterNEnemyCurrentHealth(Player, Enemy);
 	}
 
 	if (EWIN == current)
+	{
+		printf("You Lose\n");
 		return false;
+	}
 	
+	printf("You Won\n");
 	return true;
 }
 
