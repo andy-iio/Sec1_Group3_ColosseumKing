@@ -42,7 +42,6 @@ bool attackSuccess(CHARACTER attacker, CHARACTER deffender)
 	{
 		if (attackHitAccuracy(attacker) > defenseChance(deffender))
 		{
-			printf("Hit\n");
 			return true;
 		}
 		else
@@ -78,46 +77,104 @@ FIGHTSTATUS round(CHARACTER *player, CHARACTER *enemy)
 	if (player->speed > enemy->speed)
 	{
 		if (attackSuccess(*player, *enemy))
+		{
 			enemy->tempHealth = enemy->tempHealth - attackPower(*player);
+			printf("Player Hit\n");
+		}
+		else
+		{
+			printf("Player Miss\n");
+		}
+
 
 		if (0 >= enemy->tempHealth)
 			return PWIN;
 
 		if (attackSuccess(*enemy, *player))
+		{
 			player->tempHealth = player->tempHealth - attackPower(*enemy);
+			printf("Enemy Hit\n");
+		}
+		else
+		{
+			printf("Enemy Miss\n");
+		}
+			
 	}
 	else if (player->speed < enemy->speed)
 	{
 		if (attackSuccess(*enemy, *player))
+		{
 			player->tempHealth = player->tempHealth - attackPower(*enemy);
+			printf("Enemy Hit\n");
+		}
+		else
+		{
+			printf("Enemy Miss\n");
+		}
 
 		if (0 >= player->tempHealth)
 			return EWIN;
 
 		if (attackSuccess(*player, *enemy))
+		{
 			enemy->tempHealth = enemy->tempHealth - attackPower(*player);
+			printf("Player Hit\n");
+		}
+		else
+		{
+			printf("Player Miss\n");
+		}
 	} 
 	else if (1 == ( rand() % (1 - 0 + 1) - 0 ) )
 	{
 		if (attackSuccess(*player, *enemy))
+		{
 			enemy->tempHealth = enemy->tempHealth - attackPower(*player);
+			printf("Player Hit\n");
+		}
+		else
+		{
+			printf("Player Miss\n");
+		}
 
 		if (0 >= enemy->tempHealth)
 			return PWIN;
 
 		if (attackSuccess(*enemy, *player))
+		{
 			player->tempHealth = player->tempHealth - attackPower(*enemy);
+			printf("Enemy Hit\n");
+		}
+		else
+		{
+			printf("Enemy Miss\n");
+		}
 	}
 	else
 	{
 		if (attackSuccess(*enemy, *player))
+		{
 			player->tempHealth = player->tempHealth - attackPower(*enemy);
+			printf("Enemy Hit\n");
+		}
+		else
+		{
+			printf("Enemy Miss\n");
+		}
 
 		if (0 >= player->tempHealth)
 			return EWIN;
 
 		if (attackSuccess(*player, *enemy))
+		{
 			enemy->tempHealth = enemy->tempHealth - attackPower(*player);
+			printf("Player Hit\n");
+		}
+		else
+		{
+			printf("Player Miss\n");
+		}
 	}
 
 	if (0 >= player->tempHealth)
@@ -132,11 +189,11 @@ FIGHTSTATUS round(CHARACTER *player, CHARACTER *enemy)
 
 bool attackPhase(struct Player* player)
 {
-	struct Enemy enemy; 
+	struct Enemy* enemy = initializeEnemy(SWORDSMAN);
 
-	matchEnemyToCharacterStats(&enemy, player);
+	matchEnemyToCharacterStats(enemy, player);
 
-	CHARACTER Enemy = enemy.character;
+	CHARACTER Enemy = enemy->character;
 
 	CHARACTER Player = player->character;
 
@@ -150,7 +207,7 @@ bool attackPhase(struct Player* player)
 
 	while (NWIN == current)
 	{
-		current = round(&player, &Enemy);
+		current = round(&Player, &Enemy);
 
 		printf("\n");
 
@@ -380,7 +437,7 @@ void characterAvatar(int i, char* characterAvatar)
 
 	};
 
-	memcpy(characterAvatar, avatars[i], (AVATARHEIGHT * AVATARLENGTH * sizeof(char)));
+	memcpy(characterAvatar, avatars[0], (AVATARHEIGHT * AVATARLENGTH * sizeof(char)));
 }
 
 void lineUpBasedOnNumSize(int x)
